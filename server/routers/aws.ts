@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-export{}
+//export{}
 //AWS specific details
 const getCredentials = require('../controllers/aws/Credentials/getCreds.ts');
 const getFunctions = require('../controllers/aws/Metrics/getLambdaFuncs.ts');
