@@ -1,229 +1,132 @@
-$triangle: url('./pictures/triangles.jpg');
-
 body {
-  font-family: monospace;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
+
+.body-wrapper {
+  display: flex;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.navigation-wrapper {
+  width: 99.8vw;
+}
+
+.top-navigation {
   width: 100%;
+  height: 4rem;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.3rem;
+}
+
+.logo-wrapper {
+  display: flex;
+}
+
+.logo {
+  margin-left: 1rem;
+}
+
+.menu-button {
+  margin-left: 5rem;
+  cursor: pointer;
+}
+
+.profile-wrapper {
+  display: flex;
+}
+
+.user-profile {
+  margin-right: 1rem;
+}
+
+.notifications {
+  margin-right: 2rem;
+}
+
+.toggle-dark {
+  margin-right: 2rem;
+}
+
+.menu-wrapper {
+  height: 90.2vh;
+  margin-left: -15.5;
+}
+
+.menu-navigation {
   height: 100%;
-  //postgres://zhocexop:Ipv9EKas6bU6z9ehDXZQRorjITIXijGv@ziggy.db.elephantsql.com:5432/zhocexop
-  // background-color: #EDE7E3;
-  margin: 0px;
-  background-color: #35363a;
-  // background-image: $triangle;
-
-  // #app {
-  //   background-image: $triangle;
-  // }
-
-  ::-webkit-scrollbar {
-    height: 7px;
-    width: 7px;
-    color: rgba(94,23,235,255);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #8F8F8F;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-  background: #8955F1;
+  border: 1px solid black;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: -15.5rem;
+  border-radius: 0.3rem;
+  transition: all 0.6s;
 }
-  ::-webkit-scrollbar-corner {
-    background: rgba(0,0,0,0);
-  }
 
-  .Navbar {
-    background-color: rgba(94,23,235,255);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .links {
-
-      a {
-        font-family: 'Walter';
-        text-decoration: none;
-        color: white;
-        margin: 10px 50px 10px 10px;
-      }
-    }
-
-    .logo {
-      max-width: 150px;
-      margin: 10px 10px 10px 50px
-    }
-  }
-  .routes{
-    width: 70%;
-    align-content: center;
-    margin: auto;
-    .homeContainer{
-      //border: 2px solid rgba(94,23,235,255);
-      h1, label{
-        color: grey;
-        text-align: center;
-      }
-        .UserInput {
-          display: flex;
-          align-items: center;
-          justify-content: space-evenly;
-          text-align: center;
-          flex-direction: column;
-          .URIinput {
-            border: 2px solid rgba(94,23,235,255);
-            border-radius: 5px;
-          }
-        }
-      .tableSelector {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        border: 2px solid rgba(94,23,235,255);
-        border-radius: 5px;
-        margin-bottom: 15px;
-        overflow-x: auto;
-        .tableButtonSelectors {
-          border: none;
-          display: block;
-          padding: 10px;
-          width: 100%;
-          background-color: #EDE7E3;
-          color: rgba(94,23,235,255);;
-          &:hover {
-            transition: 0.3s;
-            background-color: rgba(94,23,235,255);
-            color: #EDE7E3;
-            cursor: pointer;
-          }
-
-        }
-        .active {
-          border: none;
-          display: block;
-          padding: 10px;
-          width: 100%;
-          background-color: rgba(94,23,235,255);
-          color: #EDE7E3;
-        }
-      }
-      .container {
-        //border: 2px solid rgba(94,23,235,255)
-        border-radius: 5px;
-        display: flex;
-        overflow-x: scroll;
-        overflow-y: scroll;
-        max-height: 400px;
-        margin-bottom: 50px;
-        table {
-          border: 1px solid rgba(94,23,235,255);
-          border-radius: 15px;
-          border-collapse: collapse;
-          display: flex;
-          flex-direction: column;
-          border-style: solid;
-          width: 100%;
-          // &:hover {
-          //   transform: rotate(360deg);
-          //   transition: 2s
-          // }
-          tr{
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-          }
-
-          thead > tr > th{
-            background-color: #F7F4F3;
-            border: solid black 1px;
-            overflow-x: hidden;
-            min-width: 100px;
-            width: 100%;
-          }
-          td {
-            background-color: #F7F4F3;
-            border: solid black 1px;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            min-width: 100px;
-            width: 100%;
-            max-height: 150px
-            }
-          }
-        }
-        .queryContainer{
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          flex-direction: column;
-          .selectButtons{
-              display: flex;
-              justify-content: center;
-              margin: 15px;
-              align-items: center;
-              font-size: larger;
-              .tableDropdown{
-                border: 2px solid rgba(94,23,235,255);
-                border-radius: 4px;
-                margin: 0px 15px;
-              }
-          }
-          .buttonContainer {
-            display: flex;
-            border-radius: 2px;
-            align-items: center;
-            justify-content: center;
-            margin: auto;
-            button {
-              min-width: 50px;
-            }
-          }
-          .warning{
-            display: flex;
-            justify-content: center;
-            font-size: larger;
-            color: red;
-            min-height: 25px;
-          }
-          .queryGenerator{
-            flex-wrap: wrap;
-            .tableButtons{
-              display: flex;
-              justify-content: center;
-              margin: 15px;
-              align-items: center;
-              font-size: larger;
-              .multiSelect{
-                justify-content: flex-start;
-                div{
-                  justify-content: flex-start;
-                }
-              }
-              .tableDropdown{
-                border: 2px solid rgba(94,23,235,255);
-                border-radius: 4px;
-                margin: 0px 15px;
-              }
-              .okayButton {
-                border: 2px solid rgba(94,23,235,255);
-                border-radius: 4px;
-              }
-            }
-            div {
-              display: flex;
-              justify-content: center;
-              margin: 15px;
-              .generateButton {
-                border: 2px solid rgba(94,23,235,255);
-                border-radius: 4px;
-              }
-            }
-          }
-        }
-      }
-    }
-    .aboutContainer {
-      text-align: center;
-    }
+.open {
+  margin-left: 0;
 }
-  // .active {
-  //   background-color: black;
-  // }
+
+.nav-link {
+  margin-top: 2rem;
+}
+
+.main-interace-wrapper {
+  width: 80vw;
+  height: 80vh;
+  border: 3px solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  margin-left: 10rem;
+}
+
+.chart-wrapper {
+  width: 99.8vw;
+  height: 40vh;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overview-wrapper {
+  width: 99.8vw;
+  height: 49.95vh;
+  display: flex;
+  border: 1px solid black;
+}
+
+.metrics-wrapper {
+  height: 100%;
+  width: 33.3%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.functions-wrapper {
+  height: 100%;
+  width: 33.3%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stream-wrapper {
+  height: 100%;
+  width: 33.3%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
