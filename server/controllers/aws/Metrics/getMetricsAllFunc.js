@@ -1,4 +1,4 @@
-const AWSUtilFunc = require('./utils/AWSUtilFunc.ts');
+const AWSUtilFunc = require('./utils/AWSUtilFunc.js');
 const {
   CloudWatchClient,
   GetMetricDataCommand,
