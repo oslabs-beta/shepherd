@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
-//export{}
+
 //AWS specific details
-const getCredentials = require('../controllers/aws/Credentials/getCreds.ts');
-const getFunctions = require('../controllers/aws/Metrics/getLambdaFuncs.ts');
-const getMetricsAllFunc = require('../controllers/aws/Metrics/getMetricsAllFunc.ts');
-const getMetricsByFunc = require('../controllers/aws/Metrics/getMetricsByFunc.ts');
-const getLogs = require('../controllers/aws/Logs/getLogs.ts');
-const updateLogs = require('../controllers/aws/Logs/updateLogs.ts');
-const getAPIData = require('../controllers/aws/APIGateway/getAPI.ts');
-const getApiMetrics = require('../controllers/aws/APIGateway/getAPIMetrics.ts');
-const updateApiMetrics = require('../controllers/aws/APIGateway/updateAPIMetrics.ts');
+const getCredentials = require('../controllers/aws/Credentials/getCreds');
+const getFunctions = require('../controllers/aws/Metrics/getLambdaFuncs');
+const getMetricsAllFunc = require('../controllers/aws/Metrics/getMetricsAllFunc');
+const getMetricsByFunc = require('../controllers/aws/Metrics/getMetricsByFunc');
+const getLogs = require('../controllers/aws/Logs/getLogs');
+const updateLogs = require('../controllers/aws/Logs/updateLogs');
+const getAPIData = require('../controllers/aws/APIGateway/getAPI');
+const getApiMetrics = require('../controllers/aws/APIGateway/getAPIMetrics');
+const updateApiMetrics = require('../controllers/aws/APIGateway/updateAPIMetrics');
 
 //AWS Assumed Role Credentials
 router.route('/getCreds').post(getCredentials, (req, res) => {

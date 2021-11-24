@@ -6,10 +6,7 @@ const mongoose = require("mongoose");
 const PORT = 3000;
 
 //connect to mongoDB
-mongoose.connect('mongodb+srv://shepherd:lambchop@cluster0.w9igo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
-});
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
