@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // import routers here 
 const UserRouter = require("./routers/userRouter.ts");
-
+const awsRouter = require("./routers/aws.ts");
 
 //change later, just for test
 if (true) {
@@ -34,7 +34,8 @@ else {
 }
 
 // endpoints here
-// app.use("/login", UserRouter);
+app.use("/login", UserRouter);
+app.use("/aws", awsRouter);
 
 
 

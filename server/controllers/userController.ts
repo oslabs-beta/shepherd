@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 // UserController class
-const UserController = {};
+const UserController: any = {};
 
 UserController.signup = async (req, res, next) => {
   // Check if user already exists
