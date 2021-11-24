@@ -1,5 +1,5 @@
 {
-  "name": "preql",
+  "name": "shepherd",
   "version": "1.0.0",
   "description": "",
   "main": "src/electron.js",
@@ -33,6 +33,7 @@
     "@types/react-transition-group": "^4.4.3",
     "babel-loader": "^8.2.2",
     "babel-polyfill": "^6.26.0",
+    "bcrypt": "^5.0.1",
     "concurrently": "^6.3.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.3.0",
@@ -41,8 +42,11 @@
     "electron-builder": "^22.13.1",
     "electron-is-dev": "^2.0.0",
     "express": "^4.17.1",
+    "express-validator": "^6.13.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.13",
     "nodemon": "^2.0.13",
     "pandas-js": "^0.2.4",
     "path": "^0.12.7",
@@ -65,6 +69,9 @@
     "webpack-dev-server": "^4.3.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.6",
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.3.1",
     "clean-webpack-plugin": "^4.0.0",
@@ -111,16 +118,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oslabs-beta/preql.git"
+    "url": "git+https://github.com/oslabs-beta/shephard"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/oslabs-beta/preql/issues"
-  },
+
   "build": {
-    "appId": "preql",
+    "appId": "shepherd",
     "files": [
       "build/**/*",
       "node_modules/**/*"

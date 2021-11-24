@@ -1,17 +1,23 @@
 const path = require("path");
 const express = require("express");
 const app = express();
-const apiRouter = require('./apiRouter');
-
+const mongoose = require("mongoose");
 
 const PORT = 3000;
 
+//connect to mongoDB
+mongoose.connect('mongodb+srv://shepherd:lambchop@cluster0.w9igo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(express.static(path.join(__dirname, "..src/pictures")))
-//app.use("/about", (req, res) => res.status(200).send('ok'));
+// import routers here 
+const UserRouter = require("./routers/userRouter.ts");
+
+
 //change later, just for test
 if (true) {
     app.get("/", (req, res) => {
@@ -27,7 +33,10 @@ else {
     
 }
 
-app.use('/api', apiRouter);
+// endpoints here
+// app.use("/login", UserRouter);
+
+
 
 // catch-all Error 404
 app.use((req, res) => res.status(404).send("<h1> 404 Route Not Found </h1>"));
@@ -45,7 +54,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server listening on port: ${PORT}...`);
+    console.log(`Server listening on port: ${PORT}... at ${new Date}`);
 });
 
 module.exports = app;
