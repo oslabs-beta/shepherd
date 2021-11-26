@@ -17,13 +17,15 @@ const {
 //Async Function to Assume role of the Client and pull metrics
 
 const getCredentials = async (req, res, next) => {
+  console.log('triggered getCred middleware')
   const roleParams = {
     RoleArn: req.body.arn,
-    RoleSessionName: 'HeliosSession',
+    RoleSessionName: 'TestSession',
   };
 
   try {
     const assumedRole = await stsClient.send(new AssumeRoleCommand(roleParams));
+    //const AWS_REGION = 'us-east-2'
     const accessKeyId = assumedRole.Credentials.AccessKeyId;
     const secretAccessKey = assumedRole.Credentials.SecretAccessKey;
     const sessionToken = assumedRole.Credentials.SessionToken;

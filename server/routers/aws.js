@@ -17,10 +17,18 @@ router.route('/getCreds').post(getCredentials, (req, res) => {
   res.status(200).json(res.locals.credentials);
 });
 
+// router.route('/getCreds').post((req, res) => {
+//   console.log('hitting router')
+//   console.log(req.body)
+//   return res.status(200).send(req.body);
+// });
+
 //Returing Lambda Functions List
 router.route('/getLambdaFunctions').post(getFunctions, (req, res) => {
   res.status(200).json(res.locals.functions);
 });
+
+
 
 //Returing Lambda Functions Metric Totals (All functions): by metricName
 router

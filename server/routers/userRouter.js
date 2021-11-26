@@ -1,7 +1,7 @@
 // set up a router for user authentication
 const express = require('express');
 const router = express.Router();
-const User = require('../models/UserModel.ts');
+const User = require('../models/UserModel.js');
 const expressValidator = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
