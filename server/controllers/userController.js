@@ -168,4 +168,4 @@ userController.updatePassword = async (req, res, next) => {
 };
 
 //export the UserController
-export default userController;
+module.exports = userController;
