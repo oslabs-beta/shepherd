@@ -29,12 +29,12 @@ else {
     });
     
 }
-
+app.get("/test", (req, res) => {
+    return res.status(201).send('testing')
+})
 // endpoints here
 app.use('/user', userRouter);
 app.use("/aws", awsRouter);
-
-
 
 // catch-all Error 404
 app.use((req, res) => res.status(404).send("<h1> 404 Route Not Found </h1>"));

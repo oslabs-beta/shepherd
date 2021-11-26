@@ -8,6 +8,7 @@ const {
 //***********************Begin************************ */
 
 const getMetricsByFunc = async (req, res, next) => {
+  console.log('hitting getMetricsbyFunc')
   const cwClient = new CloudWatchClient({
     region: req.body.region,
     credentials: req.body.credentials,

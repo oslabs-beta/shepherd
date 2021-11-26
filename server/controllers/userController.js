@@ -169,3 +169,4 @@ userController.updatePassword = async (req, res, next) => {
 
 //export the UserController
 module.exports = userController;
+

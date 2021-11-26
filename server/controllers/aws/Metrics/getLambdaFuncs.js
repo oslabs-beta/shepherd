@@ -8,6 +8,7 @@ const {
 //***********************Begin************************ */
 
 const getFunctions = async (req, res, next) => {
+  console.log('triggered getFunc middleware')
   const lambdaClient = new LambdaClient({
     region: req.body.region,
     credentials: req.body.credentials,
@@ -29,3 +30,18 @@ const getFunctions = async (req, res, next) => {
 };
 //***********************End************************ */
 module.exports = getFunctions;
+
+
+// body: JSON.stringify({
+//   credentials: props.credentials,
+//   timePeriod: timePeriod,
+//   funcNames: props.aws.functions,
+//   region: region,
+
+// }),
+// fetch('/aws/getMetricsByFunc/Invocations', reqParams)
+// .then((res) => res.json())
+// .then((invocationData) => {
+//   props.addInvocationsByFuncData(invocationData);
+// })
+// .catch((err) => console.error(err));
