@@ -38,7 +38,10 @@ const Login = () => {
 
     return(
     <div className="form-container">
-      <h1>Login Page</h1>
+      <div className="landing-logo">
+        <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> &nbsp;
+          SHEPHERD
+      </div>
       <form className="register-form" onSubmit = {handleSubmit}>
         <input
           id="email"
