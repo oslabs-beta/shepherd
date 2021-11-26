@@ -6,17 +6,14 @@ const mongoose = require("mongoose");
 const PORT = 3000;
 
 //connect to mongoDB
-mongoose.connect('mongodb+srv://shepherd:lambchop@cluster0.w9igo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
-});
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // import routers here 
-const UserRouter = require("./routers/userRouter.ts");
-const awsRouter = require("./routers/aws.ts");
+const userRouter = require("./routers/userRouter.js");
+const awsRouter = require("./routers/aws.js");
 
 //change later, just for test
 if (true) {
@@ -34,7 +31,7 @@ else {
 }
 
 // endpoints here
-app.use("/login", UserRouter);
+app.use('/user', userRouter);
 app.use("/aws", awsRouter);
 
 

@@ -109,7 +109,3 @@ const getAPIData = async (req, res, next) => {
 };
 
 module.exports = getAPIData;
-
-// do everything above but differently
-
-

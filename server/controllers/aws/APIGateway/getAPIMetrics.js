@@ -1,4 +1,4 @@
-const APIUtilFunc = require('./utils/APIUtilFunc.ts');
+const APIUtilFunc = require('./utils/APIUtilFunc');
 const {
   CloudWatchClient,
   GetMetricDataCommand,
