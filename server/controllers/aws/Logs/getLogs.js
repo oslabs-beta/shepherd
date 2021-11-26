@@ -7,6 +7,7 @@ const {
 } = require('@aws-sdk/client-cloudwatch-logs');
 
 const getLogs = async (req, res, next) => {
+  console.log('hitting getLogsss')
   // append name of function to the format necessary for grabbing logs
   const logGroupName = '/aws/lambda/' + req.body.function;
 
@@ -60,7 +61,7 @@ const getLogs = async (req, res, next) => {
       })
     );
     data.push(nextLogEvents.events);
-    return helperFunc(nextLogEvents.nextToken, data);
+    return setTimeout(() => helperFunc(nextLogEvents.nextToken, data), 500);
   }
 
   try {
