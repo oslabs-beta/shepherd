@@ -15,7 +15,7 @@ const App = (props: any) => {
       <div className="body-wrapper">
         <Menu menuOpen={menuOpen} />
         <Dashboard />
-      </div>
+       </div>
     </div>
   );
 }

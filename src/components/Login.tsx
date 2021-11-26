@@ -37,11 +37,12 @@ const Login = () => {
     }
 
     return(
-    <div className="form-container">
-      <div className="landing-logo">
-        <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> &nbsp;
+    <div className = "landing">
+      <div className="heading">
+        <i className="fab fa-wolf-pack-battalion shepherd-icon"></i>
           SHEPHERD
-      </div>
+    </div>
+    <div className="form-container">
       <form className="register-form" onSubmit = {handleSubmit}>
         <input
           id="email"
@@ -75,9 +76,10 @@ const Login = () => {
         <button 
           className="form-field" 
           onClick={handleRegister}>
-          Register for an account
+          Register
          </button> 
       </form>
+    </div>
     </div>
     )
 }

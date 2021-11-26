@@ -6,32 +6,64 @@ import Login from './Login';
 //Need to add all the logic for hooking up AWS account as well as storing that information into the db here
 
 const Register = () => {
-
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [submitted, setSubmit] = useState(false);
+    const [regionSelect, setRegion] = useState('us-east-2');
+    const [arn, setArn] = useState('');
       // Need logic for submit to redirect to the dashboard
-      const handleSubmit = (e: any) => {
+      const handleRegister = (e: any) => {
           e.preventDefault(); //stop refresh
-          if (email && password){
+          if (email && password && firstName && lastName){ //if all data present in state
             setSubmit(true);
             // Save into database somehow
             const reqParams = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-              };
-            //Redirect back to the login page
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, arn, regionSelect }),
+            };
+            /// after updating backend, need to fetch
+           
+            //Redirect back to login page
             return(
-                <Login />
-            )
-          }
+              <Login />
+          )
+         }
       }
   
       return(
+      <div className= "landing">
+        <div className= "heading">
+        <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> 
+          SHEPHERD
+        </div>
       <div className="form-container">
-        <h1>Registration Page</h1>
-        <form className="sign-up-form" onSubmit = {handleSubmit}>
+        <form className="register-form" onSubmit = {handleRegister}>
+          REGISTER FOR AN ACCOUNT
+          <input
+            id="first-name"
+            className="form-field"
+            type="text"
+            placeholder="First Name"
+            value = {firstName}
+            onChange={(e: any) => {
+              setPassword(e.target.value);
+            }}
+          />
+          {submitted && !firstName ? <span>Please enter your first name.</span> : null}
+          <input
+            id="last-name"
+            className="form-field"
+            type="text"
+            placeholder="Last Name"
+            value = {lastName}
+            onChange={(e: any) => {
+              setPassword(e.target.value);
+            }}
+          />
+          {submitted && !lastName ? <span>Please enter your last name.</span> : null}
           <input
             id="email"
             className="form-field"
@@ -54,15 +86,18 @@ const Register = () => {
             }}
           />
           {submitted && !password ? <span>Please enter a password.</span> : null}
+          
           <button 
             className="form-field" 
             type="submit" 
-            onClick={handleSubmit}>
+            onClick={handleRegister}>
             Register
           </button>
+            {/* Need to add Amazon link logic and rendering info here */}
+
         </form>
+      </div>
       </div>
       )
   }
-  
   export default Register;
