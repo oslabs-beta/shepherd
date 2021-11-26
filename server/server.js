@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // import routers here 
-const UserRouter = require("./routers/userRouter.js");
+const userRouter = require("./routers/userRouter.js");
 const awsRouter = require("./routers/aws.js");
 
 //change later, just for test
@@ -33,7 +33,7 @@ app.get("/test", (req, res) => {
     return res.status(201).send('testing')
 })
 // endpoints here
-app.use("/login", UserRouter);
+app.use('/user', userRouter);
 app.use("/aws", awsRouter);
 
 // catch-all Error 404
