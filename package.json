@@ -59,6 +59,7 @@
     "mongoose": "^6.0.13",
     "nodemon": "^2.0.13",
     "pandas-js": "^0.2.4",
+    "passport-google-oauth": "^2.0.0",
     "path": "^0.12.7",
     "pg": "^8.7.1",
     "react": "^17.0.2",
