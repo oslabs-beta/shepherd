@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login'
+import Register from './components/Register'
 
 const App = (props: any) => {
 
