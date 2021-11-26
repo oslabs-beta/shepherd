@@ -6,22 +6,24 @@ const Header = (props: any) => {
       <div className="navigation-wrapper">
         <div className="top-navigation">
           <div className="logo-wrapper">
+            
             <div className="logo">
+            <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> &nbsp;
               SHEPHERD
             </div>
-            <div className="menu-button" onClick={() => props.setMenuOpen(!props.menuOpen)}>
-              MENU
+            <div className="menu-button-container" onClick={() => props.setMenuOpen(!props.menuOpen)}>
+              <i className="fas fa-bars menu-icon"></i>
             </div>
           </div>
         <div className="profile-wrapper">
-          <div className="toggle-dark">
+          {/* <div className="toggle-dark">
             TOGGLE DARK
           </div>
           <div className="notifications">
             NOTIFICATIONS
-          </div>
+          </div> */}
           <div className="user-profile">
-            PROFILE
+          <i className="fas fa-user-circle user-icon"></i>
           </div>
         </div>
         </div>
