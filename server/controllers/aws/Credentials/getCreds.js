@@ -19,7 +19,7 @@ const {
 const getCredentials = async (req, res, next) => {
   const roleParams = {
     RoleArn: req.body.arn,
-    RoleSessionName: 'HeliosSession',
+    RoleSessionName: 'ShepherdSession',
   };
 
   try {
