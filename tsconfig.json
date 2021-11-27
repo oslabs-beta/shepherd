@@ -8,7 +8,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "lib": ["es6"],
+    "lib": ["es6", "DOM"],
   },
   "include": ["src", "import-png.d.ts"]
 }

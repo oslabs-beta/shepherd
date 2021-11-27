@@ -32,7 +32,7 @@ router.route('/getLambdaFunctions').post(getFunctions, (req, res) => {
 
 //Returing Lambda Functions Metric Totals (All functions): by metricName
 router
-  .route('/getMetricsAllfunc/:metricName')
+  .route('/getMetricsAllFunc/:metricName')
   .post(getMetricsAllFunc, (req, res) => {
     res.status(200).json(res.locals.metricAllFuncData);
   });
