@@ -2,9 +2,9 @@ import React from 'react';
 import SmallCard from './SmallCard';
 import MediumCard from './MediumCard';
 import Stream from './Stream';
-
+import { useState, useEffect } from 'react';
 const Dashboard = (props: any) => {
-
+  
   return (
       <React.Fragment>
           <div className="main-interface-wrapper">

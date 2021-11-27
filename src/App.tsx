@@ -132,8 +132,8 @@ const App = (props: any) => {
 // '7d'
 // '14d'
 // '30d'
-
-
+// arn:aws:iam::568675648424:role/TestDelegationRole     <--this is Andrews
+// arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -146,42 +146,110 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
 
+// useEffect(() => {
 
-  useEffect(() => {
-    if (arn) {
-      const fetchCreds = async () => {
-        const response = await fetch('/aws/getCreds', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            arn: arn,
-          }),
-        });
-        const data = await response.json();
-        console.log('THIS IS THE CREDENTIALS DATA', data)
-        setCredentials(data);
-      };
-      fetchCreds();
-      const fetchFunctions = async () => {
-        const response = await fetch('/aws/getLambdaFunctions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            region: "us-east-2",
-            credentials: credentials,
-          }),
-        });
-        const data = await response.json();
-        setFunctionList(data);
-      };
-      fetchFunctions();
+//   async () => {
+//     await fetchCreds();
+//     await fetchFuncList();
+//   }
+// }, []);
+useEffect(() => {
+  
+  const test1 = async () => {
+    await fetchCreds();
+    console.log(credentials);
+    test2();
+  }
+
+  async function test2() {
+    await fetchFuncList();
+  }
+
+  test1(); 
+}, []);
+  const fetchCreds = async () => {
+    const response = await fetch('/aws/getCreds', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        arn: arn,
+      }),
+    });
+    const data = await response.json();
+    await setCredentials(data);
+  }
+console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
+const fetchFuncList = async () => {
+  const response = await fetch('/aws/getLambdaFunctions', {
+    method: 'POST',
+    body: JSON.stringify({
+      region: 'us-east-2',
+      credentials: credentials
+    }),
+    headers: {
+      'Content-Type': 'application/json'
     }
-  }, [arn]);
+  });
+  const data = await response.json();
+  setFunctionList(data);
+}
+console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
 
+
+
+
+//! THIS SUCKS AND DIDNT WORK
+  // useEffect(() => {
+  //   if (arn){
+  //     const fetchCreds = fetch('/aws/getCreds', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         arn: arn,
+  //       }),
+  //     })
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         console.log('THIS IS THE CREDENTIALS DATA', data)
+  //         setCredentials(data);
+  //       }
+  //       )
+        
+  //       .then(() => {
+  //         const fetchFunctions = fetch('/aws/getLambdaFunctions', {
+  //           method: 'POST',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //           },
+  //           body: JSON.stringify({
+  //             region: "us-east-2",
+  //             credentials: credentials,
+  //           }),
+  //         })
+  //           .then(response => response.json())
+  //           .then(data => {
+  //             console.log('THIS IS THE FUNCIONS LIST', data)
+  //             setFunctionList(data);
+  //           })
+  //       }
+  //       )
+  //   }
+  // }, [arn, functionList]);
+
+
+
+
+
+
+
+
+
+
+  
   // use effect to get the list of functions
 
   // useEffect(() => { 
@@ -282,7 +350,7 @@ const App = (props: any) => {
   //   };
   //   fetchTotalThrottles();
   // }, [timePeriod, functionList, credentials]);
-
+ 
   // use effect to get the most active function for the time period
   // useEffect(() => {
   //   const fetchMostActiveFunc = async () => {
@@ -348,8 +416,7 @@ const App = (props: any) => {
   // }, [timePeriod, functionList, credentials]);
 
   // log all state items
-  console.log(functionList);
-  console.log(credentials);
+  // console.log(functionList);
   // console.log(timePeriod);
   // console.log(totalInvocations);
   // console.log(totalErrors);
@@ -361,7 +428,7 @@ const App = (props: any) => {
       <Header setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <div className="body-wrapper">
         <Menu menuOpen={menuOpen} />
-      <div>{functionList}</div>
+      
         <Dashboard />
       </div>
     </div>
