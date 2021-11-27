@@ -11,11 +11,12 @@ const App = (props: any) => {
 
   return (
     <div className="container">
-      <Header setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+      {/* <Header setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <div className="body-wrapper">
         <Menu menuOpen={menuOpen} />
         <Dashboard />
-       </div>
+       </div> */}
+       <Register />
     </div>
   );
 }
