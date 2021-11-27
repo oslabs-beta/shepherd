@@ -146,28 +146,11 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
 
-// useEffect(() => {
-
-//   async () => {
-//     await fetchCreds();
-//     await fetchFuncList();
-//   }
-// }, []);
 useEffect(() => {
-  
-  const test1 = async () => {
-    await fetchCreds();
-    console.log(credentials);
-    test2();
-  }
-
-  async function test2() {
-    await fetchFuncList();
-  }
-
-  test1(); 
+  fetchCreds();
 }, []);
-  const fetchCreds = async () => {
+
+const fetchCreds = async () => {
     const response = await fetch('/aws/getCreds', { 
       method: 'POST',
       headers: {
@@ -181,6 +164,13 @@ useEffect(() => {
     await setCredentials(data);
   }
 console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
+
+useEffect(() => {
+  if (credentials) {
+    fetchFuncList();
+  }
+}, [credentials]);
+
 const fetchFuncList = async () => {
   const response = await fetch('/aws/getLambdaFunctions', {
     method: 'POST',
