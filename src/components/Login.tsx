@@ -43,6 +43,7 @@ const Login = () => {
           SHEPHERD
     </div>
     <div className="form-container">
+      <p>LOGIN</p>
       <form className="register-form" onSubmit = {handleSubmit}>
         <input
           id="email"
@@ -67,14 +68,12 @@ const Login = () => {
         />
         {submitted && !password ? <span>Please enter a password.</span> : null}
         <button 
-          className="form-field" 
           type="submit" 
           onClick={handleSubmit}>
           Login
         </button>
         {/* Should redirect with React router to new sign up page */}
         <button 
-          className="form-field" 
           onClick={handleRegister}>
           Register
          </button> 

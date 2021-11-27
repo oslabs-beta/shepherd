@@ -41,7 +41,7 @@ const Register = () => {
         </div>
       <div className="form-container">
         <form className="register-form" onSubmit = {handleRegister}>
-          REGISTER FOR AN ACCOUNT
+          <p>REGISTER FOR AN ACCOUNT</p>
           <input
             id="first-name"
             className="form-field"
@@ -49,7 +49,7 @@ const Register = () => {
             placeholder="First Name"
             value = {firstName}
             onChange={(e: any) => {
-              setPassword(e.target.value);
+              setFirstName(e.target.value);
             }}
           />
           {submitted && !firstName ? <span>Please enter your first name.</span> : null}
@@ -60,7 +60,7 @@ const Register = () => {
             placeholder="Last Name"
             value = {lastName}
             onChange={(e: any) => {
-              setPassword(e.target.value);
+              setLastName(e.target.value);
             }}
           />
           {submitted && !lastName ? <span>Please enter your last name.</span> : null}
@@ -88,7 +88,6 @@ const Register = () => {
           {submitted && !password ? <span>Please enter a password.</span> : null}
           
           <button 
-            className="form-field" 
             type="submit" 
             onClick={handleRegister}>
             Register
