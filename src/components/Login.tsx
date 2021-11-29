@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Dashboard from "./Dashboard";
+import Axios from 'axios';
 // import Button from '@material-ui/core/Button';
 
 //TO DO - need to hook up to the App level page and then create routes to redirect to Dashboard once username/pw are validated OR redirect to registration page which will then redirect back to this page when user has successfully registered
@@ -16,11 +17,9 @@ const Login = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault(); //stop refresh
         //should this be a get or post request to verify user credentials?
-        const reqParams = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
-        };
+        Axios.post('/end point', {
+          
+        })
         if (email && password){
           setValid(true);
           // Need logic for submit to redirect to the dashboard
