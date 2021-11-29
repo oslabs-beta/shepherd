@@ -137,7 +137,7 @@ const App = (props: any) => {
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [timePeriod, setTimePeriod] = useState('24hr');
+  const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
   const [totalInvocations, setTotalInvocations] = useState(0);
@@ -160,11 +160,11 @@ useEffect(() => {
 console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
 
 useEffect(() => {
-  if (functionList.length > 0) {
-    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, functionList);
+  if (credentials && functionList.length > 0) {
+    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, functionList);
   }
-}, [functionList, timePeriod]);
-console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc)
+}, [credentials,functionList, timePeriod]);
+console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc)
 
   // // use effect to get the total errors for the time period
   // // useEffect(() => {
@@ -200,21 +200,21 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc)
 
   // use effect to get the most error function for the time period
   // useEffect(() => {
-  //   const fetchMostErrorFunc = async () => {
-  //     const response = await fetch('/aws/getMetricByFunc/Errors', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         timePeriod: timePeriod,
-  //         region: 'us-east-2',
-  //         credentials: credentials,
-  //         functionList: functionList,
-  //       }),
-  //     });
-  //     const res = await response.json();
-  //     setMostErrorFunc(() => {
+    // const fetchMostErrorFunc = async () => {
+    //   const response = await fetch('/aws/getMetricByFunc/Errors', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       timePeriod: timePeriod,
+    //       region: 'us-east-2',
+    //       credentials: credentials,
+    //       functionList: functionList,
+    //     }),
+    //   });
+    //   const res = await response.json();
+    //   setMostErrorFunc(() => {
     //       let mostErrors = null;
     //       let max = 0;
     //       res.series.forEach((element) => {
@@ -226,7 +226,7 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc)
     // // TOTALS CALLS THIS TIME PERIOD
     //       return mostErrors;
     //     });
-  //   };
+    // };
   //   fetchMostErrorFunc();
   // }, [timePeriod, functionList, credentials]);
 
