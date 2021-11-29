@@ -1,9 +1,13 @@
 import React, { useState, useEffect, Component} from 'react';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard
 import { Credentials } from '@aws-sdk/client-sts';
+import Settings from './components/Settings';
+import Login from './components/Login'
+import Register from './components/Register'
 import * as fetching from './functions';
+
 const App = (props: any) => {
 //time period values
 // '1hr'  
@@ -16,6 +20,7 @@ const App = (props: any) => {
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('dashboard');
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
@@ -45,48 +50,32 @@ useEffect(() => {
 }, [credentials,functionList, timePeriod]);
 console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
-  // // use effect to get the total errors for the time period
-  // // useEffect(() => {
-  // //   const fetchTotalErrors = async () => {
-  // //     const response = await fetch('/aws/getMetricAllFunc/Errors', {
-  // //       method: 'POST',
-  // //       headers: {
-  // //         'Content-Type': 'application/json',
-  // //       },
-  // //       body: JSON.stringify({
-  // //         timePeriod: timePeriod,
-  // //         region: 'us-east-2',
-  // //         credentials: credentials,
-  // //       }),
-  // //     });
-  // //     const res = await response.json();
-  // //     setTotalErrors(() => {
-  // //         let acc = 0;
-  // //         res.data.forEach((element: any) => {
-  // //           acc += element.y;
-  // //         });
-  // //   // TOTALS CALLS THIS TIME PERIOD
-  // //         return acc;
-  // //       });
-  // //   };
-  // //   fetchTotalErrors();
-  // // }, [timePeriod, functionList, credentials]);
-
-  // // use effect to get the total throttles for the time period
+=======
   
-  //   fetchMostActiveFunc();
-  // }, [timePeriod, functionList, credentials]);
 
 
   return (
     <div className="container">
-      <Header setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+      <Header 
+        setMenuOpen={setMenuOpen} 
+        menuOpen={menuOpen} 
+        setCurrentView={setCurrentView}
+      />
       <div className="body-wrapper">
-        <Menu menuOpen={menuOpen} />
-      
-        <Dashboard />
-      </div>
+
+        <Menu 
+          menuOpen={menuOpen} 
+          setMenuOpen={setMenuOpen} 
+          currentView={currentView} 
+          setCurrentView={setCurrentView} 
+      />
+        { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} /> : null }
+        { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
+       </div>
     </div>
   );
 }
+
 export default App;
+
+
