@@ -20,8 +20,11 @@ $brightgreen: #00c852;
 $brightyellow: #ffc108;
 $twitterblue: #2ab6f6;
 $streamoutline: #414967;
+$lightoutline: #363d5b;
+$settingsoutline: #2f3653;
 
 //<------ DASHBOARD ------>
+
 body {
   font-family: "Inter", sans-serif;
   margin: 0;
@@ -158,7 +161,7 @@ body {
   width: 14rem;
   color: $navText;
   font-size: 1.05rem;
-  border-radius: 0.8rem;
+  border-radius: 0.5rem;
   transition: all 0.3s;
   cursor: pointer;
   z-index: 10;
@@ -166,6 +169,11 @@ body {
 
 .nav-link:hover {
   // background-color: #ede7f6;
+  background-color: $navBG;
+  color: $brightpurple;
+}
+
+.selected-view {
   background-color: $navBG;
   color: $brightpurple;
 }
@@ -183,17 +191,18 @@ body {
 }
 
 .chart-wrapper {
-  width: 100%;
+  width: 100vw;
   height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-right: 9.5rem;
+  // margin-right: 15.45rem;
+  margin-right: 18.1%;
   margin-bottom: 1rem;
 }
 
 .chart-visual {
-  width: 89%;
+  width: 82.9%;
   height: 88%;
   margin-top: 1rem;
   border-radius: 0.7rem;
@@ -214,6 +223,7 @@ body {
   background-color: $transparentBG;
   color: $navText;
   outline: none;
+  margin-right: 0.1rem;
 }
 
 .select-time:hover {
@@ -221,9 +231,10 @@ body {
 }
 
 .overview-wrapper {
-  width: 99.8vw;
+  width: 100%;
   height: 49.95vh;
   display: flex;
+  margin-left: 0.7rem;
 }
 
 .metrics-wrapper {
@@ -260,7 +271,8 @@ body {
   height: 4rem;
   width: 58.5%;
   margin-bottom: 1.85rem;
-  margin-left: 1.5rem;
+  // margin-left: 1.5rem;
+  margin-left: 4.2%;
   // border: 1px solid #cde7fc;
   border-radius: 0.5rem;
   // background-color: #ffffff;
@@ -270,6 +282,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  margin-right: 4.5%;
 }
 
 .call-icon {
@@ -293,6 +306,7 @@ body {
 }
 
 .metric {
+  margin-top: 0.7rem;
   color: $white;
 }
 
@@ -301,8 +315,10 @@ body {
   height: 8rem;
   width: 80%;
   margin-bottom: 4.6rem;
-  margin-right: 5.1rem;
+  // margin-right: 5.65rem;
+  margin-right: 19.5%;
 }
+
 .medium-card-color {
   // background-color: $brightpurple;
   height: 9rem;
@@ -367,6 +383,216 @@ body {
   font-size: 1.1rem;
 }
 
+//<-------- SETTINGS ------->
+
+.settings-wrapper {
+  width: 96%;
+  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // background-color: #e3f2fd;
+  background-color: $transparentBG;
+  border-radius: 1rem 1rem 0 0;
+  margin: 0.7rem 1.2rem 0rem 0rem;
+}
+
+.settings-header {
+  width: 100%;
+  height: 5rem;
+  border-bottom: 1px solid $streamoutline;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.settings-header-text {
+  font-size: 1.05rem;
+  color: $navText;
+  padding-left: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.settings-body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-left {
+  width: 30%;
+  height: 100%;
+  border-right: 1px solid $midnight;
+}
+
+.setting-active {
+  background-color: $cardBG;
+}
+
+.tab-view-name {
+  display: flex;
+  align-items: center;
+  margin-left: 9.6%;
+  margin-top: 1.6rem;
+  height: 4.1rem;
+  width: 81%;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.tab-view-name:hover {
+  background-color: $cardBG;
+}
+
+.tab-text-wrapper {
+  // margin-top: 0.2rem;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tab-text-1 {
+  color: $navText;
+  font-size: 0.9rem;
+  margin-bottom: -0.3rem;
+}
+
+.tab-text-2 {
+  color: $cardText;
+  font-size: 0.8rem;
+}
+
+.tab-view-icon {
+  display: flex;
+  align-items: center;
+}
+
+.address-icon {
+  // margin-top: 0.2rem;
+  margin-left: 1.5rem;
+  color: $brightblue;
+  font-size: 1.4rem;
+}
+
+.key-icon {
+  margin-left: 1.5rem;
+  color: $brightblue;
+  font-size: 1.2rem;
+}
+
+.link-icon {
+  margin-left: 1.5rem;
+  color: $brightblue;
+  font-size: 1.2rem;
+}
+
+.settings-right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-account-wrapper {
+  margin-top: 1.5rem;
+  height: 30rem;
+  width: 80%;
+  border: 1px solid $settingsoutline;
+  border-radius: 1rem;
+  margin-right: 0.4%;
+}
+
+.edit-header {
+  display: flex;
+  align-items: center;
+  color: $navText;
+  font-size: 0.95rem;
+  padding-left: 1.3rem;
+  height: 4rem;
+  border-bottom: 1px solid $settingsoutline;
+}
+
+.input-field {
+  margin-top: 3rem;
+  margin-left: 3.7%;
+  height: 2.7rem;
+  width: 90%;
+  background-color: $midnight;
+  border-radius: 0.6rem;
+  border: 1px solid $settingsoutline;
+  padding-left: 1rem;
+  color: $navText;
+  font-family: "Inter", sans-serif;
+}
+
+.input-field:hover {
+  outline: 1px solid $navText;
+}
+
+.input-field:focus {
+  outline: 1px solid $brightblue;
+}
+
+.edit-name-field {
+  position: relative;
+}
+
+.edit-name-label {
+  position: absolute;
+  color: $navText;
+  top: 1.4rem;
+  left: 2rem;
+  font-size: 0.8rem;
+  width: 1rem;
+}
+
+.edit-email-field {
+  position: relative;
+}
+
+.edit-email-label {
+  position: absolute;
+  color: $navText;
+  top: 1.4rem;
+  left: 2rem;
+  font-size: 0.8rem;
+  width: 8rem;
+}
+
+.edit-company-field {
+  position: relative;
+}
+
+.edit-company-label {
+  position: absolute;
+  color: $navText;
+  top: 1.4rem;
+  left: 2rem;
+  font-size: 0.8rem;
+  width: 8rem;
+}
+
+.update-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-update-button {
+  height: 2.2rem;
+  width: 6rem;
+  background-color: $brightblue;
+  color: $white;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-top: 2.8rem;
+  margin-right: 4.05%;
+  cursor: pointer;
+}
+
 //<-------- LOGIN & REGISTRATION PAGES --------->
 
 .landing {
@@ -374,7 +600,7 @@ body {
   margin: 0;
   background-color: $midnight;
   overflow: hidden;
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -404,7 +630,7 @@ body {
 }
 
 .register-form {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   width: 360px;
@@ -450,6 +676,24 @@ button {
   background: $darkpurple;
   color: $lightpurple;
   cursor: pointer;
+  border-radius: 0.3rem;
+  transition: background 0.5s;
+  box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+  -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  transition: all 400ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+}
+
+button:hover {
+  box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+}
+
+button:active {
+  background-color: $darkpurple;
+  background-size: 100%;
+  transition: background s;
   margin: 10px 0 10px 0;
   padding: 18px;
   border: 0;
@@ -461,4 +705,5 @@ button {
 button:hover { 
   color: $darkpurple;
   background: $lightpurple;
+
 }

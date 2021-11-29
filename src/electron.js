@@ -19,11 +19,20 @@ const createWindow = () => {
     autoHideMenuBar: true,
     useContentSize: true,
     resizable: true,
+    webPreferences: {
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true,
+      enableRemoteModule: true,
+      worldSafeExecuteJavaScript: true,
+      contextIsolation: true,
+      // webSecurity: false,
+    },
   });
 
+  // mainWindow.loadURL('http://localhost:8080');
   // // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
-  // mainWindow.loadURL('http://localhost:3000/');
+  // mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.loadURL('http://localhost:3000/');
   mainWindow.focus();
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
