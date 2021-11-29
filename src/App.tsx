@@ -16,6 +16,7 @@ const App = (props: any) => {
         <Menu menuOpen={menuOpen} />
         <Dashboard />
        </div>
+       {/* <Register /> */}
     </div>
   );
 }

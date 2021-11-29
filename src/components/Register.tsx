@@ -42,6 +42,7 @@ const Register = () => {
       <div className="form-container">
         <form className="register-form" onSubmit = {handleRegister}>
           <p>REGISTER FOR AN ACCOUNT</p>
+          {/* <i className="far fa-user"></i> */}
           <input
             id="first-name"
             className="form-field"
@@ -53,6 +54,7 @@ const Register = () => {
             }}
           />
           {submitted && !firstName ? <span>Please enter your first name.</span> : null}
+          {/* <i className="far fa-user"></i> */}
           <input
             id="last-name"
             className="form-field"
@@ -64,6 +66,7 @@ const Register = () => {
             }}
           />
           {submitted && !lastName ? <span>Please enter your last name.</span> : null}
+          {/* <i className="far fa-envelope"></i> */}
           <input
             id="email"
             className="form-field"
@@ -75,6 +78,7 @@ const Register = () => {
             }}
           />
           {submitted && !email ? <span>Please enter an email address.</span> : null}
+          {/* <i className="fas fa-unlock-alt"></i> */}
           <input
             id="password"
             className="form-field"
