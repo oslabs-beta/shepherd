@@ -45,7 +45,16 @@ useEffect(() => {
 // fetch all the metrics
 useEffect(() => {
   if (credentials && functionList.length > 0) {
-    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
+    fetching.fetchMetricAllFunctions(
+      timePeriod, 
+      credentials, 
+      setTotalInvocations, 
+      setTotalThrottles, 
+      setMostActiveFunc, 
+      setMostErrorFunc, 
+      setTotalErrors, 
+      functionList
+      );
   }
 }, [credentials,functionList, timePeriod]);
 console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
