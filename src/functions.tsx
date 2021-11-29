@@ -165,11 +165,11 @@ export const fetchMetricAllFunctions = async (
       });
   };
 
-  await fetchTotalInvocations(time, credentialsState, setInvocations);
-  await fetchTotalErrors(time, credentialsState, setTotalErrors);
-  await fetchTotalThrottles(time, credentialsState, setThrottles);
-  await fetchMostActiveFunc(time, credentialsState, setActive, listOfFuncs);
-  await fetchMostErrorFunc(time, credentialsState, setErrors, listOfFuncs);
+  fetchTotalInvocations(time, credentialsState, setInvocations);
+  fetchTotalErrors(time, credentialsState, setTotalErrors);
+  fetchTotalThrottles(time, credentialsState, setThrottles);
+  fetchMostActiveFunc(time, credentialsState, setActive, listOfFuncs);
+  fetchMostErrorFunc(time, credentialsState, setErrors, listOfFuncs);
 }
 
 // {

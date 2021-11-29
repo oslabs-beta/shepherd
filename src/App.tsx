@@ -34,15 +34,15 @@ const App = (props: any) => {
 useEffect(() => {
   fetching.fetchCreds(arn, setCredentials);
 }, []);
-console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
-
+// console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
+// fetching the list of functions
 useEffect(() => {
   if (credentials) {
     fetching.fetchFuncList(credentials, setFunctionList);
   }
 }, [credentials]);
-console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
-
+// console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
+// fetch all the metrics
 useEffect(() => {
   if (credentials && functionList.length > 0) {
     fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
