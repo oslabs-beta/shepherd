@@ -197,7 +197,7 @@ body {
   flex-direction: column;
   align-items: flex-end;
   // margin-right: 15.45rem;
-  margin-right: 18.1%;
+  margin-right: 17.9%;
   margin-bottom: 1rem;
 }
 
@@ -337,6 +337,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .function-icon {
@@ -362,6 +363,14 @@ body {
   margin-left: 2.6rem;
   margin-bottom: 2rem;
   font-size: 0.9rem;
+  display: flex;
+  flex-direction: row;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.medium-font-color {
+  margin-top: 0.55rem;
 }
 
 .stream-container {
@@ -702,8 +711,7 @@ button:active {
   font-size: 16px;
 }
 
-button:hover { 
+button:hover {
   color: $darkpurple;
   background: $lightpurple;
-
 }

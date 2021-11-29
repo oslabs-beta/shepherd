@@ -28,8 +28,8 @@ const Dashboard = (props: any) => {
                 <SmallCard cardText="Total throttles:" icon={<i className="fas fa-random throttle-icon"></i>}/>
               </div>
               <div className="functions-wrapper">
-                <MediumCard cardText="active" color={"#7c4dff"} icon={<i className="fas fa-file-medical-alt function-icon"></i>}/>
-                <MediumCard cardText="errors" color={"#2ab6f6"} icon={<i className="fas fa-exclamation-triangle exclamation-icon"></i>}/>
+                <MediumCard cardText=" active" displayFunc={props.mostActiveFunc} color={"#7c4dff"} icon={<i className="fas fa-file-medical-alt function-icon"></i>}/>
+                <MediumCard cardText=" errors" displayFunc={props.mostErrorFunc} color={"#2ab6f6"} icon={<i className="fas fa-exclamation-triangle exclamation-icon"></i>}/>
               </div>
               <div className="stream-wrapper">
                 <Stream />
