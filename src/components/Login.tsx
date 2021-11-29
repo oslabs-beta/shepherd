@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Dashboard from "./Dashboard";
-import Axios from 'axios';
-// import Button from '@material-ui/core/Button';
 
 //TO DO - need to hook up to the App level page and then create routes to redirect to Dashboard once username/pw are validated OR redirect to registration page which will then redirect back to this page when user has successfully registered
 
@@ -17,9 +15,8 @@ const Login = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault(); //stop refresh
         //should this be a get or post request to verify user credentials?
-        Axios.post('/end point', {
-          
-        })
+        //use axios?
+
         if (email && password){
           setValid(true);
           // Need logic for submit to redirect to the dashboard
@@ -40,10 +37,10 @@ const Login = () => {
       <div className="heading">
         <i className="fab fa-wolf-pack-battalion shepherd-icon"></i>
           SHEPHERD
-    </div>
-    <div className="form-container">
-      <p>LOGIN</p>
-      <form className="register-form" onSubmit = {handleSubmit}>
+        </div>
+        <div className="form-container">
+          <p>LOGIN</p>
+        <form className="register-form" onSubmit = {handleSubmit}>
         <input
           id="email"
           className="form-field"
@@ -54,7 +51,7 @@ const Login = () => {
             setEmail(e.target.value);
           }}
         />
-        {submitted && !email ? <span>Please enter an email address.</span> : null}
+        {submitted && !email ? <span className = "error-messages">Please enter an email address.</span> : null}
         <input
           id="password"
           className="form-field"
@@ -65,7 +62,7 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         />
-        {submitted && !password ? <span>Please enter a password.</span> : null}
+        {submitted && !password ? <span className = "error-messages">Please enter a password.</span> : null}
         <button 
           type="submit" 
           onClick={handleSubmit}>
@@ -73,11 +70,12 @@ const Login = () => {
         </button>
         {/* Should redirect with React router to new sign up page */}
         <button 
+          className="landing-button"
           onClick={handleRegister}>
           Register
          </button> 
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
     )
 }

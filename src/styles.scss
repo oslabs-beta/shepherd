@@ -640,7 +640,7 @@ body {
   border-radius: 0.5rem;
 }
 
-p {
+.register-title {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -661,7 +661,7 @@ p {
   border: none;
 }
 
-span {
+.error-messages {
   font-size: 14px;
   color: red;
   margin-bottom: 10px;
@@ -672,7 +672,7 @@ input {
   outline: none;
 }
 
-button {
+.landing-button {
   background: $darkpurple;
   color: $lightpurple;
   cursor: pointer;
@@ -686,11 +686,11 @@ button {
   transition: all 400ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
 }
 
-button:hover {
+.landing-button:hover {
   box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
 }
 
-button:active {
+.landing-button:active {
   background-color: $darkpurple;
   background-size: 100%;
   transition: background s;
@@ -702,7 +702,7 @@ button:active {
   font-size: 16px;
 }
 
-button:hover { 
+.landing-button:hover { 
   color: $darkpurple;
   background: $lightpurple;
 
