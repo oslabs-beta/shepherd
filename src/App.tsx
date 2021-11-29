@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
 import { Credentials } from '@aws-sdk/client-sts';
-
+import * as fetching from './functions';
 const App = (props: any) => {
 // ( 1 )
 // make fetch to /aws/getCreds POST request
@@ -146,146 +146,25 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
 
+// fetching the secret keys
 useEffect(() => {
-  fetchCreds();
+  fetching.fetchCreds(arn, setCredentials);
 }, []);
-
-const fetchCreds = async () => {
-    const response = await fetch('/aws/getCreds', { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        arn: arn,
-      }),
-    });
-    const data = await response.json();
-    await setCredentials(data);
-  }
 console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
 
 useEffect(() => {
   if (credentials) {
-    fetchFuncList();
+    fetching.fetchFuncList(credentials, setFunctionList);
   }
 }, [credentials]);
-
-const fetchFuncList = async () => {
-  const response = await fetch('/aws/getLambdaFunctions', {
-    method: 'POST',
-    body: JSON.stringify({
-      region: 'us-east-2',
-      credentials: credentials
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  const data = await response.json();
-  setFunctionList(data);
-}
 console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
 
-
-
-
-//! THIS SUCKS AND DIDNT WORK
-  // useEffect(() => {
-  //   if (arn){
-  //     const fetchCreds = fetch('/aws/getCreds', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         arn: arn,
-  //       }),
-  //     })
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         console.log('THIS IS THE CREDENTIALS DATA', data)
-  //         setCredentials(data);
-  //       }
-  //       )
-        
-  //       .then(() => {
-  //         const fetchFunctions = fetch('/aws/getLambdaFunctions', {
-  //           method: 'POST',
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           },
-  //           body: JSON.stringify({
-  //             region: "us-east-2",
-  //             credentials: credentials,
-  //           }),
-  //         })
-  //           .then(response => response.json())
-  //           .then(data => {
-  //             console.log('THIS IS THE FUNCIONS LIST', data)
-  //             setFunctionList(data);
-  //           })
-  //       }
-  //       )
-  //   }
-  // }, [arn, functionList]);
-
-
-
-
-
-
-
-
-
-
-  
-  // use effect to get the list of functions
-
-  // useEffect(() => { 
-  //   const fetchFunctions = async () => {
-  //     const response = await fetch('/aws/getLambdaFunctions', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         region: 'us-east-2',
-  //         credentials: credentials,
-  //       }),
-  //     });
-  //     const data = await response.json();
-  //     setFunctionList(data);
-  //   };
-  //   fetchFunctions();
-  // }, [credentials]);
-
-  // // use effect to get the total invocations for the time period
-  // useEffect(() => {
-  //   const fetchTotalInvocations = async () => {
-  //     const response = await fetch('/aws/getMetricAllFunc/Invocations', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         timePeriod: timePeriod,
-  //         region: 'us-east-2',
-  //         credentials: credentials,
-  //       }),
-  //     });
-  //     const res = await response.json();
-  //     setTotalInvocations(() => {
-  //         let acc = 0;
-  //         res.data.forEach((element: any) => {
-  //           acc += element.y;
-  //         });
-  //   // TOTALS CALLS THIS TIME PERIOD
-  //         return acc;
-  //       });
-  //   };
-  //   fetchTotalInvocations();
-  // }, [timePeriod, functionList, credentials]);
+useEffect(() => {
+  if (functionList.length > 0) {
+    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, functionList);
+  }
+}, [functionList, timePeriod]);
+console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc)
 
   // // use effect to get the total errors for the time period
   // // useEffect(() => {
@@ -315,61 +194,7 @@ console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
   // // }, [timePeriod, functionList, credentials]);
 
   // // use effect to get the total throttles for the time period
-  // useEffect(() => {
-  //   const fetchTotalThrottles = async () => {
-  //     const response = await fetch('/aws/getMetricAllFunc/Throttles', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         timePeriod: timePeriod,
-  //         region: 'us-east-2',
-  //         credentials: credentials,
-  //       }),
-  //     });
-  //     const res = await response.json();
-  //     setTotalThrottles(() => {
-  //         let acc = 0;
-  //         res.data.forEach((element: any) => {
-  //           acc += element.y;
-  //         });
-  //   // TOTALS CALLS THIS TIME PERIOD
-  //         return acc;
-  //       });
-  //   };
-  //   fetchTotalThrottles();
-  // }, [timePeriod, functionList, credentials]);
- 
-  // use effect to get the most active function for the time period
-  // useEffect(() => {
-  //   const fetchMostActiveFunc = async () => {
-  //     const response = await fetch('/aws/getMetricByFunc/Invocations', {  
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         timePeriod: timePeriod,
-  //         region: 'us-east-2',
-  //         credentials: credentials,
-  //         functionList: functionList,
-  //       }),
-  //     });
-  //     const res = await response.json();
-  //     setMostActiveFunc((): Number => {
-  //         let mostUsed = null;
-  //         let max = 0;
-  //         res.series.forEach((element: any) => {
-  //           if (element.y > max) {
-  //             max = element.y;
-  //             mostUsed = element.name;
-  //           }
-  //         });
-  //   // TOTALS CALLS THIS TIME PERIOD
-  //         return mostUsed;
-  //       });
-  //   };
+  
   //   fetchMostActiveFunc();
   // }, [timePeriod, functionList, credentials]);
 
