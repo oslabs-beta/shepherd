@@ -6,7 +6,7 @@ import Stream from './Stream';
 const Dashboard = (props: any) => {
   return (
       <React.Fragment>
-          <div className="main-interface-wrapper">
+          <div className="main-interface-wrapper" onClick={() => {props.setMenuOpen(false)}}>
             <div className="chart-wrapper">
               <select name="select-time" className="select-time">
                 <option value="value" selected> Select Time Period </option>

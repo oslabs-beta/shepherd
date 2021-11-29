@@ -9,7 +9,7 @@ const MediumCard = (props: any) => {
   const fontColor = {
     color: props.color
   };
-
+  
   return (
     <React.Fragment>
       <div className="medium-card-wrapper">
