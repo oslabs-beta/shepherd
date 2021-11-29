@@ -5,13 +5,28 @@ const Menu = (props: any) => {
     <React.Fragment>
       <div className={ props.menuOpen ? "menu-wrapper" : "menu-wrapper open"}>
         <div className={ props.menuOpen ? "menu-navigation open" : "menu-navigation" } >
-          <div className="dashboard-link nav-link">
+          <div 
+            className={"dashboard-link nav-link" + (props.currentView === 'dashboard' ? ' selected-view' : '')}
+            onClick={() => {
+              props.setCurrentView('dashboard');
+              props.setMenuOpen(false);
+            }}
+          >
             Dashboard
           </div>
-          <div className="anomaly-link nav-link">
+          <div 
+            className={"anomaly-link nav-link" + (props.currentView === 'anomaly' ? ' selected-view' : '')}
+            onClick={() => props.setCurrentView('anomaly')}
+          >
             Anomaly
           </div>
-          <div className="settings-link nav-link">
+          <div 
+            className={"settings-link nav-link" + (props.currentView === 'settings' ? ' selected-view' : '')}
+            onClick={() => {
+              props.setCurrentView('settings');
+              props.setMenuOpen(false);
+            }}
+          >
             Settings
           </div>
         </div>
