@@ -51,8 +51,6 @@ useEffect(() => {
 console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
 
-
-
   return (
     <div className="container">
       <Header 
@@ -61,14 +59,13 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mos
         setCurrentView={setCurrentView}
       />
       <div className="body-wrapper">
-
         <Menu 
           menuOpen={menuOpen} 
           setMenuOpen={setMenuOpen} 
           currentView={currentView} 
           setCurrentView={setCurrentView} 
       />
-        { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} /> : null }
+        { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} mostActiveFunc={mostActiveFunc} mostErrorFunc={mostErrorFunc} /> : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
     </div>
