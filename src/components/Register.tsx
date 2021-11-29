@@ -41,7 +41,8 @@ const Register = () => {
         </div>
       <div className="form-container">
         <form className="register-form" onSubmit = {handleRegister}>
-          <p>REGISTER FOR AN ACCOUNT</p>
+          <p className="register-text">REGISTER FOR AN ACCOUNT</p>
+          {/* <i className="far fa-user"></i> */}
           <input
             id="first-name"
             className="form-field"
@@ -52,7 +53,8 @@ const Register = () => {
               setFirstName(e.target.value);
             }}
           />
-          {submitted && !firstName ? <span>Please enter your first name.</span> : null}
+          {submitted && !firstName ? <span className = "error-messages">Please enter your first name.</span> : null}
+          {/* <i className="far fa-user"></i> */}
           <input
             id="last-name"
             className="form-field"
@@ -63,7 +65,8 @@ const Register = () => {
               setLastName(e.target.value);
             }}
           />
-          {submitted && !lastName ? <span>Please enter your last name.</span> : null}
+          {submitted && !lastName ? <span className = "error-messages">Please enter your last name.</span> : null}
+          {/* <i className="far fa-envelope"></i> */}
           <input
             id="email"
             className="form-field"
@@ -74,7 +77,8 @@ const Register = () => {
               setEmail(e.target.value);
             }}
           />
-          {submitted && !email ? <span>Please enter an email address.</span> : null}
+          {submitted && !email ? <span className = "error-messages">Please enter an email address.</span> : null}
+          {/* <i className="fas fa-unlock-alt"></i> */}
           <input
             id="password"
             className="form-field"
@@ -85,9 +89,10 @@ const Register = () => {
               setPassword(e.target.value);
             }}
           />
-          {submitted && !password ? <span>Please enter a password.</span> : null}
+          {submitted && !password ? <span className = "error-messages">Please enter a password.</span> : null}
           
           <button 
+            className="landing-button"
             type="submit" 
             onClick={handleRegister}>
             Register
