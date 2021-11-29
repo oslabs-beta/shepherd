@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component} from 'react';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import Dashboard from './components/Dashboard
+import Dashboard from './components/Dashboard';
 import { Credentials } from '@aws-sdk/client-sts';
 import Settings from './components/Settings';
 import Login from './components/Login'
@@ -50,8 +50,7 @@ useEffect(() => {
 }, [credentials,functionList, timePeriod]);
 console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
-=======
-  
+
 
 
   return (
@@ -77,5 +76,3 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mos
 }
 
 export default App;
-
-
