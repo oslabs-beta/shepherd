@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Component} from 'react';
+import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
@@ -31,31 +32,32 @@ const App = (props: any) => {
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
 
 // fetching the secret keys
-useEffect(() => {
-  fetching.fetchCreds(arn, setCredentials);
-}, []);
-console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
+// useEffect(() => {
+//   fetching.fetchCreds(arn, setCredentials);
+// }, []);
+// console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
 
-useEffect(() => {
-  if (credentials) {
-    fetching.fetchFuncList(credentials, setFunctionList);
-  }
-}, [credentials]);
-console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
+// useEffect(() => {
+//   if (credentials) {
+//     fetching.fetchFuncList(credentials, setFunctionList);
+//   }
+// }, [credentials]);
+// console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
 
-useEffect(() => {
-  if (credentials && functionList.length > 0) {
-    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
-  }
-}, [credentials,functionList, timePeriod]);
-console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
+// useEffect(() => {
+//   if (credentials && functionList.length > 0) {
+//     fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
+//   }
+// }, [credentials,functionList, timePeriod]);
+// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
 
 
 
   return (
     <div className="container">
-      <Header 
+      <Login />
+      {/* <Header 
         setMenuOpen={setMenuOpen} 
         menuOpen={menuOpen} 
         setCurrentView={setCurrentView}
@@ -70,7 +72,7 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mos
       />
         { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} /> : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
-       </div>
+       </div> */}
     </div>
   );
 }

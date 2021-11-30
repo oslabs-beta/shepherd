@@ -610,7 +610,7 @@ body {
 .heading {
   display: flex;
   align-self: center;
-  color: $brightpurple;
+  color: $navText;
   letter-spacing: 2rem;
   font-size: 2rem;
   font-weight: bold;
@@ -677,33 +677,20 @@ input {
   color: $lightpurple;
   cursor: pointer;
   border-radius: 0.3rem;
-  transition: background 0.5s;
-  box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
-  -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-  transition: all 400ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-}
-
-.landing-button:hover {
-  box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
-}
-
-.landing-button:active {
-  background-color: $darkpurple;
-  background-size: 100%;
-  transition: background s;
   margin: 10px 0 10px 0;
-  padding: 18px;
+  padding: 13px;
+  font-size: 16px;
   border: 0;
   border-radius: 0.5rem;
   border: none;
-  font-size: 16px;
+}
+
+.landing-button:hover {
+  background: $lightpurple;
+  color: $darkpurple;
 }
 
 .landing-button:hover { 
   color: $darkpurple;
   background: $lightpurple;
-
 }

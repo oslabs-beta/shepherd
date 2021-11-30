@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
 
 //TO DO - need to hook up to the App level page and then create routes to redirect to Dashboard once username/pw are validated OR redirect to registration page which will then redirect back to this page when user has successfully registered
@@ -9,25 +9,35 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [valid, setValid] = useState(false); //initial logic for checking username/pw switch
 
     // Need logic for submit to redirect to the dashboard
     const handleSubmit = (e: any) => {
-        e.preventDefault(); //stop refresh
-        //should this be a get or post request to verify user credentials?
-        //use axios?
+      e.preventDefault(); //avoid page refresh
+      console.log(email, password) //did state set? -- yes
+      const reqParams = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: password }),
+      };
 
-        if (email && password){
-          setValid(true);
-          // Need logic for submit to redirect to the dashboard
-          return(
-            <Dashboard />
-          )
-        }
-        setSubmitted(true);
+      fetch ('/login', reqParams)
+      .then(res => res.text())          // convert to plain text
+      .then(text => console.log(text)) // console log that to see the error
+      // .then((res) => res.json())
+      // .then((res) => {
+      //   if(res){
+      //     alert("You are logged in!");
+      //     history.push('/'); // send to dashboard view
+      //   } else {
+      //     alert("Please check your login information");
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.error(error);
+      // });
     }
     
-    //useHistory hook does not currently work
+    //want to register for an account send to register view
     const handleRegister = () => {
       history.push('./Register');
     }
@@ -39,8 +49,8 @@ const Login = () => {
           SHEPHERD
         </div>
         <div className="form-container">
-          <p>LOGIN</p>
         <form className="register-form" onSubmit = {handleSubmit}>
+          <p className= "register-title">LOGIN</p>
         <input
           id="email"
           className="form-field"
@@ -64,11 +74,11 @@ const Login = () => {
         />
         {submitted && !password ? <span className = "error-messages">Please enter a password.</span> : null}
         <button 
+          className="landing-button"
           type="submit" 
           onClick={handleSubmit}>
           Login
         </button>
-        {/* Should redirect with React router to new sign up page */}
         <button 
           className="landing-button"
           onClick={handleRegister}>
