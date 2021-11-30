@@ -18,7 +18,7 @@ const MediumCard = (props: any) => {
         </div>
         <div className="medium-card-body">
           <p className="card-text-1">{props.displayFunc}</p>
-          <p className="card-text-2">Most<span className="medium-font-color" style={fontColor}>{props.cardText}</span></p>
+          <p className="card-text-2">Most <span className="medium-font-color" style={fontColor}>&nbsp;{props.cardText}</span></p>
         </div>
       </div>
     </React.Fragment>

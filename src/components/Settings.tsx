@@ -42,6 +42,7 @@ const Settings = (props: any) => {
                         />
                     </div>
                     <div className="settings-right">
+
                         { settingView === 'edit-profile' ? 
                             <div className="edit-account-wrapper">
                                 <div className="edit-header">Edit Account Details</div>
@@ -78,6 +79,44 @@ const Settings = (props: any) => {
                             </div>
                             : null
                         }
+
+                        { settingView === 'change-password' ? 
+                            <div className="change-password-wrapper">
+                                <div className="change-password-header">Change Password</div>
+                                <div className="current-password-field">
+                                    <div className="current-password-label">Enter current password:</div> 
+                                    <input 
+                                        type="text"
+                                        className="input-field" 
+                                        value={name}
+                                        onChange={(e: any) => setName(e.target.value)}
+                                    />
+                                </div>
+                                <div className="new-password-field">
+                                    <div className="new-password-label">Enter new password:</div> 
+                                    <input 
+                                        type="text"
+                                        className="input-field" 
+                                        value={email}
+                                        onChange={(e: any) => setEmail(e.target.value)}
+                                    />
+                                </div>
+                                <div className="confirm-password-field">
+                                    <div className="confirm-password-label">Re-enter new password</div> 
+                                    <input 
+                                        type="text"
+                                        className="input-field" 
+                                        value={company}
+                                        onChange={(e: any) => setCompany(e.target.value)}
+                                    />
+                                </div>
+                                <div className="update-button-wrapper">
+                                    <div className="edit-update-button">Update</div>
+                                </div>
+                            </div>
+                            : null
+                        }
+
                     </div>
                 </div>
             </div>
