@@ -74,6 +74,8 @@ const getLogs = async (req, res, next) => {
         filterPattern: '- START - END - REPORT',
       })
     );
+    //log events
+    console.log('log events', logEvents)
     // if no log events, just go back to frontend
     if (!logEvents) {
       res.locals.functionLogs = false;
@@ -165,7 +167,8 @@ const getLogs = async (req, res, next) => {
       }
       eventLog.errors = errorStreams;
       // send entire object back to frontend
-      res.locals.functionLogs = eventLog;
+      //res.locals.functionLogs = eventLog;
+      res.locals.functionLogs = logEvents;
       return next();
     } catch (err) {
       if (err) {
