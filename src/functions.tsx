@@ -172,6 +172,27 @@ export const fetchMetricAllFunctions = async (
   fetchMostErrorFunc(time, credentialsState, setErrors, listOfFuncs);
 }
 
+
+export const getLogsAllFunctions = async (creds: Object, setLogs: Function, listOfFuncs: Array<string>) => {
+  const logs: Array<Object> = [];
+  for (const func of listOfFuncs) {
+    const response = await fetch('/aws/getLogs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        region: 'us-east-2',
+        credentials: creds,
+        function: func,
+      }),
+    });
+    const res = await response.json();
+    logs.push(res);
+  }
+  setLogs(logs);
+}
+
 // {
 //   "title": "Lambda Invocations",
 //   "series": [

@@ -29,6 +29,7 @@ const App = (props: any) => {
   const [totalThrottles, setTotalThrottles] = useState(0);
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
+  const [allFuncLogs, setAllFuncLogs] = useState([]);
 
 // fetching the secret keys
 useEffect(() => {
@@ -41,14 +42,25 @@ useEffect(() => {
     fetching.fetchFuncList(credentials, setFunctionList);
   }
 }, [credentials]);
-// console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
+// console.log('FUNCTION LIST', functionList)
 // fetch all the metrics
 useEffect(() => {
   if (credentials && functionList.length > 0) {
-    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
+    fetching.fetchMetricAllFunctions(
+      timePeriod, 
+      credentials, 
+      setTotalInvocations, 
+      setTotalThrottles, 
+      setMostActiveFunc, 
+      setMostErrorFunc, 
+      setTotalErrors, 
+      functionList
+      );
+    fetching.getLogsAllFunctions(credentials, setAllFuncLogs, functionList);
   }
 }, [credentials,functionList, timePeriod]);
-console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
+console.log(allFuncLogs)
+// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
 
   return (
