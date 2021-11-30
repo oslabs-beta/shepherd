@@ -9,7 +9,6 @@ const {
 
 const getFunctions = async (req, res, next) => {
   console.log('triggered getFunc middleware')
-  console.log('THIS IS THE REQUEST BODY',req.body)
   const lambdaClient = new LambdaClient({
     region: req.body.region,
     credentials: req.body.credentials,
