@@ -16,12 +16,6 @@ const Header = (props: any) => {
             </div>
           </div>
         <div className="profile-wrapper">
-          {/* <div className="toggle-dark">
-            TOGGLE DARK
-          </div>
-          <div className="notifications">
-            NOTIFICATIONS
-          </div> */}
           <div 
             className="user-profile" 
             onClick={() => {
