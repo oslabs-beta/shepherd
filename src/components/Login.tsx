@@ -20,7 +20,7 @@ const Login = () => {
         body: JSON.stringify({ email: email, password: password }),
       };
 
-      fetch ('/login', reqParams)
+      fetch ('/user/login', reqParams)
       .then(res => res.text())          // convert to plain text
       .then(text => console.log(text)) // console log that to see the error
       // .then((res) => res.json())
@@ -32,9 +32,9 @@ const Login = () => {
       //     alert("Please check your login information");
       //   }
       // })
-      // .catch((error) => {
-      //   console.error(error);
-      // });
+      .catch((error) => {
+        console.error(error);
+      });
     }
     
     //want to register for an account send to register view
