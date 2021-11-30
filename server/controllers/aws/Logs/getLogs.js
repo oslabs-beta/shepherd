@@ -99,21 +99,21 @@ const getLogs = async (req, res, next) => {
       }
     }
 
-    // if we didn't have a nextToken and got all logs in one request to the CloudWatchLogsClient
-    // if (!logEvents.nextToken) {
+  
     //   // grab from the end to grab most recent logs and stop once we reach 50 to send back to frontend
-    if(logEvents.events.length) logEvents.events.reverse();
-    
-    
-    
-    
-    // for (let i = logEvents.events.length - 1; i >= 0; i -= 1) {
-    // for (let i = 0; i < 10; i += 1) {
-    //     console.log(logEvents.events)
-    //   if (shortenedEvents.length === 50) break;
-    //     shortenedEvents.push(logEvents.events[i]);
-    //   }
-    // }
+    if(logEvents.events.length) {
+      logEvents.events.reverse();
+      if(logEvents.events.length < 10) {
+        for (const event of logEvents.events) {
+          shortenedEvents.push(event);
+        }
+      }
+      else {
+        for (let i = 0; i < 10; i++) {
+          shortenedEvents.push(logEvents.events[i]);
+        }
+      }
+  }
 
     // start forming what it'll look like to send back to frontend
     const eventLog = {
@@ -127,7 +127,7 @@ const getLogs = async (req, res, next) => {
       let eventObj = shortenedEvents[i];
       // create the individual arrays to populate the table, this info makes up one row
       const dataArr = [];
-      console.log(dataArr);
+
       // just cut off the last five characters for the log stream name as an identifier
       dataArr.push('...' + eventObj.logStreamName.slice(-5));
       // format the date of the log timestamp to be more readable
