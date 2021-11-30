@@ -68,7 +68,7 @@ body {
 
 .logo {
   margin-left: 2.3rem;
-  margin-top: 0.5rem;
+  margin-top: 3%;
   color: $navText;
   display: flex;
   align-items: center;
@@ -112,7 +112,7 @@ body {
 }
 
 .user-icon {
-  margin-top: 1.25rem;
+  margin-top: 1.15rem;
   font-size: 2.1rem;
   // color: #2197f3;
   color: $iconBG;
@@ -187,22 +187,23 @@ body {
   // background-color: #e3f2fd;
   background-color: $transparentBG;
   border-radius: 1rem 1rem 0 0;
-  margin: 0.7rem 1.2rem 0rem 0rem;
+  margin: 0.7% 1.8% 0rem 0rem;
 }
 
 .chart-wrapper {
-  width: 100vw;
+  width: 100%;
   height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   // margin-right: 15.45rem;
-  margin-right: 17.9%;
-  margin-bottom: 1rem;
+  margin-right: 13.2%;
+  margin-bottom: 1%;
 }
 
 .chart-visual {
-  width: 82.9%;
+  // width: 82.9%;
+  width: 86.3%;
   height: 88%;
   margin-top: 1rem;
   border-radius: 0.7rem;
@@ -269,10 +270,10 @@ body {
 
 .small-card-wrapper {
   height: 4rem;
-  width: 58.5%;
+  width: 56%;
   margin-bottom: 1.85rem;
   // margin-left: 1.5rem;
-  margin-left: 4.2%;
+  margin-left: 4.3%;
   // border: 1px solid #cde7fc;
   border-radius: 0.5rem;
   // background-color: #ffffff;
@@ -281,7 +282,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-right: 4.5%;
 }
 
@@ -291,6 +292,7 @@ body {
 }
 
 .bug-icon {
+  margin-top: 0.05rem;
   font-size: 1rem;
   color: $brightred;
 }
@@ -301,12 +303,14 @@ body {
 }
 
 .throttle-icon {
+  margin-top: 0.05rem;
   font-size: 1.1rem;
   color: $brightyellow;
 }
 
 .metric {
-  margin-top: 0.7rem;
+  margin-top: 0.1rem;
+  font-size: 0.9rem;
   color: $white;
 }
 
@@ -314,14 +318,15 @@ body {
   display: flex;
   height: 8rem;
   width: 80%;
-  margin-bottom: 4.6rem;
+  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
   // margin-right: 5.65rem;
-  margin-right: 19.5%;
+  margin-right: 18.5%;
 }
 
 .medium-card-color {
   // background-color: $brightpurple;
-  height: 9rem;
+  height: 8rem;
   width: 38%;
   border-radius: 0.9rem 0 0 0.9rem;
   display: flex;
@@ -331,7 +336,7 @@ body {
 
 .medium-card-body {
   background-color: $cardBG;
-  height: 9rem;
+  height: 8rem;
   width: 61%;
   border-radius: 0 0.9rem 0.9rem 0;
   display: flex;
@@ -352,33 +357,34 @@ body {
 
 .card-text-1 {
   color: $white;
-  margin-left: 2.6rem;
+  margin-left: 19%;
   margin-top: 1.8rem;
   margin-bottom: -0.1rem;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
 .card-text-2 {
   color: $lightpurple;
-  margin-left: 2.6rem;
+  margin-left: 19%;
   margin-bottom: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   display: flex;
   flex-direction: row;
-  // justify-content: center;
-  // align-items: center;
+  align-items: center;
 }
 
 .medium-font-color {
-  margin-top: 0.55rem;
+  // margin-top: 0rem;
+  margin-left: -0.2rem;
+  font-size: 0.85rem;
 }
 
 .stream-container {
   background-color: $cardBG;
   height: 21.6rem;
-  width: 90%;
+  width: 79%;
   border-radius: 1rem;
-  margin-right: 5.7rem;
+  margin-right: 16.6%;
 }
 
 .stream-header {
@@ -523,14 +529,14 @@ body {
 }
 
 .input-field {
-  margin-top: 3rem;
-  margin-left: 3.7%;
+  margin-top: 6%;
+  margin-left: 3.8%;
   height: 2.7rem;
   width: 90%;
   background-color: $midnight;
   border-radius: 0.6rem;
   border: 1px solid $settingsoutline;
-  padding-left: 1rem;
+  padding-left: 2%;
   color: $navText;
   font-family: "Inter", sans-serif;
 }
@@ -550,8 +556,8 @@ body {
 .edit-name-label {
   position: absolute;
   color: $navText;
-  top: 1.4rem;
-  left: 2rem;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
   font-size: 0.8rem;
   width: 1rem;
 }
@@ -563,8 +569,8 @@ body {
 .edit-email-label {
   position: absolute;
   color: $navText;
-  top: 1.4rem;
-  left: 2rem;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
   font-size: 0.8rem;
   width: 8rem;
 }
@@ -576,8 +582,8 @@ body {
 .edit-company-label {
   position: absolute;
   color: $navText;
-  top: 1.4rem;
-  left: 2rem;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
   font-size: 0.8rem;
   width: 8rem;
 }
@@ -585,6 +591,11 @@ body {
 .update-button-wrapper {
   display: flex;
   justify-content: flex-end;
+}
+
+.update-button-wrapper {
+  margin-top: 6%;
+  margin-right: 4.05%;
 }
 
 .edit-update-button {
@@ -597,9 +608,65 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 0.85rem;
-  margin-top: 2.8rem;
-  margin-right: 4.05%;
   cursor: pointer;
+}
+
+.change-password-wrapper {
+  margin-top: 1.5rem;
+  height: 30rem;
+  width: 80%;
+  border: 1px solid $settingsoutline;
+  border-radius: 1rem;
+  margin-right: 0.4%;
+}
+
+.change-password-header {
+  display: flex;
+  align-items: center;
+  color: $navText;
+  font-size: 0.95rem;
+  padding-left: 1.3rem;
+  height: 4rem;
+  border-bottom: 1px solid $settingsoutline;
+}
+
+.current-password-field {
+  position: relative;
+}
+
+.current-password-label {
+  position: absolute;
+  color: $navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 10rem;
+}
+
+.new-password-field {
+  position: relative;
+}
+
+.new-password-label {
+  position: absolute;
+  color: $navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 8rem;
+}
+
+.confirm-password-field {
+  position: relative;
+}
+
+.confirm-password-label {
+  position: absolute;
+  color: $navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 10rem;
 }
 
 //<-------- LOGIN & REGISTRATION PAGES --------->
@@ -711,7 +778,7 @@ input {
   font-size: 16px;
 }
 
-.landing-button:hover { 
+.landing-button:hover {
   color: $darkpurple;
   background: $lightpurple;
 }

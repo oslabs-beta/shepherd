@@ -19,8 +19,6 @@ const App = (props: any) => {
 // arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('dashboard');
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
@@ -29,6 +27,12 @@ const App = (props: any) => {
   const [totalThrottles, setTotalThrottles] = useState(0);
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
+  const [allFuncLogs, setAllFuncLogs] = useState([]);
+
+  // SETTING MENU & VIEWS
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('dashboard');
 
 // fetching the secret keys
 useEffect(() => {
@@ -41,21 +45,32 @@ useEffect(() => {
     fetching.fetchFuncList(credentials, setFunctionList);
   }
 }, [credentials]);
-// console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
+// console.log('FUNCTION LIST', functionList)
 // fetch all the metrics
 useEffect(() => {
   if (credentials && functionList.length > 0) {
-    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
+    fetching.fetchMetricAllFunctions(
+      timePeriod, 
+      credentials, 
+      setTotalInvocations, 
+      setTotalThrottles, 
+      setMostActiveFunc, 
+      setMostErrorFunc, 
+      setTotalErrors, 
+      functionList
+      );
+    fetching.getLogsAllFunctions(credentials, setAllFuncLogs, functionList);
   }
 }, [credentials,functionList, timePeriod]);
-console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
+console.log(allFuncLogs)
+// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
 
   return (
     <div className="container">
       <Header 
-        setMenuOpen={setMenuOpen} 
         menuOpen={menuOpen} 
+        setMenuOpen={setMenuOpen} 
         setCurrentView={setCurrentView}
       />
       <div className="body-wrapper">
@@ -65,7 +80,15 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mos
           currentView={currentView} 
           setCurrentView={setCurrentView} 
       />
-        { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} mostActiveFunc={mostActiveFunc} mostErrorFunc={mostErrorFunc} /> : null }
+        { currentView === 'dashboard' ? 
+          <Dashboard 
+            setMenuOpen={setMenuOpen} 
+            totalInvocations={totalInvocations} 
+            totalErrors={totalErrors} 
+            totalThrottles={totalThrottles}
+            mostActiveFunc={mostActiveFunc} 
+            mostErrorFunc={mostErrorFunc} /> 
+          : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
     </div>

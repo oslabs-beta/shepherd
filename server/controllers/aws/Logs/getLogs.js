@@ -7,7 +7,7 @@ const {
 } = require('@aws-sdk/client-cloudwatch-logs');
 
 const getLogs = async (req, res, next) => {
-  console.log('hitting getLogsss')
+  console.log('Triggered getLogs middleware');
   // append name of function to the format necessary for grabbing logs
   const logGroupName = '/aws/lambda/' + req.body.function;
 
@@ -74,8 +74,7 @@ const getLogs = async (req, res, next) => {
         filterPattern: '- START - END - REPORT',
       })
     );
-    //log events
-    console.log('log events', logEvents)
+
     // if no log events, just go back to frontend
     if (!logEvents) {
       res.locals.functionLogs = false;
@@ -88,7 +87,6 @@ const getLogs = async (req, res, next) => {
     if (logEvents.nextToken) {
       const helperFuncResults = await helperFunc(logEvents.nextToken);
       let poppedEl;
-
       // while we still have logs to grab from the helperFunc and shortenedEvents is shorter than 50 logs, add to it from the end (giving us the most recent first instead)
       while (helperFuncResults.length && shortenedEvents.length <= 50) {
         poppedEl = helperFuncResults.pop();
@@ -101,14 +99,21 @@ const getLogs = async (req, res, next) => {
       }
     }
 
-    // if we didn't have a nextToken and got all logs in one request to the CloudWatchLogsClient
-    if (!logEvents.nextToken) {
-      // grab from the end to grab most recent logs and stop once we reach 50 to send back to frontend
-      for (let i = logEvents.events.length - 1; i >= 0; i -= 1) {
-        if (shortenedEvents.length === 50) break;
-        shortenedEvents.push(logEvents.events[i]);
+  
+    //   // grab from the end to grab most recent logs and stop once we reach 50 to send back to frontend
+    if(logEvents.events.length) {
+      logEvents.events.reverse();
+      if(logEvents.events.length < 10) {
+        for (const event of logEvents.events) {
+          shortenedEvents.push(event);
+        }
       }
-    }
+      else {
+        for (let i = 0; i < 10; i++) {
+          shortenedEvents.push(logEvents.events[i]);
+        }
+      }
+  }
 
     // start forming what it'll look like to send back to frontend
     const eventLog = {
@@ -122,6 +127,7 @@ const getLogs = async (req, res, next) => {
       let eventObj = shortenedEvents[i];
       // create the individual arrays to populate the table, this info makes up one row
       const dataArr = [];
+
       // just cut off the last five characters for the log stream name as an identifier
       dataArr.push('...' + eventObj.logStreamName.slice(-5));
       // format the date of the log timestamp to be more readable
@@ -167,8 +173,10 @@ const getLogs = async (req, res, next) => {
       }
       eventLog.errors = errorStreams;
       // send entire object back to frontend
-      //res.locals.functionLogs = eventLog;
-      res.locals.functionLogs = logEvents;
+
+      res.locals.functionLogs = eventLog;
+      // res.locals.functionLogs = logEvents;
+
       return next();
     } catch (err) {
       if (err) {
