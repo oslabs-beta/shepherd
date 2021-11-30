@@ -2,6 +2,7 @@ import React from 'react';
 import SmallCard from './SmallCard';
 import MediumCard from './MediumCard';
 import Stream from './Stream';
+import Chart from './Chart';
 import { useState, useEffect } from 'react';
 const Dashboard = (props: any) => {
   
@@ -18,6 +19,7 @@ const Dashboard = (props: any) => {
                 <option value="30d"> Last month </option>
               </select>
               <div className="chart-visual">
+                <Chart />
               </div>
             </div>
             <div className="overview-wrapper">
