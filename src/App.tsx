@@ -19,8 +19,6 @@ const App = (props: any) => {
 // arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('dashboard');
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
@@ -30,6 +28,11 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
   const [allFuncLogs, setAllFuncLogs] = useState([]);
+
+  // SETTING MENU & VIEWS
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('dashboard');
 
 // fetching the secret keys
 useEffect(() => {
@@ -66,8 +69,8 @@ console.log(allFuncLogs)
   return (
     <div className="container">
       <Header 
-        setMenuOpen={setMenuOpen} 
         menuOpen={menuOpen} 
+        setMenuOpen={setMenuOpen} 
         setCurrentView={setCurrentView}
       />
       <div className="body-wrapper">
@@ -77,7 +80,15 @@ console.log(allFuncLogs)
           currentView={currentView} 
           setCurrentView={setCurrentView} 
       />
-        { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} mostActiveFunc={mostActiveFunc} mostErrorFunc={mostErrorFunc} /> : null }
+        { currentView === 'dashboard' ? 
+          <Dashboard 
+            setMenuOpen={setMenuOpen} 
+            totalInvocations={totalInvocations} 
+            totalErrors={totalErrors} 
+            totalThrottles={totalThrottles}
+            mostActiveFunc={mostActiveFunc} 
+            mostErrorFunc={mostErrorFunc} /> 
+          : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
     </div>
