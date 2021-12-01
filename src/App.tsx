@@ -23,6 +23,7 @@ const App = (props: any) => {
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
   const [totalInvocations, setTotalInvocations] = useState(0);
+  const [chartData, setChartData] = useState(null);
   const [totalErrors, setTotalErrors] = useState(0);
   const [totalThrottles, setTotalThrottles] = useState(0);
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
@@ -52,7 +53,8 @@ useEffect(() => {
     fetching.fetchMetricAllFunctions(
       timePeriod, 
       credentials, 
-      setTotalInvocations, 
+      setTotalInvocations,
+      setChartData, 
       setTotalThrottles, 
       setMostActiveFunc, 
       setMostErrorFunc, 
@@ -83,7 +85,8 @@ console.log(allFuncLogs)
         { currentView === 'dashboard' ? 
           <Dashboard 
             setMenuOpen={setMenuOpen} 
-            totalInvocations={totalInvocations} 
+            totalInvocations={totalInvocations}
+            chartData={chartData} 
             totalErrors={totalErrors} 
             totalThrottles={totalThrottles}
             mostActiveFunc={mostActiveFunc} 
