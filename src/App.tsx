@@ -87,7 +87,9 @@ console.log(allFuncLogs)
             totalErrors={totalErrors} 
             totalThrottles={totalThrottles}
             mostActiveFunc={mostActiveFunc} 
-            mostErrorFunc={mostErrorFunc} /> 
+            mostErrorFunc={mostErrorFunc}
+            timePeriod={timePeriod}
+            setTimePeriod={setTimePeriod} /> 
           : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
