@@ -1,45 +1,37 @@
 import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
-
-//TO DO - need to hook up to the App level page and then create routes to redirect to Dashboard once username/pw are validated OR redirect to registration page which will then redirect back to this page when user has successfully registered
+import Register from "./Register";
 
 const Login = () => {
-  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [currentPage, setCurrentPage] = useState('login');
   const [submitted, setSubmitted] = useState(false);
 
-    // Need logic for submit to redirect to the dashboard
     const handleSubmit = (e: any) => {
+      setSubmitted(true);
       e.preventDefault(); //avoid page refresh
-      console.log(email, password) //did state set? -- yes
       const reqParams = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),
       };
-
       fetch ('/user/login', reqParams)
-      .then(res => res.text())          // convert to plain text
-      .then(text => console.log(text)) // console log that to see the error
-      // .then((res) => res.json())
-      // .then((res) => {
-      //   if(res){
-      //     alert("You are logged in!");
-      //     history.push('/'); // send to dashboard view
-      //   } else {
-      //     alert("Please check your login information");
-      //   }
-      // })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('User has logged in')
+        // set current view hook and set to dashboard
+        setCurrentPage('dashboard'); 
+      })
       .catch((error) => {
         console.error(error);
       });
     }
     
-    //want to register for an account send to register view
+    // send to register view if they need an account
     const handleRegister = () => {
-      history.push('./Register');
+      console.log("clicked register")
+      setCurrentPage('register');
     }
 
     return(
@@ -86,6 +78,8 @@ const Login = () => {
          </button> 
         </form>
       </div>
+      { currentPage === 'register' ? <Register /> : null }
+      { currentPage === 'dashboard' ? <Dashboard /> : null }
     </div>
     )
 }

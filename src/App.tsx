@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Component} from 'react';
-import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
@@ -21,7 +20,7 @@ const App = (props: any) => {
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('dashboard');
+  const [currentView, setCurrentView] = useState('login'); //change this to login
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
@@ -32,36 +31,37 @@ const App = (props: any) => {
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
 
 // fetching the secret keys
-// useEffect(() => {
-//   fetching.fetchCreds(arn, setCredentials);
-// }, []);
-// console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
+useEffect(() => {
+  fetching.fetchCreds(arn, setCredentials);
+}, []);
+console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
 
-// useEffect(() => {
-//   if (credentials) {
-//     fetching.fetchFuncList(credentials, setFunctionList);
-//   }
-// }, [credentials]);
-// console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
+useEffect(() => {
+  if (credentials) {
+    fetching.fetchFuncList(credentials, setFunctionList);
+  }
+}, [credentials]);
+console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
 
-// useEffect(() => {
-//   if (credentials && functionList.length > 0) {
-//     fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
-//   }
-// }, [credentials,functionList, timePeriod]);
-// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
+useEffect(() => {
+  if (credentials && functionList.length > 0) {
+    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
+  }
+}, [credentials,functionList, timePeriod]);
+console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
 
 
 
   return (
     <div className="container">
-      <Login />
-      {/* <Header 
+      
+      <Header 
         setMenuOpen={setMenuOpen} 
         menuOpen={menuOpen} 
         setCurrentView={setCurrentView}
       />
+      { currentView === 'login' ? <Login /> : null }
       <div className="body-wrapper">
 
         <Menu 
@@ -72,7 +72,7 @@ const App = (props: any) => {
       />
         { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} /> : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
-       </div> */}
+       </div>
     </div>
   );
 }
