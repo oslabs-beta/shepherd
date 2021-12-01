@@ -10,7 +10,7 @@ import * as fetching from './functions';
 
 const App = (props: any) => {
 //time period values
-// '1hr'  
+// '1hr'
 // '24hr'
 // '7d'
 // '14d'
@@ -94,5 +94,4 @@ console.log(allFuncLogs)
     </div>
   );
 }
-
 export default App;

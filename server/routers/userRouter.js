@@ -25,6 +25,12 @@ router.route('/updateRegion').post(userController.updateRegion, (req, res) => {
 });
 
 // handle when a user requests to update their ARN
+router.route('/updateArn').post(userController.updateArn, (req, res) => {
+  res.status(200).json(res.locals.confirmation);
+});
+
+
+// handle when a user requests to update their ARN
 // router.route('/updateArn').post(userController.updateArn, (req, res) => {
 //   res.status(200).json(res.locals.confirmation);
 // });
