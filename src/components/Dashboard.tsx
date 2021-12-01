@@ -16,19 +16,21 @@ const Dashboard = (props: any) => {
             <div className="chart-wrapper">
               
               <div className="chart-visual">
-              <select 
-                name="select-time" 
-                className="select-time" 
-                value={props.timePeriod} 
-                onChange={handleDropdownChange}>
-                <option value='value' selected> Select Time Period </option>
-                <option value="1hr" > 1 hour </option>
-                <option value="24hr"> 24 hours </option>
-                <option value="7d"> Last week </option>
-                <option value="14d"> Last two weeks </option>
-                <option value="30d"> Last month </option>
-              </select>
-                <Chart chartData={props.chartData}/>
+
+                <select 
+                  name="select-time" 
+                  className="select-time" 
+                  value={props.timePeriod} 
+                  onChange={handleDropdownChange}>
+                  <option value='value' selected> Select Time Period </option>
+                  <option value="1hr" > 1 hour </option>
+                  <option value="24hr"> 24 hours </option>
+                  <option value="7d"> Last week </option>
+                  <option value="14d"> Last two weeks </option>
+                  <option value="30d"> Last month </option>
+                </select>
+                <Chart chartData={props.chartData} timePeriod={props.timePeriod}/>
+
               </div>
             </div>
             <div className="overview-wrapper">

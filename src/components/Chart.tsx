@@ -61,7 +61,7 @@ ChartJS.register(
   
 const Chart = (props: any) => {
 
-    const options = {
+    const options: any = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -166,7 +166,8 @@ const Chart = (props: any) => {
       };
     return (
         <React.Fragment>
-            <Line options={options} data={data} style={{minHeight: '100%', minWidth: '100%', padding: '1%',}} />;
+            <div className="chart-title">Lambda Activity</div>
+                <Line options={options} data={data} style={{minHeight: '100%', minWidth: '100%', padding: '1%',}} />
             {props.invocations}
         </React.Fragment>
     );
