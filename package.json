@@ -50,6 +50,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.3.0",
     "dataframe-js": "^1.4.4",
+    "date": "^1.0.2",
     "dotenv": "^8.6.0",
     "electron": "15.3.0",
     "electron-builder": "^22.13.1",

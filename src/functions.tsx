@@ -33,7 +33,8 @@ export const fetchFuncList = async (credentialsState: Object, setFunctions: Func
 export const fetchMetricAllFunctions = async (
   time: String, 
   credentialsState: Object, 
-  setInvocations:Function, 
+  setInvocations:Function,
+  setChartData: Function, 
   setThrottles: Function, 
   setActive: Function, 
   setErrors: Function,
@@ -41,7 +42,7 @@ export const fetchMetricAllFunctions = async (
   listOfFuncs: Array<string>
   ) => {
 
-  const fetchTotalInvocations = async (time: String, credentialsState: Object, setInvocations:Function) => {
+  const fetchTotalInvocations = async (time: String, credentialsState: Object, setInvocations:Function, setChartData:Function) => {
     const response = await fetch('/aws/getMetricsAllFunc/Invocations', {
       method: 'POST',
       headers: {
@@ -62,6 +63,11 @@ export const fetchMetricAllFunctions = async (
   // TOTALS CALLS THIS TIME PERIOD
         return acc;
       });
+  //RETURN WHOLE OBJECT AS CHART DATA
+    setChartData(() => {
+      console.log("chart data", res.data)
+      return res.data;
+    })
   };
 
   const fetchTotalErrors = async (time: String, credentialsState: Object, setTotalErrors:Function) => {
@@ -165,7 +171,7 @@ export const fetchMetricAllFunctions = async (
       });
   };
 
-  fetchTotalInvocations(time, credentialsState, setInvocations);
+  fetchTotalInvocations(time, credentialsState, setInvocations, setChartData);
   fetchTotalErrors(time, credentialsState, setTotalErrors);
   fetchTotalThrottles(time, credentialsState, setThrottles);
   fetchMostActiveFunc(time, credentialsState, setActive, listOfFuncs);

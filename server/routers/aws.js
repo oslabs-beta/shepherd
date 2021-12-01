@@ -17,13 +17,10 @@ router.route('/getCreds').post(getCredentials, (req, res) => {
   res.status(200).json(res.locals.credentials);
 });
 
-
 //Returing Lambda Functions List
 router.route('/getLambdaFunctions').post(getFunctions, (req, res) => {
   res.status(200).json(res.locals.functions);
 });
-
-
 
 //Returing Lambda Functions Metric Totals (All functions): by metricName
 router
