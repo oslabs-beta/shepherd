@@ -61,7 +61,7 @@ ChartJS.register(
   
 const Chart = (props: any) => {
 
-    const options = {
+    const options: any = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
