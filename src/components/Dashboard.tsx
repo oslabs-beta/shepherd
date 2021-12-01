@@ -30,7 +30,6 @@ const Dashboard = (props: any) => {
                   <option value="30d"> Last month </option>
                 </select>
                 <Chart chartData={props.chartData} timePeriod={props.timePeriod}/>
-
               </div>
             </div>
             <div className="overview-wrapper">
