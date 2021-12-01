@@ -233,7 +233,7 @@ body {
 
 .select-time {
   position: absolute;
-  right: 1.4%;
+  right: 1.3%;
   padding: 0.3rem;
   margin-top: 1rem;
   // margin-left: 1rem;
@@ -245,7 +245,6 @@ body {
   color: $navText;
   outline: none;
   margin-right: 0.1rem;
-  z-index: 5;
 }
 
 .select-time:hover {

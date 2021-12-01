@@ -14,7 +14,9 @@ const Dashboard = (props: any) => {
       <React.Fragment>
           <div className="main-interface-wrapper" onClick={() => {props.setMenuOpen(false)}}>
             <div className="chart-wrapper">
+              
               <div className="chart-visual">
+
                 <select 
                   name="select-time" 
                   className="select-time" 
@@ -28,6 +30,7 @@ const Dashboard = (props: any) => {
                   <option value="30d"> Last month </option>
                 </select>
                 <Chart chartData={props.chartData} timePeriod={props.timePeriod}/>
+
               </div>
             </div>
             <div className="overview-wrapper">
