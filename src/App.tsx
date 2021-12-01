@@ -55,21 +55,24 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mos
 
   return (
     <div className="container">
-      
-      <Header 
-        setMenuOpen={setMenuOpen} 
-        menuOpen={menuOpen} 
-        setCurrentView={setCurrentView}
-      />
-      { currentView === 'login' ? <Login /> : null }
-      <div className="body-wrapper">
-
-        <Menu 
-          menuOpen={menuOpen} 
+      { currentView === 'login' || currentView === 'register' ? null :
+        ( <Header 
           setMenuOpen={setMenuOpen} 
-          currentView={currentView} 
-          setCurrentView={setCurrentView} 
-      />
+          menuOpen={menuOpen} 
+          setCurrentView={setCurrentView}
+        /> )
+      }
+      { currentView === 'login' ? <Login /> : null }
+      { currentView === 'registration' ? <Register /> : null }
+      <div className="body-wrapper">
+        { currentView === 'login' || currentView === 'register' ? null :
+          (<Menu 
+            menuOpen={menuOpen} 
+            setMenuOpen={setMenuOpen} 
+            currentView={currentView} 
+            setCurrentView={setCurrentView} 
+          />)
+        }
         { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} /> : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>

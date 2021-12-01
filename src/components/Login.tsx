@@ -1,27 +1,36 @@
 import React, { useState } from "react";
-import Dashboard from "./Dashboard";
-import Register from "./Register";
-
-const Login = () => {
+//register and login should be conditionally rendered by the app component
+const Login = (props: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [currentPage, setCurrentPage] = useState('login');
   const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e:any) => {
       setSubmitted(true);
       e.preventDefault(); //avoid page refresh
       const reqParams = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, password: password }),
+        body: JSON.stringify(
+          { 
+            email,
+            password,
+          }
+          ),
       };
       fetch ('/user/login', reqParams)
       .then((res) => res.json())
       .then((res) => {
-        console.log('User has logged in')
+        if (res.confirmed === true){
+          console.log('User has logged in')
         // set current view hook and set to dashboard
-        setCurrentPage('dashboard'); 
+        //!make sure set current page is drilled
+          props.setCurrentView('dashboard'); //drill down properly 
+        }
+        else{
+          console.log('Something went wrong with user sign in')
+          alert("Sorry, we could not find that username or password. Please try again or register for an account.")
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -31,7 +40,8 @@ const Login = () => {
     // send to register view if they need an account
     const handleRegister = () => {
       console.log("clicked register")
-      setCurrentPage('register');
+      //!make sure set current page is drilled
+      props.setCurrentView('register');
     }
 
     return(
@@ -68,18 +78,16 @@ const Login = () => {
         <button 
           className="landing-button"
           type="submit" 
-          onClick={handleSubmit}>
+          onClick={(e) => handleSubmit(e)}>
           Login
         </button>
         <button 
           className="landing-button"
-          onClick={handleRegister}>
+          onClick={() => handleRegister()}>
           Register
          </button> 
         </form>
       </div>
-      { currentPage === 'register' ? <Register /> : null }
-      { currentPage === 'dashboard' ? <Dashboard /> : null }
     </div>
     )
 }
