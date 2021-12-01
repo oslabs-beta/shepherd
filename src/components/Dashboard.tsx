@@ -4,6 +4,7 @@ import MediumCard from './MediumCard';
 import Stream from './Stream';
 import Chart from './Chart';
 import { useState, useEffect } from 'react';
+
 const Dashboard = (props: any) => {
   // handles time interval
   const handleDropdownChange = (e: any) => {
@@ -41,7 +42,7 @@ const Dashboard = (props: any) => {
                 <MediumCard cardText=" errors" displayFunc={props.mostErrorFunc} color={"#2ab6f6"} icon={<i className="fas fa-exclamation-triangle exclamation-icon"></i>}/>
               </div>
               <div className="stream-wrapper">
-                <Stream />
+                <Stream allFuncLogs={props.allFuncLogs} />
               </div>
             </div>
           </div>
