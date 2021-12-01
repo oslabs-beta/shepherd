@@ -96,9 +96,9 @@ const Chart = (props: any) => {
       };
     let timePeriod = '30d';
     // get end and start date based on selected timePeriod
-    let labels = ['placeholder']
-    let testData = ['placeholder'];
-    let testDatapoints = ['placeholder'];
+    let labels: any = []
+    let testData: any = [];
+    let testDatapoints: any = [];
     
     //MONTH
     if (timePeriod === '30d' && props.chartData){
