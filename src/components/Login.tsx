@@ -24,7 +24,6 @@ const Login = (props: any) => {
         if (res.confirmed === true){
           console.log('User has logged in')
         // set current view hook and set to dashboard
-        //!make sure set current page is drilled
           props.setCurrentView('dashboard'); //drill down properly 
         }
         else{
