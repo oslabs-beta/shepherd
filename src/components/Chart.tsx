@@ -120,7 +120,7 @@ const Chart = (props: any) => {
   
     return (
         <React.Fragment>
-            <Line options={options} data={data} style={{minHeight: '100%', minWidth: '100%', padding: '1%',}} />;
+            <Line options={options} data={data} style={{minHeight: '100%', minWidth: '100%' }} />
         </React.Fragment>
     );
   };

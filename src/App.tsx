@@ -6,6 +6,7 @@ import { Credentials } from '@aws-sdk/client-sts';
 import Settings from './components/Settings';
 import Login from './components/Login'
 import Register from './components/Register'
+import Loading from './components/Loading';
 import * as fetching from './functions';
 
 const App = (props: any) => {
@@ -68,6 +69,9 @@ console.log(allFuncLogs)
 
   return (
     <div className="container">
+      { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+        <Loading /> : null 
+      }
       <Header 
         menuOpen={menuOpen} 
         setMenuOpen={setMenuOpen} 
@@ -87,7 +91,9 @@ console.log(allFuncLogs)
             totalErrors={totalErrors} 
             totalThrottles={totalThrottles}
             mostActiveFunc={mostActiveFunc} 
-            mostErrorFunc={mostErrorFunc} /> 
+            mostErrorFunc={mostErrorFunc} 
+            allFuncLogs={allFuncLogs}
+          /> 
           : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>

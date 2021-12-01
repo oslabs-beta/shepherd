@@ -4,21 +4,22 @@ import MediumCard from './MediumCard';
 import Stream from './Stream';
 import Chart from './Chart';
 import { useState, useEffect } from 'react';
+
 const Dashboard = (props: any) => {
   
   return (
       <React.Fragment>
           <div className="main-interface-wrapper" onClick={() => {props.setMenuOpen(false)}}>
             <div className="chart-wrapper">
-              <select name="select-time" className="select-time">
-                <option value="value" selected> Select Time Period </option>
-                <option value="1hr"> 1 hour </option>
-                <option value="24h"> 24 hours </option>
-                <option value="7d"> Last week </option>
-                <option value="14d"> Last two weeks </option>
-                <option value="30d"> Last month </option>
-              </select>
               <div className="chart-visual">
+                <select name="select-time" className="select-time">
+                  <option value="value" selected> Select Time Period </option>
+                  <option value="1hr"> 1 hour </option>
+                  <option value="24h"> 24 hours </option>
+                  <option value="7d"> Last week </option>
+                  <option value="14d"> Last two weeks </option>
+                  <option value="30d"> Last month </option>
+                </select>
                 <Chart />
               </div>
             </div>
@@ -34,7 +35,7 @@ const Dashboard = (props: any) => {
                 <MediumCard cardText=" errors" displayFunc={props.mostErrorFunc} color={"#2ab6f6"} icon={<i className="fas fa-exclamation-triangle exclamation-icon"></i>}/>
               </div>
               <div className="stream-wrapper">
-                <Stream />
+                <Stream allFuncLogs={props.allFuncLogs} />
               </div>
             </div>
           </div>

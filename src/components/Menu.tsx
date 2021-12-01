@@ -14,12 +14,12 @@ const Menu = (props: any) => {
           >
             Dashboard
           </div>
-          <div 
+          {/* <div 
             className={"anomaly-link nav-link" + (props.currentView === 'anomaly' ? ' selected-view' : '')}
             onClick={() => props.setCurrentView('anomaly')}
           >
             Anomaly
-          </div>
+          </div> */}
           <div 
             className={"settings-link nav-link" + (props.currentView === 'settings' ? ' selected-view' : '')}
             onClick={() => {
