@@ -19,7 +19,7 @@ const Dashboard = (props: any) => {
                 <option value="30d"> Last month </option>
               </select>
               <div className="chart-visual">
-                <Chart />
+                <Chart chartData={props.chartData}/>
               </div>
             </div>
             <div className="overview-wrapper">
