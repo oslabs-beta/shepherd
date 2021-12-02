@@ -218,13 +218,21 @@ body {
   margin-bottom: 0%;
 }
 
+.chart-title {
+  position: absolute;
+  color: $white;
+  font-size: 1.1rem;
+  top: -9%;
+  left: 4%;
+}
+
 .chart-visual {
   position: relative;
   // width: 82.9%;
   width: 86.1%;
   height: 88%;
   margin-top: 1rem;
-  border-radius: 0.7rem;
+  border-radius: 1rem;
   // border: 1px solid #cde7fc;
   border: 1px solid $midnight;
   // background-color: #ffffff;
@@ -290,12 +298,12 @@ body {
 
 .small-card-wrapper {
   height: 3.6rem;
-  width: 56%;
+  width: 50%;
   margin-bottom: 2.4rem;
   // margin-left: 1.5rem;
   margin-left: 4.3%;
   // border: 1px solid #cde7fc;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   // background-color: #ffffff;
   background-color: $cardBG;
   color: $cardText;
@@ -304,6 +312,12 @@ body {
   align-items: center;
   font-size: 0.9rem;
   margin-right: 4.5%;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.small-card-wrapper:hover {
+  margin-left: 8%;
 }
 
 .call-icon {
@@ -342,7 +356,13 @@ body {
   margin-top: 1.7rem;
   margin-bottom: 1.6rem;
   // margin-right: 5.65rem;
-  margin-right: 16.8%;
+  margin-right: 17.1%;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.medium-card-wrapper:hover {
+  margin-left: 5%;
 }
 
 .medium-card-color {
@@ -358,7 +378,7 @@ body {
 .medium-card-body {
   background-color: $cardBG;
   height: 7.3rem;
-  width: 59%;
+  width: 53%;
   border-radius: 0 0.8rem 0.8rem 0;
   display: flex;
   flex-direction: column;
@@ -404,11 +424,10 @@ body {
   display: flex;
   flex-direction: column;
   background-color: $cardBG;
-  height: 21.6rem;
+  height: 21.7rem;
   width: 79%;
   border-radius: 1rem;
-  margin-right: 19%;
-  // margin-right: 16.6%
+  margin-right: 22.5%;
 }
 
 .stream-header {
@@ -604,7 +623,7 @@ body {
 }
 
 .settings-left {
-  width: 30%;
+  width: 32%;
   height: 100%;
   border-right: 1px solid $midnight;
 }
@@ -616,10 +635,10 @@ body {
 .tab-view-name {
   display: flex;
   align-items: center;
-  margin-left: 9.7%;
+  margin-left: 12%;
   margin-top: 1.6rem;
   height: 4.1rem;
-  width: 81%;
+  width: 77%;
   border-radius: 0.6rem;
   cursor: pointer;
 }
@@ -630,7 +649,7 @@ body {
 
 .tab-text-wrapper {
   // margin-top: 0.2rem;
-  padding-left: 1.5rem;
+  padding-left: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -682,10 +701,10 @@ body {
   margin-top: 1.5rem;
   height: 29rem;
   min-height: 28rem;
-  width: 80%;
+  width: 77%;
   border: 1px solid $settingsoutline;
   border-radius: 1rem;
-  margin-right: 0.4%;
+  margin-right: 0.3%;
 }
 
 .edit-header {
@@ -852,7 +871,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   z-index: 100;
+
 }
 
 .heading {

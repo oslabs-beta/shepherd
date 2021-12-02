@@ -72,6 +72,7 @@ console.log(allFuncLogs)
 
   return (
     <div className="container">
+
       {
         currentView === 'login' ? 
         <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
@@ -80,6 +81,7 @@ console.log(allFuncLogs)
       { currentView === 'dashboard' && !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
         <Loading /> : null 
       }
+
       <Header 
         menuOpen={menuOpen} 
         setMenuOpen={setMenuOpen} 
@@ -93,6 +95,7 @@ console.log(allFuncLogs)
           setMenuOpen={setMenuOpen} 
           currentView={currentView} 
           setCurrentView={setCurrentView} 
+
         />
         
         { currentView === 'dashboard' ? 
