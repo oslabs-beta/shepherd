@@ -122,11 +122,13 @@ const Stream = (props: any) => {
 // console.log(streamsArray);
 
 
+
   const allStreams: any = [];
   streamsArray.forEach((stream: any) => {
     allStreams.push(
       <div className="log-wrapper">
           {/* <i className="far fa-check-circle log-icon"></i> */}
+
           <i className="far fa-file-alt log-icon"></i>
           <div className="log-text">
             <div className="func-name">{stream.funcName}</div>
@@ -140,6 +142,7 @@ const Stream = (props: any) => {
     allErrors.push(
       <div className="log-wrapper">
           {/* <i className="far fa-check-circle log-icon"></i> */}
+
           <i className="far fa-file-excel error-icon"></i>
           <div className="log-text">
             <div className="func-name">{error.funcName}</div>
@@ -148,23 +151,7 @@ const Stream = (props: any) => {
         </div>
     )
   })
-
-  // props.allFuncLogs.map((func: any) => {
-
-  //   for (let log of func.errors) {
-  //     errors.push(
-  //       <div className="log-wrapper">
-  //         {/* <i className="far fa-check-circle log-icon"></i> */}
-  //         <i className="far fa-file-excel error-icon"></i>
-  //         <div className="log-text">
-  //           <div className="func-name">{func.name}</div>
-  //           <div className="time-stamp">{log[1].slice(0, 7) + ' ' + log[1].slice(13)}</div>
-  //         </div>
-  //       </div>
-  //     )
-  //   }
-  // });
-
+        
   return (
     <React.Fragment>
       <div className="stream-container">
@@ -173,12 +160,6 @@ const Stream = (props: any) => {
           <div className={"toggle-container" + (streamView ? ' blue-container' : ' red-container')}>
             <div className={"stream-toggle" + (streamView ?  '' : ' active-stream')} onClick={() => setStreamView(!streamView)}> </div>
           </div>
-          
-          {/* { streamView ? 
-            <i className="fas fa-chevron-circle-down switch-icon" onClick={() => setStreamView(!streamView)}></i> : 
-            <i className="fas fa-chevron-circle-up switch-icon" onClick={() => setStreamView(!streamView)}></i>
-          } */}
-          {/* <div className={"error-stream" + (streamView === 'error' ? ' active-stream' : '')} onClick={() => setStreamView('error')}>Errors</div> */}
         </div>
         <div className="stream-body">
           { streamView ? allStreams : allErrors }

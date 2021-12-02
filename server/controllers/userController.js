@@ -31,6 +31,8 @@ userController.createUser = (req, res, next) => {
         userInfo: {
           email: result.email,
           firstName: result.firstName,
+          lastName: result.lastName,
+          arn: result.arn,
         },
       };
       return next();
@@ -49,6 +51,7 @@ userController.verifyUser = async (req, res, next) => {
         userInfo: {
           email: user.email,
           firstName: user.firstName,
+          lastName: user.lastName,
           arn: user.arn,
           region: user.region,
         },

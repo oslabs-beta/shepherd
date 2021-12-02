@@ -20,6 +20,7 @@ const App = (props: any) => {
 // arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
+  const [userData, setUserData] = useState({});
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
@@ -34,7 +35,7 @@ const App = (props: any) => {
   // SETTING MENU & VIEWS
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('dashboard');
+  const [currentView, setCurrentView] = useState('login');
 
 // fetching the secret keys
 useEffect(() => {
@@ -62,30 +63,41 @@ useEffect(() => {
       setTotalErrors, 
       functionList
       );
-    fetching.getLogsAllFunctions(credentials, setAllFuncLogs, functionList);
+    fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
-}, [credentials,functionList, timePeriod]);
+}, [credentials, functionList, timePeriod]);
 console.log(allFuncLogs)
 // console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
 
   return (
     <div className="container">
-      { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+
+      {
+        currentView === 'login' ? 
+        <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
+        <React.Fragment>
+        
+      { currentView === 'dashboard' && !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
         <Loading /> : null 
       }
+
       <Header 
         menuOpen={menuOpen} 
         setMenuOpen={setMenuOpen} 
         setCurrentView={setCurrentView}
       />
+      
       <div className="body-wrapper">
+      
         <Menu 
           menuOpen={menuOpen} 
           setMenuOpen={setMenuOpen} 
           currentView={currentView} 
           setCurrentView={setCurrentView} 
-      />
+
+        />
+        
         { currentView === 'dashboard' ? 
           <Dashboard 
             setMenuOpen={setMenuOpen} 
@@ -101,6 +113,9 @@ console.log(allFuncLogs)
           : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
+
+      </React.Fragment>
+      }
     </div>
   );
 }
