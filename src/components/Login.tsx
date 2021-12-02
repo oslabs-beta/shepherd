@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import Register from "./Register";
 //register and login should be conditionally rendered by the app component
 const Login = (props: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [register, setRegister] = useState(false);
 
     const handleSubmit = (e:any) => {
       setSubmitted(true);
@@ -23,11 +25,14 @@ const Login = (props: any) => {
       .then((res) => {
         if (res.confirmed === true){
           console.log('User has logged in')
-          //res.email
-          //res.firstName
-          //res.lastName
-          //res.arn
-          //set current view hook and set to dashboard
+          props.setUserData(
+            {
+              email: res.email,
+              firstName: res.firstName,
+              lastName: res.lastName,
+              arn: res.arn
+            }
+          )
           props.setCurrentView('dashboard'); //drill down properly 
         }
         else{
@@ -43,11 +48,13 @@ const Login = (props: any) => {
     // send to register view if they need an account
     const handleRegister = () => {
       console.log("clicked register")
-      //!make sure set current page is drilled
-      props.setCurrentView('register');
+      setRegister(true);
     }
 
     return(
+      <React.Fragment>
+      { register ? <Register currentView={props.currentView} /> :
+      
     <div className = "landing">
       <div className="heading">
         <i className="fab fa-wolf-pack-battalion shepherd-icon"></i>
@@ -92,7 +99,9 @@ const Login = (props: any) => {
         </form>
       </div>
     </div>
-    )
+    }
+    </React.Fragment>
+  )
 }
 
 export default Login;

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import Login from './Login';
 //TO DO - 
-//Login page should redirect here when button to register is clicked
-//Upon successful registration user should be redirected back to login 
-//Need to add all the logic for hooking up AWS account as well as storing that information into the db here
+// Add back button
 
 const Register = (props: any) => {
     const [firstName, setFirstName] = useState('');
@@ -12,10 +10,7 @@ const Register = (props: any) => {
     const [password, setPassword] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [arn, setArn] = useState('');
-      
-      //template url opening a new window they have embedded in their code
-      //input box and and a hyperlink
-      //takes to new url --> we dont' have dialed in rn so put google homepage
+    const [login, setLogin] = useState(false);
 
       const handleRegister = (e: any) => {
         setSubmitted(true);
@@ -46,8 +41,15 @@ const Register = (props: any) => {
           console.error(error);
         });
       }
+
+      const handleBack = () => {
+        setLogin(true);
+        props.setCurrentView('login');
+      }
   
       return(
+      <React.Fragment>
+        { login ? <Login /> :
       <div className= "landing">
         <div className= "heading">
           <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> 
@@ -135,10 +137,18 @@ const Register = (props: any) => {
             onClick={(e) => handleRegister(e)}>
             Register
           </button>
+          <button 
+            className="landing-button"
+            type="submit" 
+            onClick={() => handleBack()}>
+            Go Back
+          </button>
 
           </form>
         </div>
       </div>
+      } 
+      </React.Fragment>
       )
   }
   export default Register;

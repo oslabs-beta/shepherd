@@ -20,6 +20,7 @@ const App = (props: any) => {
 // arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
+  const [userData, setUserData] = useState({});
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
@@ -34,7 +35,7 @@ const App = (props: any) => {
   // SETTING MENU & VIEWS
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('dashboard');
+  const [currentView, setCurrentView] = useState('login');
 
 // fetching the secret keys
 useEffect(() => {
@@ -71,27 +72,29 @@ console.log(allFuncLogs)
 
   return (
     <div className="container">
+      {
+        currentView === 'login' ? 
+        <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
+        <React.Fragment>
+        
       { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
         <Loading /> : null 
       }
-      { currentView === 'login' || currentView === 'register' ? null :
-      (<Header 
+      <Header 
         menuOpen={menuOpen} 
         setMenuOpen={setMenuOpen} 
         setCurrentView={setCurrentView}
-      />)
-      }
-      { currentView === 'login' ? <Login setCurrentView ={setCurrentView} /> : null }
-      { currentView === 'register' ? <Register setCurrentView ={setCurrentView} /> : null }
+      />
+      
       <div className="body-wrapper">
-      { currentView === 'login' || currentView === 'register' ? null :
-        (<Menu 
+      
+        <Menu 
           menuOpen={menuOpen} 
           setMenuOpen={setMenuOpen} 
           currentView={currentView} 
           setCurrentView={setCurrentView} 
-        />)
-        }
+        />
+        
         { currentView === 'dashboard' ? 
           <Dashboard 
             setMenuOpen={setMenuOpen} 
@@ -107,6 +110,9 @@ console.log(allFuncLogs)
           : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
+
+       </React.Fragment>
+       }
     </div>
   );
 }
