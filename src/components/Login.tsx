@@ -23,7 +23,11 @@ const Login = (props: any) => {
       .then((res) => {
         if (res.confirmed === true){
           console.log('User has logged in')
-        // set current view hook and set to dashboard
+          //res.email
+          //res.firstName
+          //res.lastName
+          //res.arn
+          //set current view hook and set to dashboard
           props.setCurrentView('dashboard'); //drill down properly 
         }
         else{

@@ -63,7 +63,7 @@ console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mos
         /> )
       }
       { currentView === 'login' ? <Login setCurrentView ={setCurrentView} /> : null }
-      { currentView === 'registration' ? <Register /> : null }
+      { currentView === 'register' ? <Register setCurrentView ={setCurrentView} /> : null }
       <div className="body-wrapper">
         { currentView === 'login' || currentView === 'register' ? null :
           (<Menu 
