@@ -72,12 +72,13 @@ console.log(allFuncLogs)
 
   return (
     <div className="container">
+
       {
         currentView === 'login' ? 
         <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
         <React.Fragment>
         
-        { currentView === 'dashboard' && !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+        { currentView === 'dashboard' && !allFuncLogs.length ? 
           <Loading /> : null 
         }
 
