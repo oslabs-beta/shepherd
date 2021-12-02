@@ -13,7 +13,7 @@ userController.createUser = (req, res, next) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: req.body.password,
-      arn: '',
+      arn: req.body.arn,
     },
     (err, result) => {
       if (err) {
@@ -31,6 +31,8 @@ userController.createUser = (req, res, next) => {
         userInfo: {
           email: result.email,
           firstName: result.firstName,
+          lastName: result.lastName,
+          arn: result.arn,
         },
       };
       return next();
@@ -49,6 +51,7 @@ userController.verifyUser = async (req, res, next) => {
         userInfo: {
           email: user.email,
           firstName: user.firstName,
+          lastName: user.lastName,
           arn: user.arn,
           region: user.region,
         },
@@ -163,6 +166,30 @@ userController.updatePassword = async (req, res, next) => {
     return next();
   } catch (err) {
     console.error(err);
+    return next(err);
+  }
+};
+userController.updateArn = async (req, res, next) => {
+  // find and update account in database
+  try {
+    const origUser = await User.findOneAndUpdate(
+      { email: req.body.email },
+      { arn: req.body.newArn }
+    );
+    // makes sure the user document was updated with new ARN
+    const doubleCheck = await User.findOne({ email: req.body.email });
+    if (doubleCheck) {
+      if (doubleCheck.arn === req.body.newArn) {
+        res.locals.confirmation = { status: true, arn: doubleCheck.arn };
+        return next();
+      }
+      // if not, sends a false status back to notify user something went wrong
+    } else {
+      res.locals.confirmation = { status: false };
+      return next();
+    }
+  } catch (err) {
+    if (err) console.error(err);
     return next(err);
   }
 };

@@ -18,6 +18,7 @@ const {
 
 const getCredentials = async (req, res, next) => {
   console.log('triggered getCred middleware')
+  console.log('body: ', req.body);
   const roleParams = {
     RoleArn: req.body.arn,
     RoleSessionName: 'ShepherdSession',

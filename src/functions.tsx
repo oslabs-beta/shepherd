@@ -33,7 +33,8 @@ export const fetchFuncList = async (credentialsState: Object, setFunctions: Func
 export const fetchMetricAllFunctions = async (
   time: String, 
   credentialsState: Object, 
-  setInvocations:Function, 
+  setInvocations:Function,
+  setChartData: Function, 
   setThrottles: Function, 
   setActive: Function, 
   setErrors: Function,
@@ -41,7 +42,7 @@ export const fetchMetricAllFunctions = async (
   listOfFuncs: Array<string>
   ) => {
 
-  const fetchTotalInvocations = async (time: String, credentialsState: Object, setInvocations:Function) => {
+  const fetchTotalInvocations = async (time: String, credentialsState: Object, setInvocations:Function, setChartData:Function) => {
     const response = await fetch('/aws/getMetricsAllFunc/Invocations', {
       method: 'POST',
       headers: {
@@ -62,6 +63,11 @@ export const fetchMetricAllFunctions = async (
   // TOTALS CALLS THIS TIME PERIOD
         return acc;
       });
+  //RETURN WHOLE OBJECT AS CHART DATA
+    setChartData(() => {
+      console.log("chart data", res.data)
+      return res.data;
+    })
   };
 
   const fetchTotalErrors = async (time: String, credentialsState: Object, setTotalErrors:Function) => {
@@ -165,11 +171,33 @@ export const fetchMetricAllFunctions = async (
       });
   };
 
-  await fetchTotalInvocations(time, credentialsState, setInvocations);
-  await fetchTotalErrors(time, credentialsState, setTotalErrors);
-  await fetchTotalThrottles(time, credentialsState, setThrottles);
-  await fetchMostActiveFunc(time, credentialsState, setActive, listOfFuncs);
-  await fetchMostErrorFunc(time, credentialsState, setErrors, listOfFuncs);
+  fetchTotalInvocations(time, credentialsState, setInvocations, setChartData);
+  fetchTotalErrors(time, credentialsState, setTotalErrors);
+  fetchTotalThrottles(time, credentialsState, setThrottles);
+  fetchMostActiveFunc(time, credentialsState, setActive, listOfFuncs);
+  fetchMostErrorFunc(time, credentialsState, setErrors, listOfFuncs);
+}
+
+
+export const getLogsAllFunctions = async (timePeriod: String, creds: Object, setLogs: Function, listOfFuncs: Array<string>) => {
+  const logs: Array<Object> = [];
+  for (const func of listOfFuncs) {
+    const response = await fetch('/aws/getLogs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        timePeriod: timePeriod,
+        region: 'us-east-2',
+        credentials: creds,
+        function: func,
+      }),
+    });
+    const res = await response.json();
+    logs.push(res);
+  }
+  setLogs(logs);
 }
 
 // {

@@ -58,18 +58,40 @@ body {
   border-radius: 0.3rem;
 }
 
+.loading-screen {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $midnight;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  opacity: 0.96;
+  font-size: 3rem;
+  color: $navText;
+}
+
+.loading-icon {
+  color: $white;
+  width: auto;
+  height: 8rem;
+}
+
 .logo-wrapper {
   display: flex;
+  cursor: pointer;
 }
 
 .shepherd-icon {
   font-size: 2.3rem;
+  color: $white;
 }
 
 .logo {
-  margin-left: 2.3rem;
-  margin-top: 0.5rem;
-  color: $navText;
+  margin-left: 2.5rem;
+  margin-top: 3%;
+  color: $white;
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -77,7 +99,7 @@ body {
 }
 
 .menu-button-container {
-  margin-left: 3.7rem;
+  margin-left: 3.5rem;
   margin-top: 0.6rem;
   cursor: pointer;
   // background-color: #ede7f6;
@@ -108,11 +130,11 @@ body {
 }
 
 .user-profile {
-  margin-right: 2.3rem;
+  margin-right: 2.5rem;
 }
 
 .user-icon {
-  margin-top: 1.25rem;
+  margin-top: 1.2rem;
   font-size: 2.1rem;
   // color: #2197f3;
   color: $iconBG;
@@ -121,15 +143,8 @@ body {
 }
 
 .user-icon:hover {
-  color: $brightblue;
+  color: $navText;
 }
-// .notifications {
-//   margin-right: 2rem;
-// }
-
-// .toggle-dark {
-//   margin-right: 2rem;
-// }
 
 .menu-wrapper {
   height: 90.2vh;
@@ -158,9 +173,9 @@ body {
   align-items: center;
   margin-top: 2rem;
   height: 3rem;
-  width: 14rem;
+  width: 13.6rem;
   color: $navText;
-  font-size: 1.05rem;
+  font-size: 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s;
   cursor: pointer;
@@ -187,22 +202,26 @@ body {
   // background-color: #e3f2fd;
   background-color: $transparentBG;
   border-radius: 1rem 1rem 0 0;
-  margin: 0.7rem 1.2rem 0rem 0rem;
+  margin: 0.7% 1.8% 0 0;
 }
 
 .chart-wrapper {
-  width: 100vw;
+  width: 100%;
   height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   // margin-right: 15.45rem;
-  margin-right: 18.1%;
-  margin-bottom: 1rem;
+  // margin-right: 13.2%;
+  margin-right: 13.7%;
+  margin-top: 1.3%;
+  margin-bottom: 0%;
 }
 
 .chart-visual {
-  width: 82.9%;
+  position: relative;
+  // width: 82.9%;
+  width: 86.1%;
   height: 88%;
   margin-top: 1rem;
   border-radius: 0.7rem;
@@ -213,6 +232,8 @@ body {
 }
 
 .select-time {
+  position: absolute;
+  right: 1.3%;
   padding: 0.3rem;
   margin-top: 1rem;
   // margin-left: 1rem;
@@ -268,11 +289,11 @@ body {
 }
 
 .small-card-wrapper {
-  height: 4rem;
-  width: 58.5%;
-  margin-bottom: 1.85rem;
+  height: 3.6rem;
+  width: 56%;
+  margin-bottom: 2.4rem;
   // margin-left: 1.5rem;
-  margin-left: 4.2%;
+  margin-left: 4.3%;
   // border: 1px solid #cde7fc;
   border-radius: 0.5rem;
   // background-color: #ffffff;
@@ -281,49 +302,54 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-right: 4.5%;
 }
 
 .call-icon {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: $brightblue;
 }
 
 .bug-icon {
-  font-size: 1rem;
+  margin-top: 0.07rem;
+  font-size: 0.9rem;
   color: $brightred;
 }
 
 .dollar-icon {
-  font-size: 1.1rem;
+  margin-top: 0.06rem;
+  font-size: 1rem;
   color: $brightgreen;
 }
 
 .throttle-icon {
-  font-size: 1.1rem;
+  margin-top: 0.05rem;
+  font-size: 1rem;
   color: $brightyellow;
 }
 
 .metric {
-  margin-top: 0.7rem;
+  margin-top: 0.1rem;
+  font-size: 0.9rem;
   color: $white;
 }
 
 .medium-card-wrapper {
   display: flex;
-  height: 8rem;
-  width: 80%;
-  margin-bottom: 4.6rem;
+  height: 7.3rem;
+  width: 76%;
+  margin-top: 1.7rem;
+  margin-bottom: 1.6rem;
   // margin-right: 5.65rem;
-  margin-right: 19.5%;
+  margin-right: 16.8%;
 }
 
 .medium-card-color {
   // background-color: $brightpurple;
-  height: 9rem;
-  width: 38%;
-  border-radius: 0.9rem 0 0 0.9rem;
+  height: 7.3rem;
+  width: 37%;
+  border-radius: 0.8rem 0 0 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -331,56 +357,214 @@ body {
 
 .medium-card-body {
   background-color: $cardBG;
-  height: 9rem;
-  width: 61%;
-  border-radius: 0 0.9rem 0.9rem 0;
+  height: 7.3rem;
+  width: 59%;
+  border-radius: 0 0.8rem 0.8rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .function-icon {
   color: $lightpurple;
-  font-size: 2.3rem;
+  font-size: 2rem;
 }
 
 .exclamation-icon {
   color: $lightpurple;
-  font-size: 2.2rem;
+  font-size: 1.9rem;
 }
 
 .card-text-1 {
   color: $white;
-  margin-left: 2.6rem;
+  margin-left: 21%;
   margin-top: 1.8rem;
   margin-bottom: -0.1rem;
-  font-size: 1.1rem;
+  font-size: 0.93rem;
 }
 
 .card-text-2 {
   color: $lightpurple;
-  margin-left: 2.6rem;
+  margin-left: 21%;
   margin-bottom: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.medium-font-color {
+  // margin-top: 0rem;
+  margin-left: -0.2rem;
+  font-size: 0.85rem;
 }
 
 .stream-container {
+  display: flex;
+  flex-direction: column;
   background-color: $cardBG;
   height: 21.6rem;
-  width: 90%;
+  width: 79%;
   border-radius: 1rem;
-  margin-right: 5.7rem;
+  margin-right: 19%;
+  // margin-right: 16.6%
 }
 
 .stream-header {
+  position: relative;
   height: 3.3rem;
+  width: 100%;
   border-bottom: 1px solid $streamoutline;
   display: flex;
   justify-content: center;
   align-items: center;
-  // padding-left: 2.5rem;
   color: $white;
-  font-size: 1.1rem;
+  font-size: 0.93rem;
+}
+
+.stream-body {
+  overflow: scroll;
+  width: 100%;
+}
+// .stream-header {
+//   height: 2.8rem;
+//   border-bottom: 1px solid $streamoutline;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   color: $white;
+//   font-size: 0.95rem;
+// }
+
+.log-wrapper {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  width: 70%;
+  margin-left: 7.5%;
+  margin-top: 6.5%;
+  margin-bottom: 2%;
+  transition: all 0.55s;
+  padding: 2% 2% 2% 6%;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.log-wrapper:hover {
+  background-color: $streamoutline;
+  margin-left: 13%;
+}
+
+.log-icon {
+  height: 100%;
+  margin-top: 4.2%;
+  color: $brightblue;
+  font-size: 1.2rem;
+}
+
+.error-icon {
+  height: 100%;
+  margin-top: 4.2%;
+  color: $brightred;
+  font-size: 1.2rem;
+}
+
+.log-text {
+  margin-left: 6%;
+  width: 100%;
+}
+
+.func-name {
+  color: $white;
+  // color: $navText;
+  font-size: 0.8rem;
+}
+
+.time-stamp {
+  color: $cardText;
+  font-size: 0.7rem;
+}
+
+.normal-stream {
+  height: 3.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18%;
+  font-size: 0.96rem;
+  color: $white;
+  // margin-left: 9%;
+  margin-top: 0.1%;
+  // margin-left: 35.5%;
+}
+
+.toggle-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  position: absolute;
+  width: 1.9rem;
+  height: 0.95rem;
+  right: 5%;
+  border-radius: 2rem;
+  border: 1px solid $streamoutline;
+  background-color: $transparentBG;
+  transition: all 0.4s;
+}
+
+.blue-container {
+  background-color: $brightblue;
+}
+
+.red-container {
+  background-color: $brightred;
+}
+
+.stream-toggle {
+  position: absolute;
+  border: 1.5px solid $navText;
+  // background-color: $brightgreen;
+  background-color: $navText;
+  border-radius: 5rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+// .error-stream {
+//   height: 3rem;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding-right: 15%;
+//   width: 50%;
+//   border-bottom: 1px solid $streamoutline;
+//   border-radius: 0 0 0 0;
+//   font-size: 0.95rem;
+//   color: $cardText;
+//   cursor: pointer;
+// }
+
+.switch-icon {
+  margin-top: -3%;
+  // margin-top: 0.175rem;
+  // margin-left: 20%;
+  color: $cardText;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.85rem;
+  margin-left: 32%;
+}
+
+.switch-icon:hover {
+  color: $brightblue;
+}
+
+.active-stream {
+  // border: 2px solid $brightred;
+  margin-left: 48%;
 }
 
 //<-------- SETTINGS ------->
@@ -432,7 +616,7 @@ body {
 .tab-view-name {
   display: flex;
   align-items: center;
-  margin-left: 9.6%;
+  margin-left: 9.7%;
   margin-top: 1.6rem;
   height: 4.1rem;
   width: 81%;
@@ -496,7 +680,8 @@ body {
 
 .edit-account-wrapper {
   margin-top: 1.5rem;
-  height: 30rem;
+  height: 29rem;
+  min-height: 28rem;
   width: 80%;
   border: 1px solid $settingsoutline;
   border-radius: 1rem;
@@ -508,20 +693,20 @@ body {
   align-items: center;
   color: $navText;
   font-size: 0.95rem;
-  padding-left: 1.3rem;
+  padding-left: 4.1%;
   height: 4rem;
   border-bottom: 1px solid $settingsoutline;
 }
 
 .input-field {
-  margin-top: 3rem;
-  margin-left: 3.7%;
+  margin-top: 6%;
+  margin-left: 3.8%;
   height: 2.7rem;
   width: 90%;
   background-color: $midnight;
   border-radius: 0.6rem;
   border: 1px solid $settingsoutline;
-  padding-left: 1rem;
+  padding-left: 2%;
   color: $navText;
   font-family: "Inter", sans-serif;
 }
@@ -541,8 +726,8 @@ body {
 .edit-name-label {
   position: absolute;
   color: $navText;
-  top: 1.4rem;
-  left: 2rem;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
   font-size: 0.8rem;
   width: 1rem;
 }
@@ -554,8 +739,8 @@ body {
 .edit-email-label {
   position: absolute;
   color: $navText;
-  top: 1.4rem;
-  left: 2rem;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
   font-size: 0.8rem;
   width: 8rem;
 }
@@ -567,8 +752,8 @@ body {
 .edit-company-label {
   position: absolute;
   color: $navText;
-  top: 1.4rem;
-  left: 2rem;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
   font-size: 0.8rem;
   width: 8rem;
 }
@@ -576,6 +761,11 @@ body {
 .update-button-wrapper {
   display: flex;
   justify-content: flex-end;
+}
+
+.update-button-wrapper {
+  margin-top: 5.5%;
+  margin-right: 4.05%;
 }
 
 .edit-update-button {
@@ -588,9 +778,66 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 0.85rem;
-  margin-top: 2.8rem;
-  margin-right: 4.05%;
   cursor: pointer;
+}
+
+.change-password-wrapper {
+  margin-top: 1.5rem;
+  height: 29rem;
+  min-height: 28rem;
+  width: 80%;
+  border: 1px solid $settingsoutline;
+  border-radius: 1rem;
+  margin-right: 0.4%;
+}
+
+.change-password-header {
+  display: flex;
+  align-items: center;
+  color: $navText;
+  font-size: 0.95rem;
+  padding-left: 4.1%;
+  height: 4rem;
+  border-bottom: 1px solid $settingsoutline;
+}
+
+.current-password-field {
+  position: relative;
+}
+
+.current-password-label {
+  position: absolute;
+  color: $navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 10rem;
+}
+
+.new-password-field {
+  position: relative;
+}
+
+.new-password-label {
+  position: absolute;
+  color: $navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 8rem;
+}
+
+.confirm-password-field {
+  position: relative;
+}
+
+.confirm-password-label {
+  position: absolute;
+  color: $navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 10rem;
 }
 
 //<-------- LOGIN & REGISTRATION PAGES --------->
@@ -690,7 +937,7 @@ input {
   color: $darkpurple;
 }
 
-.landing-button:hover { 
+.landing-button:hover {
   color: $darkpurple;
   background: $lightpurple;
 }

@@ -6,11 +6,12 @@ import { Credentials } from '@aws-sdk/client-sts';
 import Settings from './components/Settings';
 import Login from './components/Login'
 import Register from './components/Register'
+import Loading from './components/Loading';
 import * as fetching from './functions';
 
 const App = (props: any) => {
 //time period values
-// '1hr'  
+// '1hr'
 // '24hr'
 // '7d'
 // '14d'
@@ -19,65 +20,88 @@ const App = (props: any) => {
 // arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('login'); //change this to login
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
   const [totalInvocations, setTotalInvocations] = useState(0);
+  const [chartData, setChartData] = useState(null);
   const [totalErrors, setTotalErrors] = useState(0);
   const [totalThrottles, setTotalThrottles] = useState(0);
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
+  const [allFuncLogs, setAllFuncLogs] = useState([]);
+
+  // SETTING MENU & VIEWS
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('dashboard');
 
 // fetching the secret keys
 useEffect(() => {
   fetching.fetchCreds(arn, setCredentials);
 }, []);
-console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
-
+// console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
+// fetching the list of functions
 useEffect(() => {
   if (credentials) {
     fetching.fetchFuncList(credentials, setFunctionList);
   }
 }, [credentials]);
-console.log('FUCNTIONS STATE OUTSIDE OF FUNCTION', functionList)
-
+// console.log('FUNCTION LIST', functionList)
+// fetch all the metrics
 useEffect(() => {
   if (credentials && functionList.length > 0) {
-    fetching.fetchMetricAllFunctions(timePeriod, credentials, setTotalInvocations, setTotalThrottles, setMostActiveFunc, setMostErrorFunc, setTotalErrors, functionList);
+    fetching.fetchMetricAllFunctions(
+      timePeriod, 
+      credentials, 
+      setTotalInvocations,
+      setChartData, 
+      setTotalThrottles, 
+      setMostActiveFunc, 
+      setMostErrorFunc, 
+      setTotalErrors, 
+      functionList
+      );
+    fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
-}, [credentials,functionList, timePeriod]);
-console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
-
-
+}, [credentials, functionList, timePeriod]);
+console.log(allFuncLogs)
+// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 
 
   return (
     <div className="container">
-      { currentView === 'login' || currentView === 'register' ? null :
-        ( <Header 
-          setMenuOpen={setMenuOpen} 
-          menuOpen={menuOpen} 
-          setCurrentView={setCurrentView}
-        /> )
+      { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+        <Loading /> : null 
       }
-      { currentView === 'login' ? <Login setCurrentView ={setCurrentView} /> : null }
-      { currentView === 'register' ? <Register setCurrentView ={setCurrentView} /> : null }
+      <Header 
+        menuOpen={menuOpen} 
+        setMenuOpen={setMenuOpen} 
+        setCurrentView={setCurrentView}
+      />
       <div className="body-wrapper">
-        { currentView === 'login' || currentView === 'register' ? null :
-          (<Menu 
-            menuOpen={menuOpen} 
+        <Menu 
+          menuOpen={menuOpen} 
+          setMenuOpen={setMenuOpen} 
+          currentView={currentView} 
+          setCurrentView={setCurrentView} 
+      />
+        { currentView === 'dashboard' ? 
+          <Dashboard 
             setMenuOpen={setMenuOpen} 
-            currentView={currentView} 
-            setCurrentView={setCurrentView} 
-          />)
-        }
-        { currentView === 'dashboard' ? <Dashboard setMenuOpen={setMenuOpen} /> : null }
+            totalInvocations={totalInvocations}
+            chartData={chartData} 
+            totalErrors={totalErrors} 
+            totalThrottles={totalThrottles}
+            mostActiveFunc={mostActiveFunc} 
+            allFuncLogs={allFuncLogs}
+            mostErrorFunc={mostErrorFunc}
+            timePeriod={timePeriod}
+            setTimePeriod={setTimePeriod} /> 
+          : null }
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
     </div>
   );
 }
-
 export default App;

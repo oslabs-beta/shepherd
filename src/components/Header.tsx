@@ -2,12 +2,17 @@ import React from 'react';
 
 const Header = (props: any) => {
 
+  const handleClick = (...args: any) => {
+    props.setCurrentView(...args);
+    props.setMenuOpen(false);
+  };
+
   return (
     <React.Fragment>
       <div className="navigation-wrapper">
         <div className="top-navigation">
           <div className="logo-wrapper">
-            <div className="logo">
+            <div className="logo" onClick={() => handleClick('dashboard')}>
               <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> &nbsp;
                 SHEPHERD
             </div>
@@ -15,22 +20,11 @@ const Header = (props: any) => {
               <i className="fas fa-bars menu-icon"></i>
             </div>
           </div>
-        <div className="profile-wrapper">
-          {/* <div className="toggle-dark">
-            TOGGLE DARK
+          <div className="profile-wrapper">
+            <div className="user-profile" onClick={() => handleClick('settings')}>
+              <i className="fas fa-user-circle user-icon"></i>
+            </div>
           </div>
-          <div className="notifications">
-            NOTIFICATIONS
-          </div> */}
-          <div 
-            className="user-profile" 
-            onClick={() => {
-              props.setCurrentView('settings');
-              props.setMenuOpen(false);
-            }}>
-            <i className="fas fa-user-circle user-icon"></i>
-          </div>
-        </div>
         </div>
       </div>
     </React.Fragment>
