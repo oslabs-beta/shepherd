@@ -62,9 +62,9 @@ useEffect(() => {
       setTotalErrors, 
       functionList
       );
-    fetching.getLogsAllFunctions(credentials, setAllFuncLogs, functionList);
+    fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
-}, [credentials,functionList, timePeriod]);
+}, [credentials, functionList, timePeriod]);
 console.log(allFuncLogs)
 // console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
 

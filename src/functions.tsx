@@ -179,7 +179,7 @@ export const fetchMetricAllFunctions = async (
 }
 
 
-export const getLogsAllFunctions = async (creds: Object, setLogs: Function, listOfFuncs: Array<string>) => {
+export const getLogsAllFunctions = async (timePeriod: String, creds: Object, setLogs: Function, listOfFuncs: Array<string>) => {
   const logs: Array<Object> = [];
   for (const func of listOfFuncs) {
     const response = await fetch('/aws/getLogs', {
@@ -188,6 +188,7 @@ export const getLogsAllFunctions = async (creds: Object, setLogs: Function, list
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        timePeriod: timePeriod,
         region: 'us-east-2',
         credentials: creds,
         function: func,
