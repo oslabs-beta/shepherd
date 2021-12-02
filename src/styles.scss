@@ -718,7 +718,7 @@ body {
 }
 
 .input-field {
-  margin-top: 6%;
+  margin-top: 7%;
   margin-left: 3.8%;
   height: 2.7rem;
   width: 90%;
@@ -783,7 +783,7 @@ body {
 }
 
 .update-button-wrapper {
-  margin-top: 5.5%;
+  margin-top: 4.5%;
   margin-right: 4.05%;
 }
 
@@ -804,7 +804,7 @@ body {
   margin-top: 1.5rem;
   height: 29rem;
   min-height: 28rem;
-  width: 80%;
+  width: 77%;
   border: 1px solid $settingsoutline;
   border-radius: 1rem;
   margin-right: 0.4%;
@@ -873,7 +873,6 @@ body {
   align-items: center;
 
   z-index: 100;
-
 }
 
 .heading {
@@ -912,7 +911,7 @@ body {
 .form-field {
   margin: 10px 0 10px 0;
   padding: 18px;
-  font-size: 11px;
+  font-size: 13px;
   border: 0;
   border-radius: 0.5rem;
   border: none;
@@ -937,9 +936,11 @@ input {
   margin: 10px 0 10px 0;
   padding: 13px;
   font-size: 16px;
+  font-weight: 500;
   border: 0;
   border-radius: 0.5rem;
-  border: none;
+  border: 2px solid $darkpurple;
+  transition: all 0.5s;
 }
 
 .landing-button:hover {
@@ -949,7 +950,8 @@ input {
 
 .landing-button:hover {
   color: $darkpurple;
-  background: $lightpurple;
+  background: $white;
+  border: 2px solid $darkpurple;
 }
 
 .AWS-text {

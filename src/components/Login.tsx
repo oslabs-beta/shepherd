@@ -27,10 +27,10 @@ const Login = (props: any) => {
           console.log('User has logged in')
           props.setUserData(
             {
-              email: res.email,
-              firstName: res.firstName,
-              lastName: res.lastName,
-              arn: res.arn
+              email: res.userInfo.email,
+              firstName: res.userInfo.firstName,
+              lastName: res.userInfo.lastName,
+              arn: res.userInfo.arn
             }
           )
           props.setCurrentView('dashboard'); //drill down properly 
