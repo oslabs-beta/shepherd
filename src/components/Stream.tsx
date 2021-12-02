@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
 const Stream = (props: any) => {
-
   const [streamView, setStreamView] = useState(true);
-
+  // parse the stream object to get name and timestamp
+  const errors: any = [];
   const streams: any = [];
-  
   props.allFuncLogs.map((func: any) => {
-    
     const result: any =[];
     const name = func.name;
     if(func.streams.length > 0) {
@@ -23,27 +21,25 @@ const Stream = (props: any) => {
     }
     streams.push(result)
   });
-  console.log(streams)
-  // take the streams variable and sort it by date and time. the end result should be an array of objects with the most recent date and time at the beggining of the array.
+  props.allFuncLogs.map((func: any) => {
+    const result: any =[];
+    const name = func.name;
+    if(func.errors.length > 0) {
+      const eachFunction: any = [];
+      func.errors.map((stream: any) => {
+        const date = stream[1].split(' ')
+        eachFunction.push({
+          funcName: name,
+          time: date
+        })
+      })
+      result.push(eachFunction)
+    }
+    errors.push(result)
+  });
+// take the streams variable and sort it by date and time. the end result should be an array of objects with the most recent date and time at the beggining of the array.
 //[[{funcName:'name', time:[month, day, year, time, am or pm]},{},{}],[]]
-
-
-
   function sortStreamsByDate(streams: any) {
-    const monthsByValue: any = {
-      'Jan': '01',
-      'Feb': '02',
-      'Mar': '03',
-      'Apr': '04',
-      'May': '05',
-      'Jun': '06',
-      'Jul': '07',
-      'Aug': '08',
-      'Sep': '09',
-      'Oct': '10',
-      'Nov': '11',
-      'Dec': '12'
-    };
     const allStreams:any =[];
     streams.forEach((arr: any) => {
       arr.forEach((arr2: any) => {
@@ -53,63 +49,113 @@ const Stream = (props: any) => {
       })
     })
     // sort the streams by month, day, time, am or pm
-    allStreams.sort((a: any, b: any) => {
-      const aStreamInstance = a.time.split(' ');
-      const bStreamInstance = b.time.split(' ');
-      const aMonth = monthsByValue[aStreamInstance[0]];
-      const bMonth = monthsByValue[bStreamInstance[0]];
-      const aDay = aStreamInstance[1];
-      const bDay = bStreamInstance[1];
-      const aTime = aStreamInstance[3];
-      const bTime = bStreamInstance[3];
-      const aAMPM = aStreamInstance[4];
-      const bAMPM = bStreamInstance[4];
-      if(aMonth > bMonth) {
-        return 1;
+    function sortThis(array: any){
+      const sortedByMonth: any = {};
+      array.forEach((item:any) => {
+        if(!sortedByMonth[item.time[0]]){
+          sortedByMonth[item.time[0]] = [item];
+        } else {
+          sortedByMonth[item.time[0]].push(item);
+        }
+      })
+      //this sorts the months by day
+      for (const prop in sortedByMonth){
+        sortedByMonth[prop].sort((a:any, b:any) => {
+          if(a.time[1] > b.time[1]){
+            return 1;
+          } else if (a.time[1] < b.time[1]){
+            return -1;
+          }
+          })
+        }
+      // sort the days by time
+      for (const prop in sortedByMonth){
+        sortedByMonth[prop].sort((a:any, b:any) => {
+          // if the time is pm, split the 3rd index from its ":", concat the two parts together and then add 1200 to the result. make sure to keep the order of the days the same which is the first index.
+          const dayA = a.time[1];
+          const dayB = b.time[1];
+          let timeA = a.time[3].split(':');
+          let timeB = b.time[3].split(':');
+          if(a.time[4] === 'pm'){
+            timeA = timeA[0] + timeA[1];
+            timeA = parseInt(timeA) + 1200;
+          } else {
+            timeA = timeA[0] + timeA[1];
+            timeA = parseInt(timeA);
+          }
+          if(b.time[4] === 'pm'){
+            timeB = timeB[0] + timeB[1];
+            timeB = parseInt(timeB) + 1200;
+          } else {
+            timeB = timeB[0] + timeB[1];
+            timeB = parseInt(timeB);
+          }
+          const fullTimeA = parseInt(dayA + 'timeA');
+          const fullTimeB = parseInt(dayB + 'timeB');
+          if(fullTimeA < fullTimeB){
+            return 1;
+          } else if (fullTimeA > fullTimeB){
+            return -1;
+          }
+        })
       }
-      if(aMonth < bMonth) {
-        return -1;
-      }
-      if(aDay > bDay) {
-        return 1;
-      }
-      if(aDay < bDay) {
-        return -1;
-      }
-      if(aTime > bTime) {
-        return 1;
-      }
-      if(aTime < bTime) {
-        return -1;
-      }
-      if(aAMPM > bAMPM) {
-        return 1;
-      }
-      if(aAMPM < bAMPM) {
-        return -1;
-      }
-      return 0;
-    })
-    return allStreams;
+      return sortedByMonth;
+    }
+  return sortThis(allStreams);
 }
-console.log('ALLSTREAMS',sortStreamsByDate(streams))
+  function dumpIntoArray(order: Array<string>, obj: any) {
+  const result: Array<Object> = [];
+  for (const month of order){
+    if (obj[month]){
+      obj[month].forEach((stream: any) => {
+        result.push(stream)
+      })
+    }
+  }
+  return result;
+}
+  const monthsByValue: any =['Dec', 'Nov', 'Oct', 'Sep', 'Aug', 'Jul', 'Jun', 'May', 'Apr', 'Mar', 'Feb', 'Jan'];
+  const sortedStreamsInObject: any = sortStreamsByDate(streams);
+  const sortedErrorsInObject: any = sortStreamsByDate(errors);
+  const streamsArray = dumpIntoArray(monthsByValue, sortedStreamsInObject);
+  const errorsArray = dumpIntoArray(monthsByValue, sortedErrorsInObject);
+// console.log(streamsArray);
 
 
+  const allStreams: any = [];
+  streamsArray.forEach((stream: any) => {
+    allStreams.push(
+      <div className="log-wrapper">
+          {/* <i className="far fa-check-circle log-icon"></i> */}
+          <i className="far fa-file-alt log-icon"></i>
+          <div className="log-text">
+            <div className="func-name">{stream.funcName}</div>
+            <div className="time-stamp">{`${stream.time[0]} ${stream.time[1]} ${stream.time[3]}${stream.time[4]}`}</div>
+          </div>
+        </div>
+    )
+  })
+  const allErrors: any = [];
+  errorsArray.forEach((error: any) => {
+    allErrors.push(
+      <div className="log-wrapper">
+          {/* <i className="far fa-check-circle log-icon"></i> */}
+          <i className="far fa-file-excel error-icon"></i>
+          <div className="log-text">
+            <div className="func-name">{error.funcName}</div>
+            <div className="time-stamp">{`${error.time[0]} ${error.time[1]} ${error.time[3]}${error.time[4]}`}</div>
+          </div>
+        </div>
+    )
+  })
 
-  // const streamViews = streams.map((stream: any, index: number) => {
-  //   return (
-  //     <div className="stream-view" key={index}></div>
-  //   );
-  // });
+  // props.allFuncLogs.map((func: any) => {
 
-  //   for (let log of func.streams) {
-  //     streams.push(
-  //       // [func.name, log[1]]
+  //   for (let log of func.errors) {
+  //     errors.push(
   //       <div className="log-wrapper">
   //         {/* <i className="far fa-check-circle log-icon"></i> */}
-  //         {/* <i className="fas fa-clipboard-check log-icon"></i> */}
-  //         {/* <i className="far fa-calendar-check log-icon"></i> */}
-  //         <i className="far fa-file-alt log-icon"></i>
+  //         <i className="far fa-file-excel error-icon"></i>
   //         <div className="log-text">
   //           <div className="func-name">{func.name}</div>
   //           <div className="time-stamp">{log[1].slice(0, 7) + ' ' + log[1].slice(13)}</div>
@@ -118,32 +164,6 @@ console.log('ALLSTREAMS',sortStreamsByDate(streams))
   //     )
   //   }
   // });
-//   0: (3) ['...a8b67', 'Nov 26, 2021 11:18 AM', 'value3 = value3\n']
-// 1: (3) ['...a8b67', 'Nov 26, 2021 11:18 AM', 'value2 = value2\n']
-//2: (3) ['...a8b67', 'Nov 26, 2021 11:18 AM', 'value1 = value1\n']
- //3: (3) ['...a8b67', 'Nov 26, 2021 11:18 AM', '']
-// 4: (3) ['...9ff4d', 'Nov 25, 2021 4:22 PM', 'value3 = value3\n']
-// 5: (3) ['...9ff4d', 'Nov 25, 2021 4:22 PM', 'value2 = value2\n']
-// 6: (3) ['...9ff4d', 'Nov 25, 2021 4:22 PM', 'value1 = value1\n']
-// 7: (3) ['...9ff4d', 'Nov 25, 2021 4:22 PM', '']
-
-  const errors: any = [];
-
-  props.allFuncLogs.map((func: any) => {
-
-    for (let log of func.errors) {
-      errors.push(
-        <div className="log-wrapper">
-          {/* <i className="far fa-check-circle log-icon"></i> */}
-          <i className="far fa-file-excel error-icon"></i>
-          <div className="log-text">
-            <div className="func-name">{func.name}</div>
-            <div className="time-stamp">{log[1].slice(0, 7) + ' ' + log[1].slice(13)}</div>
-          </div>
-        </div>
-      )
-    }
-  });
 
   return (
     <React.Fragment>
@@ -161,7 +181,7 @@ console.log('ALLSTREAMS',sortStreamsByDate(streams))
           {/* <div className={"error-stream" + (streamView === 'error' ? ' active-stream' : '')} onClick={() => setStreamView('error')}>Errors</div> */}
         </div>
         <div className="stream-body">
-          { streamView ? streams : errors }
+          { streamView ? allStreams : allErrors }
         </div>
         <div className="stream-footer"></div>
       </div>
