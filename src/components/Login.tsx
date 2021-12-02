@@ -1,83 +1,107 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import Dashboard from "./Dashboard";
-
-//TO DO - need to hook up to the App level page and then create routes to redirect to Dashboard once username/pw are validated OR redirect to registration page which will then redirect back to this page when user has successfully registered
-
-const Login = () => {
-  const history = useHistory();
+import Register from "./Register";
+//register and login should be conditionally rendered by the app component
+const Login = (props: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [valid, setValid] = useState(false); //initial logic for checking username/pw switch
+  const [register, setRegister] = useState(false);
 
-    // Need logic for submit to redirect to the dashboard
-    const handleSubmit = (e: any) => {
-        e.preventDefault(); //stop refresh
-        //should this be a get or post request to verify user credentials?
-        //use axios?
-
-        if (email && password){
-          setValid(true);
-          // Need logic for submit to redirect to the dashboard
-          return(
-            <Dashboard />
-          )
+  const handleSubmit = (e:any) => {
+    setSubmitted(true);
+    e.preventDefault(); //avoid page refresh
+    const reqParams = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(
+        { 
+          email,
+          password,
         }
-        setSubmitted(true);
+      ),
+    };
+    fetch ('/user/login', reqParams)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.confirmed === true){
+          console.log('User has logged in')
+          props.setUserData(
+            {
+              email: res.email,
+              firstName: res.firstName,
+              lastName: res.lastName,
+              arn: res.arn
+            }
+          )
+          props.setCurrentView('dashboard'); //drill down properly 
+        }
+        else {
+          console.log('Something went wrong with user sign in')
+          alert("Sorry, we could not find that username or password. Please try again or register for an account.")
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
-    
-    //useHistory hook does not currently work
+
+    // send to register view if they need an account
     const handleRegister = () => {
-      history.push('./Register');
+      console.log("clicked register")
+      setRegister(true);
     }
 
     return(
-    <div className = "landing">
-      <div className="heading">
-        <i className="fab fa-wolf-pack-battalion shepherd-icon"></i>
-          SHEPHERD
-        </div>
-        <div className="form-container">
-          <p>LOGIN</p>
-        <form className="register-form" onSubmit = {handleSubmit}>
-        <input
-          id="email"
-          className="form-field"
-          type="text"
-          placeholder="Email"
-          value = {email}
-          onChange={(e: any) => {
-            setEmail(e.target.value);
-          }}
-        />
-        {submitted && !email ? <span className = "error-messages">Please enter an email address.</span> : null}
-        <input
-          id="password"
-          className="form-field"
-          type="password"
-          placeholder="Password"
-          value = {password}
-          onChange={(e: any) => {
-            setPassword(e.target.value);
-          }}
-        />
-        {submitted && !password ? <span className = "error-messages">Please enter a password.</span> : null}
-        <button 
-          type="submit" 
-          onClick={handleSubmit}>
-          Login
-        </button>
-        {/* Should redirect with React router to new sign up page */}
-        <button 
-          className="landing-button"
-          onClick={handleRegister}>
-          Register
+      <React.Fragment>
+      { register ? <Register setCurrentView={props.setCurrentView} setRegister={setRegister}/> :
+      
+        <div className = "landing">
+          <div className="heading">
+            <i className="fab fa-wolf-pack-battalion shepherd-icon"></i>
+            SHEPHERD
+          </div>
+          <div className="form-container">
+            <form className="register-form" onSubmit = {handleSubmit}>
+            <p className= "register-title">LOGIN</p>
+            <input
+              id="email"
+              className="form-field"
+              type="text"
+              placeholder="Email"
+              value = {email}
+              onChange={(e: any) => {
+                setEmail(e.target.value);
+              }}
+            />
+          {submitted && !email ? <span className = "error-messages">Please enter an email address.</span> : null}
+            <input
+              id="password"
+              className="form-field"
+              type="password"
+              placeholder="Password"
+              value = {password}
+              onChange={(e: any) => {
+                setPassword(e.target.value);
+              }}
+            />
+          {submitted && !password ? <span className = "error-messages">Please enter a password.</span> : null}
+          <button 
+            className="landing-button"
+            type="submit" 
+            onClick={(e) => handleSubmit(e)}>
+            Login
+          </button>
+          <button 
+            className="landing-button"
+            onClick={() => handleRegister()}>
+            Register
          </button> 
         </form>
       </div>
     </div>
-    )
+    }
+    </React.Fragment>
+  )
 }
 
 export default Login;
