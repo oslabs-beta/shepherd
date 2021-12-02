@@ -52,10 +52,10 @@ const Register = (props: any) => {
       <React.Fragment>
       { login ? <Login /> :
         <div className= "landing">
-          <div className= "heading">
+          {/* <div className= "heading">
             <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> 
             SHEPHERD
-          </div>
+          </div> */}
           <div className="form-container">
             <form className="register-form" onSubmit = {handleRegister}>
               <p className="register-title">REGISTER FOR AN ACCOUNT</p>

@@ -4,10 +4,13 @@ import SettingTab from './SettingTab';
 const Settings = (props: any) => {
 
     const [settingView, setSettingView] = useState('edit-profile');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [name, setName] = useState(props.userData.firstName + ' ' + props.userData.lastName || '');
+    const [email, setEmail] = useState(props.userData.email || '');
     const [company, setCompany] = useState('');
-
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    
     return (
         <React.Fragment>
             <div className="settings-wrapper" onClick={() => props.setMenuOpen(false)}>
@@ -88,8 +91,8 @@ const Settings = (props: any) => {
                                     <input 
                                         type="text"
                                         className="input-field" 
-                                        value={name}
-                                        onChange={(e: any) => setName(e.target.value)}
+                                        value={oldPassword}
+                                        onChange={(e: any) => setOldPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="new-password-field">
@@ -97,8 +100,8 @@ const Settings = (props: any) => {
                                     <input 
                                         type="text"
                                         className="input-field" 
-                                        value={email}
-                                        onChange={(e: any) => setEmail(e.target.value)}
+                                        value={newPassword}
+                                        onChange={(e: any) => setNewPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="confirm-password-field">
@@ -106,8 +109,8 @@ const Settings = (props: any) => {
                                     <input 
                                         type="text"
                                         className="input-field" 
-                                        value={company}
-                                        onChange={(e: any) => setCompany(e.target.value)}
+                                        value={confirmPassword}
+                                        onChange={(e: any) => setConfirmPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="update-button-wrapper">

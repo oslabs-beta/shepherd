@@ -72,49 +72,43 @@ console.log(allFuncLogs)
 
   return (
     <div className="container">
-
       {
         currentView === 'login' ? 
         <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
         <React.Fragment>
         
-      { currentView === 'dashboard' && !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
-        <Loading /> : null 
-      }
+        { currentView === 'dashboard' && !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+          <Loading /> : null 
+        }
 
-      <Header 
-        menuOpen={menuOpen} 
-        setMenuOpen={setMenuOpen} 
-        setCurrentView={setCurrentView}
-      />
-      
-      <div className="body-wrapper">
-      
-        <Menu 
+        <Header 
           menuOpen={menuOpen} 
           setMenuOpen={setMenuOpen} 
-          currentView={currentView} 
-          setCurrentView={setCurrentView} 
-
+          setCurrentView={setCurrentView}
         />
-        
-        { currentView === 'dashboard' ? 
-          <Dashboard 
+        <div className="body-wrapper">
+          <Menu 
+            menuOpen={menuOpen} 
             setMenuOpen={setMenuOpen} 
-            totalInvocations={totalInvocations}
-            chartData={chartData} 
-            totalErrors={totalErrors} 
-            totalThrottles={totalThrottles}
-            mostActiveFunc={mostActiveFunc} 
-            allFuncLogs={allFuncLogs}
-            mostErrorFunc={mostErrorFunc}
-            timePeriod={timePeriod}
-            setTimePeriod={setTimePeriod} /> 
-          : null }
-        { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
-       </div>
-
-      </React.Fragment>
+            currentView={currentView} 
+            setCurrentView={setCurrentView} 
+          />
+          { currentView === 'dashboard' ? 
+            <Dashboard 
+              setMenuOpen={setMenuOpen} 
+              totalInvocations={totalInvocations}
+              chartData={chartData} 
+              totalErrors={totalErrors} 
+              totalThrottles={totalThrottles}
+              mostActiveFunc={mostActiveFunc} 
+              allFuncLogs={allFuncLogs}
+              mostErrorFunc={mostErrorFunc}
+              timePeriod={timePeriod}
+              setTimePeriod={setTimePeriod} /> 
+            : null }
+          { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} userData={userData} /> : null }
+        </div>
+        </React.Fragment>
       }
     </div>
   );

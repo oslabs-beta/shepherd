@@ -229,6 +229,7 @@ const Chart = (props: any) => {
             data: datapoints,
             borderColor: '#7c4dff',
             backgroundColor: '#7c4dff',
+            fontColor: '#FFFFFF',
             fill: false,
             tension: 0.4,
           }
