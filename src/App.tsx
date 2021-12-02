@@ -77,7 +77,7 @@ console.log(allFuncLogs)
         <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
         <React.Fragment>
         
-      { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+      { currentView === 'dashboard' && !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
         <Loading /> : null 
       }
       <Header 
@@ -111,8 +111,8 @@ console.log(allFuncLogs)
         { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} /> : null }
        </div>
 
-       </React.Fragment>
-       }
+      </React.Fragment>
+      }
     </div>
   );
 }

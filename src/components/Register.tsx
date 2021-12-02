@@ -4,31 +4,31 @@ import Login from './Login';
 // Add back button
 
 const Register = (props: any) => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-    const [arn, setArn] = useState('');
-    const [login, setLogin] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [arn, setArn] = useState('');
+  const [login, setLogin] = useState(false);
 
-      const handleRegister = (e: any) => {
-        setSubmitted(true);
-        e.preventDefault(); //avoid page refresh
-        const reqParams = { 
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(
-            { 
+    const handleRegister = (e: any) => {
+      setSubmitted(true);
+      e.preventDefault(); //avoid page refresh
+      const reqParams = { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+          { 
             email, 
             firstName,
             lastName,
             password, 
             arn,
-            }
-          ),
-        };
-        fetch ('/user/signup', reqParams)
+          }
+        ),
+      };
+      fetch ('/user/signup', reqParams)
         .then((res) => res.json())
         .then((res) => {
           //what response from db to do we get here?
@@ -40,45 +40,46 @@ const Register = (props: any) => {
         .catch((error) => {
           console.error(error);
         });
-      }
+    }
 
-      const handleBack = () => {
-        setLogin(true);
-        props.setCurrentView('login');
-      }
-  
-      return(
+    const handleBack = () => {
+      setLogin(true);
+      props.setRegister(false);
+      props.setCurrentView('login');
+    }
+
+    return(
       <React.Fragment>
-        { login ? <Login /> :
-      <div className= "landing">
-        <div className= "heading">
-          <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> 
-          SHEPHERD
-        </div>
-        <div className="form-container">
-          <form className="register-form" onSubmit = {handleRegister}>
-            <p className="register-title">REGISTER FOR AN ACCOUNT</p>
-            <input
-              id="first-name"
-              className="form-field"
-              type="text"
-              placeholder="First Name"
-              value = {firstName}
-              onChange={(e: any) => {
-                setFirstName(e.target.value);
-            }}
-            />
+      { login ? <Login /> :
+        <div className= "landing">
+          <div className= "heading">
+            <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> 
+            SHEPHERD
+          </div>
+          <div className="form-container">
+            <form className="register-form" onSubmit = {handleRegister}>
+              <p className="register-title">REGISTER FOR AN ACCOUNT</p>
+              <input
+                id="first-name"
+                className="form-field"
+                type="text"
+                placeholder="First Name"
+                value = {firstName}
+                onChange={(e: any) => {
+                  setFirstName(e.target.value);
+                }}
+              />
             {submitted && !firstName ? <span className = "error-messages">Please enter your first name.</span> : null}
-            <input
-              id="last-name"
-              className="form-field"
-              type="text"
-              placeholder="Last Name"
-              value = {lastName}
-              onChange={(e: any) => {
-                setLastName(e.target.value);
-            }}
-            />
+              <input
+                id="last-name"
+                className="form-field"
+                type="text"
+                placeholder="Last Name"
+                value = {lastName}
+                onChange={(e: any) => {
+                  setLastName(e.target.value);
+                }}
+              />
             {submitted && !lastName ? <span className = "error-messages">Please enter your last name.</span> : null}
             <input
               id="email"
@@ -102,53 +103,48 @@ const Register = (props: any) => {
             }}
             />
             {submitted && !password ? <span className = "error-messages">Please enter a password.</span> : null}
-            <p>Connect your AWS account to Shepherd by following the steps below</p>
-            <ol>
-              <li>
-              {/* change link to: our stack */}
-                <a
+            <div className="AWS-text">
+              <p>Connect your AWS account to Shepherd by following the steps below:</p>
+              <ul>
+                <li>
+                {/* change link to: our stack */}
+                  <a
                   target='_blank'
                   href='http://google.com'
                   className="aws-link"
-                >
-                Add Shepherd CloudFormation stack to AWS
-                </a>
-              </li>
-            <li>
-              Make sure you check "I acknowledge that AWS CloudFormation might
-              create IAM resources."
-            </li>
-            <li>Click "Create"</li>
-            <li>
-              Once stack creation has completed, head to the "Outputs" tab and look for your "ARN" string. Copy the "ARN" and paste into the text box below. 
-            </li>
-          </ol>
-          <input
-            id='arn'
-            className="form-field"
-            placeholder="ARN"
-            value = {arn}
-            onChange={(e) => {
-              setArn(e.target.value);
-          }} />  
-          <button 
-            className="landing-button"
-            type="submit" 
-            onClick={(e) => handleRegister(e)}>
-            Register
-          </button>
-          <button 
-            className="landing-button"
-            type="submit" 
-            onClick={() => handleBack()}>
-            Go Back
-          </button>
-
+                  > Add Shepherd CloudFormation stack to AWS </a>
+                </li>
+                <li> Make sure you check "I acknowledge that AWS CloudFormation might
+                create IAM resources."</li>
+                <li>Click "Create"</li>
+                <li>Once stack creation has completed, head to the "Outputs" tab and look for your "ARN" string. Copy the "ARN" and paste into the text box below.  </li>
+              </ul>
+            </div>
+            <input
+              id='arn'
+              className="form-field"
+              placeholder="ARN"
+              value = {arn}
+              onChange={(e) => {
+                setArn(e.target.value);
+              }} />  
+            <button 
+              className="landing-button"
+              type="submit" 
+              onClick={(e) => handleRegister(e)}>
+              Register
+            </button>
+            <button 
+              className="landing-button"
+              type="submit" 
+              onClick={() => handleBack()}>
+              Go Back
+            </button>
           </form>
         </div>
       </div>
       } 
       </React.Fragment>
-      )
+    )
   }
   export default Register;

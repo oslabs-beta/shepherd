@@ -858,23 +858,11 @@ body {
 .heading {
   display: flex;
   align-self: center;
-  color: $navText;
+  color: $white;
   letter-spacing: 2rem;
   font-size: 2rem;
   font-weight: bold;
   padding: 3rem;
-  animation: pulse 4s; //add "infinite" if we want it to loop
-}
-
-@keyframes pulse {
-  0% {
-    color: $white;
-    font-size: 0.5rem;
-  }
-  100% {
-    color: $darkpurple;
-    font-size: 2rem;
-  }
 }
 
 .register-form {
@@ -941,4 +929,8 @@ input {
 .landing-button:hover {
   color: $darkpurple;
   background: $lightpurple;
+}
+
+.AWS-text {
+  font-size: 13px;
 }
