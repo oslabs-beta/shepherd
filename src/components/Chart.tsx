@@ -236,7 +236,7 @@ const Chart = (props: any) => {
       };
     return (
         <React.Fragment>
-            <div className="chart-title">Lambda Activity</div>
+            {/* <div className="chart-title">Lambda Activity</div> */}
                 <Line options={options} data={data} style={{minHeight: '100%', minWidth: '100%', padding: '1%',}} />
             {props.invocations}
         </React.Fragment>
