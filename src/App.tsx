@@ -74,18 +74,24 @@ console.log(allFuncLogs)
       { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
         <Loading /> : null 
       }
-      <Header 
+      { currentView === 'login' || currentView === 'register' ? null :
+      (<Header 
         menuOpen={menuOpen} 
         setMenuOpen={setMenuOpen} 
         setCurrentView={setCurrentView}
-      />
+      />)
+      }
+      { currentView === 'login' ? <Login setCurrentView ={setCurrentView} /> : null }
+      { currentView === 'register' ? <Register setCurrentView ={setCurrentView} /> : null }
       <div className="body-wrapper">
-        <Menu 
+      { currentView === 'login' || currentView === 'register' ? null :
+        (<Menu 
           menuOpen={menuOpen} 
           setMenuOpen={setMenuOpen} 
           currentView={currentView} 
           setCurrentView={setCurrentView} 
-      />
+        />)
+        }
         { currentView === 'dashboard' ? 
           <Dashboard 
             setMenuOpen={setMenuOpen} 

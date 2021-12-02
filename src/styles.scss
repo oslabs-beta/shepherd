@@ -66,7 +66,7 @@ body {
   background-color: $midnight;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  z-index: 50;
   opacity: 0.96;
   font-size: 3rem;
   color: $navText;
@@ -852,6 +852,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .heading {
