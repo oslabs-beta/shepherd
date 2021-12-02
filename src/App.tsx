@@ -71,9 +71,8 @@ console.log(allFuncLogs)
 
   return (
     <div className="container">
-      { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
-        <Loading /> : null 
-      }
+      {!functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+        <Loading /> : null}
       <Header 
         menuOpen={menuOpen} 
         setMenuOpen={setMenuOpen} 
@@ -86,6 +85,7 @@ console.log(allFuncLogs)
           currentView={currentView} 
           setCurrentView={setCurrentView} 
       />
+      
         { currentView === 'dashboard' ? 
           <Dashboard 
             setMenuOpen={setMenuOpen} 

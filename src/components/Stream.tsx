@@ -10,11 +10,7 @@ const Stream = (props: any) => {
 
     for (let log of func.streams) {
       streams.push(
-        // [func.name, log[1]]
         <div className="log-wrapper">
-          {/* <i className="far fa-check-circle log-icon"></i> */}
-          {/* <i className="fas fa-clipboard-check log-icon"></i> */}
-          {/* <i className="far fa-calendar-check log-icon"></i> */}
           <i className="far fa-file-alt log-icon"></i>
           <div className="log-text">
             <div className="func-name">{func.name}</div>
@@ -25,8 +21,6 @@ const Stream = (props: any) => {
     }
   });
 
-  // streams.sort((a: any, b: any) => b[0] - a[0]); 
-
   const errors: any = [];
 
   props.allFuncLogs.map((func: any) => {
@@ -34,7 +28,6 @@ const Stream = (props: any) => {
     for (let log of func.errors) {
       errors.push(
         <div className="log-wrapper">
-          {/* <i className="far fa-check-circle log-icon"></i> */}
           <i className="far fa-file-excel error-icon"></i>
           <div className="log-text">
             <div className="func-name">{func.name}</div>
@@ -53,12 +46,6 @@ const Stream = (props: any) => {
           <div className={"toggle-container" + (streamView ? ' blue-container' : ' red-container')}>
             <div className={"stream-toggle" + (streamView ?  '' : ' active-stream')} onClick={() => setStreamView(!streamView)}> </div>
           </div>
-          
-          {/* { streamView ? 
-            <i className="fas fa-chevron-circle-down switch-icon" onClick={() => setStreamView(!streamView)}></i> : 
-            <i className="fas fa-chevron-circle-up switch-icon" onClick={() => setStreamView(!streamView)}></i>
-          } */}
-          {/* <div className={"error-stream" + (streamView === 'error' ? ' active-stream' : '')} onClick={() => setStreamView('error')}>Errors</div> */}
         </div>
         <div className="stream-body">
           { streamView ? streams : errors }

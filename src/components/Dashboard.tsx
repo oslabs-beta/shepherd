@@ -14,9 +14,7 @@ const Dashboard = (props: any) => {
       <React.Fragment>
           <div className="main-interface-wrapper" onClick={() => {props.setMenuOpen(false)}}>
             <div className="chart-wrapper">
-              
               <div className="chart-visual">
-
                 <select 
                   name="select-time" 
                   className="select-time" 
