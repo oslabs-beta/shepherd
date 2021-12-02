@@ -66,12 +66,14 @@ const Chart = (props: any) => {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false,
+            display: true,
+            position: top,
+            title: "Lambda Invocations",
           },
           title: {
-            display: false,
+            display: true,
             text: 'Lambda Activity',
-            align: 'start',
+            align: 'center',
           },
         },
         scales: {
@@ -96,7 +98,6 @@ const Chart = (props: any) => {
         }
       };
     let timePeriod = props.timePeriod;
-    // get end and start date based on selected timePeriod
     let labels: any = []
     let testData: any = [];
     let testDatapoints: any = [];
@@ -106,12 +107,16 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-            for (let i = -28; i < 4; i++){
+            let nowMonth: any = moment().format('D')
+            //console.log("CURRENT DAY", nowMonth)
+            let newMonth = parseInt(nowMonth) + 3;
+            let startMonth = newMonth - 31
+            //console.log("starting day", startMonth, "ending day", nowMonth)
+            for (let i = startMonth; i < newMonth; i++){
                 labels.push(moment().day(i).format('MM-DD'))
             }
         }
         popArray();
-    
         const popData = () => {
             //FORMAT DATA FROM AWS
             for (let i = 0; i < props.chartData.length; i++){
@@ -119,10 +124,8 @@ const Chart = (props: any) => {
                     if (testData[testData.length - 1]){
                         testData[testData.length - 1].calls += props.chartData[i].y
                     } 
-
                 } else {
                     testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
-                    //count = 1;
                 }
             }
             //CREATE DATAPOINTS ARRAY
@@ -135,8 +138,6 @@ const Chart = (props: any) => {
                     testDatapoints.push(0)
                 }
             }
-            console.log('updated chartdata', testData)
-            console.log('testDatapoints', testDatapoints)
         }
         popData();
     }
@@ -145,7 +146,12 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-            for (let i = -14; i < 4; i++){
+            let nowWeek2: any = moment().format('D')
+            //console.log("CURRENT DAY", nowWeek2)
+            let newWeek2 = parseInt(nowWeek2) + 3;
+            let startWeek2 = newWeek2 - 14
+            //console.log("starting day", startWeek2, "ending day", nowWeek2)
+            for (let i = startWeek2; i < newWeek2; i++){
                 labels.push(moment().day(i).format('MM-DD'))
             }
         }
@@ -157,10 +163,8 @@ const Chart = (props: any) => {
                     if (testData[testData.length - 1]){
                         testData[testData.length - 1].calls += props.chartData[i].y
                     } 
-
                 } else {
                     testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
-                    //count = 1;
                 }
             }
             //CREATE DATAPOINTS ARRAY
@@ -173,8 +177,6 @@ const Chart = (props: any) => {
                     testDatapoints.push(0)
                 }
             }
-            console.log('updated chartdata', testData)
-            console.log('testDatapoints', testDatapoints)
         }
         popData();
     }
@@ -183,7 +185,10 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-            for (let i = -7; i < 4; i++){
+            let nowWeek: any = moment().format('D')
+            let newWeek = parseInt(nowWeek) + 3;
+            let startWeek = newWeek - 8
+            for (let i = startWeek; i < newWeek; i++){
                 labels.push(moment().day(i).format('MM-DD'))
             }
         }
@@ -195,10 +200,8 @@ const Chart = (props: any) => {
                     if (testData[testData.length - 1]){
                         testData[testData.length - 1].calls += props.chartData[i].y
                     } 
-
                 } else {
                     testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
-                    //count = 1;
                 }
             }
             //CREATE DATAPOINTS ARRAY
@@ -211,21 +214,142 @@ const Chart = (props: any) => {
                     testDatapoints.push(0)
                 }
             }
-            console.log('updated chartdata', testData)
-            console.log('testDatapoints', testDatapoints)
-
         }
         popData();
     }
-    //let labels = ['10'];
-    //const datapoints = [0, 25, 0, 15, 25, 0, 20, 0,94 , 0, 15, 25, 0, 20, 0, 25, 0, 15, 25, 0, 20, 0, 0, 0, 15, 25, 0, 20];
+    //24 HOURS
+    if (timePeriod === '24hr' && props.chartData){
+        labels = [];
+        testData = [];
+        const popArray = () => {
+            console.log('triggered pop')
+            let testPM = moment().format('hA')
+            console.log('testPM', testPM)
+            if (testPM.includes("PM")){
+                console.log('test PM triggered')
+                let now: any = moment().format('h')
+                let start = now - 12
+                let parsedNow = parseInt(now) + 12
+                for (let i = start; i < parsedNow; i++){
+                    labels.push(moment().hour(i).format('hA'))
+                    }
+            } else {
+                let now: any = moment().format('h')
+                let start = now - 23
+                for (let i = start; i < now; i++){
+                    labels.push(moment().hour(i).format('hA'))
+                    }
+            }
+            console.log(labels)
+        }
+        popArray();
+        const popData = () => {
+            //FORMAT DATA FROM AWS
+            console.log('popData trig')
+            for (let i = 0; i < props.chartData.length; i++){
+                if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(11, 13) === props.chartData[i].x.slice(11, 13)){
+                    if (testData[testData.length - 1]){
+                        testData[testData.length - 1].calls += props.chartData[i].y
+                    } 
+                } else {
+                    testData.push({"date": props.chartData[i].x.slice(11, 13), "calls": props.chartData[i].y})
+                }
+            }
+            //FORMAT RESPONSE FOR h:A FROM MOMENT
+            for (let i = 0; i < testData.length; i++){
+                testData[i].date = parseInt(testData[i].date)
+                testData[i].date -= 5;
+                if (testData[i].date > 12){
+                    testData[i].date -= 12
+                    JSON.stringify(testData[i].date);
+                    testData[i].date += "PM"
+                } else{
+                    JSON.stringify(testData[i].date);
+                    testData[i].date += "AM"
+                }
+            }
+            //CREATE DATAPOINTS ARRAY
+            testDatapoints = [];
+            for (let i = 0; i < labels.length; i++){
+                if (testData[0] && labels[i] === testData[0].date){
+                    testDatapoints.push(testData[0].calls)
+                    testData.shift();
+                } else {
+                    testDatapoints.push(0)
+                }
+            }
+        }
+        popData();
+    }
+    //1 HOUR
+    if (timePeriod === '1hr' && props.chartData){
+        labels = [];
+        testData = [];
+        const popArray = () => {
+
+            let startTest = moment();
+            let remainder = 5 - (startTest.minute() % 5);
+            
+            //let dateTime = moment(startTest).add(remainder, "minutes").format("h:mmA");
+            let dateTime = moment(startTest).add(remainder, "minutes").format("h:mmA");
+        
+            console.log(dateTime);
+                        
+
+
+            let nowHour: any = dateTime
+            console.log(nowHour)
+            let startHour = nowHour - 12
+            for (let i = startHour; i < nowHour; i+5){
+                labels.push(moment().minute(i).format('h:mmA'))
+            }
+        }
+        popArray();
+        const popData = () => {
+            //FORMAT DATA FROM AWS
+            for (let i = 0; i < props.chartData.length; i++){
+                if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(11, 13) === props.chartData[i].x.slice(11, 13)){
+                    if (testData[testData.length - 1]){
+                        testData[testData.length - 1].calls += props.chartData[i].y
+                    } 
+                } else {
+                    testData.push({"date": props.chartData[i].x.slice(11, 13), "calls": props.chartData[i].y})
+                }
+            }
+            //FORMAT RESPONSE FOR h:A FROM MOMENT
+            for (let i = 0; i < testData.length; i++){
+                testData[i].date = parseInt(testData[i].date)
+                testData[i].date -= 5;
+                if (testData[i].date > 12){
+                    testData[i].date -= 12
+                    JSON.stringify(testData[i].date);
+                    testData[i].date += "PM"
+                } else{
+                    JSON.stringify(testData[i].date);
+                    testData[i].date += "AM"
+                }
+            }
+            //CREATE DATAPOINTS ARRAY
+            testDatapoints = [];
+            for (let i = 0; i < labels.length; i++){
+                if (testData[0] && labels[i] === testData[0].date){
+                    testDatapoints.push(testData[0].calls)
+                    testData.shift();
+                } else {
+                    testDatapoints.push(0)
+                }
+            }
+        }
+        popData();
+    }
+
+    //INITIALIZE GRAPH GRAPH
     let datapoints = testDatapoints
-    
     const data = {
         labels,
         datasets: [
           {
-            label: '',
+            label: 'Lambda Invocations',
             data: datapoints,
             borderColor: '#7c4dff',
             backgroundColor: '#7c4dff',
@@ -236,9 +360,7 @@ const Chart = (props: any) => {
       };
     return (
         <React.Fragment>
-            <div className="chart-title">Lambda Activity</div>
                 <Line options={options} data={data} style={{minHeight: '100%', minWidth: '100%', padding: '1%',}} />
-            {props.invocations}
         </React.Fragment>
     );
   };

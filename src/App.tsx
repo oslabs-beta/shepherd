@@ -71,7 +71,7 @@ console.log(allFuncLogs)
 
   return (
     <div className="container">
-      { !functionList.length || !totalInvocations || !totalErrors || !totalThrottles || !mostActiveFunc || !mostErrorFunc || !allFuncLogs.length ? 
+      { !allFuncLogs.length ? 
         <Loading /> : null 
       }
       <Header 
