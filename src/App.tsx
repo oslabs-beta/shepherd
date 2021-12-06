@@ -35,7 +35,7 @@ const App = (props: any) => {
   // SETTING MENU & VIEWS
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('login');
+  const [currentView, setCurrentView] = useState('dashboard');
 
 // fetching the secret keys
 useEffect(() => {
