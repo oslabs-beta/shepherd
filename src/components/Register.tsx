@@ -31,7 +31,6 @@ const Register = (props: any) => {
       fetch ('/user/signup', reqParams)
         .then((res) => res.json())
         .then((res) => {
-          //what response from db to do we get here?
           console.log(res)
           console.log('User has registered')
           // set current view hook and set to login page
@@ -52,10 +51,6 @@ const Register = (props: any) => {
       <React.Fragment>
       { login ? <Login /> :
         <div className= "landing">
-          {/* <div className= "heading">
-            <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> 
-            SHEPHERD
-          </div> */}
           <div className="form-container">
             <form className="register-form" onSubmit = {handleRegister}>
               <p className="register-title">REGISTER FOR AN ACCOUNT</p>
