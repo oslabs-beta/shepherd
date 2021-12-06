@@ -43,7 +43,7 @@ const Login = (props: any) => {
       .catch((error) => {
         console.error(error);
       });
-    }
+  }
 
     // send to register view if they need an account
     const handleRegister = () => {

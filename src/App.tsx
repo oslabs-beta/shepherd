@@ -19,8 +19,8 @@ const App = (props: any) => {
 // arn:aws:iam::568675648424:role/TestDelegationRole     <--this is Andrews
 // arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
-  const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({}); 
+  const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole'); //default state userData.arn
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
   const [functionList, setFunctionList] = useState([]);
@@ -37,10 +37,14 @@ const App = (props: any) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('login');
 
+//get response from db with credentials and set arn hook to set the arn 
+console.log('This is your user data on the front end', userData)
+
 // fetching the secret keys
 useEffect(() => {
   fetching.fetchCreds(arn, setCredentials);
-}, []);
+}, []); //change dependency to use arn 
+
 // console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
 // fetching the list of functions
 useEffect(() => {

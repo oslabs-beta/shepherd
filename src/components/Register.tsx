@@ -9,7 +9,7 @@ const Register = (props: any) => {
   const [submitted, setSubmitted] = useState(false);
   const [arn, setArn] = useState('');
   const [login, setLogin] = useState(false);
-
+  
     const handleRegister = (e: any) => {
       setSubmitted(true);
       e.preventDefault(); //avoid page refresh
