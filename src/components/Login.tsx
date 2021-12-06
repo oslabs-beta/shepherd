@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Register from "./Register";
-//register and login should be conditionally rendered by the app component
+
 const Login = (props: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,7 +9,7 @@ const Login = (props: any) => {
 
   const handleSubmit = (e:any) => {
     setSubmitted(true);
-    e.preventDefault(); //avoid page refresh
+    e.preventDefault();
     const reqParams = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -33,7 +33,7 @@ const Login = (props: any) => {
               arn: res.userInfo.arn
             }
           )
-          props.setCurrentView('dashboard'); //drill down properly 
+          props.setCurrentView('dashboard'); 
         }
         else {
           console.log('Something went wrong with user sign in')
