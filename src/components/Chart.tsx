@@ -104,17 +104,14 @@ const Chart = (props: any) => {
     
     //MONTH
     if (timePeriod === '30d' && props.chartData){
-        labels = [];
         testData = [];
+        labels = [];
         const popArray = () => {
-            let nowMonth: any = moment().format('D')
-            //console.log("CURRENT DAY", nowMonth)
-            let newMonth = parseInt(nowMonth) + 3;
-            let startMonth = newMonth - 31
-            //console.log("starting day", startMonth, "ending day", nowMonth)
-            for (let i = startMonth; i < newMonth; i++){
-                labels.push(moment().day(i).format('MM-DD'))
+            for (let i = 0; i < 31; i++){
+                let date = moment();
+                labels.push(date.subtract(i, 'day').format('MM-DD'))
             }
+            labels.reverse()
         }
         popArray();
         const popData = () => {
@@ -128,14 +125,15 @@ const Chart = (props: any) => {
                     testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
                 }
             }
+            console.log('testData', testData[0].date)
             //CREATE DATAPOINTS ARRAY
             testDatapoints = [];
             for (let i = 0; i < labels.length; i++){
-                if (labels[i] === testData[0].date){
+                if (testData[0] && labels[i] === testData[0].date){
                     testDatapoints.push(testData[0].calls)
                     testData.shift();
                 } else {
-                    testDatapoints.push(0)
+                  testDatapoints.push(0)
                 }
             }
         }
@@ -146,14 +144,11 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-            let nowWeek2: any = moment().format('D')
-            //console.log("CURRENT DAY", nowWeek2)
-            let newWeek2 = parseInt(nowWeek2) + 3;
-            let startWeek2 = newWeek2 - 14
-            //console.log("starting day", startWeek2, "ending day", nowWeek2)
-            for (let i = startWeek2; i < newWeek2; i++){
-                labels.push(moment().day(i).format('MM-DD'))
-            }
+          for (let i = 0; i < 14; i++){
+              let date = moment();
+              labels.push(date.subtract(i, 'day').format('MM-DD'))
+          }
+          labels.reverse()
         }
         popArray();
         const popData = () => {
@@ -170,7 +165,7 @@ const Chart = (props: any) => {
             //CREATE DATAPOINTS ARRAY
             testDatapoints = [];
             for (let i = 0; i < labels.length; i++){
-                if (labels[i] === testData[0].date){
+                if (testData[0] && labels[i] === testData[0].date){
                     testDatapoints.push(testData[0].calls)
                     testData.shift();
                 } else {
@@ -185,12 +180,12 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-            let nowWeek: any = moment().format('D')
-            let newWeek = parseInt(nowWeek) + 3;
-            let startWeek = newWeek - 8
-            for (let i = startWeek; i < newWeek; i++){
-                labels.push(moment().day(i).format('MM-DD'))
-            }
+          for (let i = 0; i < 8; i++){
+            let date = moment();
+            labels.push(date.subtract(i, 'day').format('MM-DD'))
+        }
+        labels.reverse()
+            
         }
         popArray();
         const popData = () => {
@@ -204,10 +199,11 @@ const Chart = (props: any) => {
                     testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
                 }
             }
+            console.log('testData', testData)
             //CREATE DATAPOINTS ARRAY
             testDatapoints = [];
             for (let i = 0; i < labels.length; i++){
-                if (labels[i] === testData[0].date){
+                if (testData[0] && labels[i] === testData[0].date){
                     testDatapoints.push(testData[0].calls)
                     testData.shift();
                 } else {
@@ -217,6 +213,7 @@ const Chart = (props: any) => {
         }
         popData();
     }
+
     //24 HOURS
     if (timePeriod === '24hr' && props.chartData){
         labels = [];
@@ -292,11 +289,7 @@ const Chart = (props: any) => {
             
             //let dateTime = moment(startTest).add(remainder, "minutes").format("h:mmA");
             let dateTime = moment(startTest).add(remainder, "minutes").format("h:mmA");
-        
             console.log(dateTime);
-                        
-
-
             let nowHour: any = dateTime
             console.log(nowHour)
             let startHour = nowHour - 12

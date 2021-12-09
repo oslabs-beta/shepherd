@@ -35,7 +35,7 @@ const App = (props: any) => {
   // SETTING MENU & VIEWS
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('login');
+  const [currentView, setCurrentView] = useState('dashboard');
 
 //get response from db with credentials and set arn hook to set the arn 
 console.log('This is your user data on the front end', userData)
