@@ -57,7 +57,6 @@ ChartJS.register(
     SubTitle
   );
   
-
   
 const Chart = (props: any) => {
 
@@ -125,7 +124,6 @@ const Chart = (props: any) => {
                     testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
                 }
             }
-            console.log('testData', testData[0].date)
             //CREATE DATAPOINTS ARRAY
             testDatapoints = [];
             for (let i = 0; i < labels.length; i++){
@@ -144,7 +142,7 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-          for (let i = 0; i < 14; i++){
+          for (let i = 0; i < 15; i++){
               let date = moment();
               labels.push(date.subtract(i, 'day').format('MM-DD'))
           }
@@ -199,7 +197,6 @@ const Chart = (props: any) => {
                     testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
                 }
             }
-            console.log('testData', testData)
             //CREATE DATAPOINTS ARRAY
             testDatapoints = [];
             for (let i = 0; i < labels.length; i++){
@@ -219,11 +216,8 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-            console.log('triggered pop')
             let testPM = moment().format('hA')
-            console.log('testPM', testPM)
             if (testPM.includes("PM")){
-                console.log('test PM triggered')
                 let now: any = moment().format('h')
                 let start = now - 12
                 let parsedNow = parseInt(now) + 12
@@ -237,12 +231,10 @@ const Chart = (props: any) => {
                     labels.push(moment().hour(i).format('hA'))
                     }
             }
-            console.log(labels)
         }
         popArray();
         const popData = () => {
             //FORMAT DATA FROM AWS
-            console.log('popData trig')
             for (let i = 0; i < props.chartData.length; i++){
                 if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(11, 13) === props.chartData[i].x.slice(11, 13)){
                     if (testData[testData.length - 1]){
@@ -283,55 +275,49 @@ const Chart = (props: any) => {
         labels = [];
         testData = [];
         const popArray = () => {
-
-            let startTest = moment();
-            let remainder = 5 - (startTest.minute() % 5);
-            
-            //let dateTime = moment(startTest).add(remainder, "minutes").format("h:mmA");
-            let dateTime = moment(startTest).add(remainder, "minutes").format("h:mmA");
-            console.log(dateTime);
-            let nowHour: any = dateTime
-            console.log(nowHour)
-            let startHour = nowHour - 12
-            for (let i = startHour; i < nowHour; i+5){
-                labels.push(moment().minute(i).format('h:mmA'))
+            for (let i = 0; i < 60; i = i + 5){
+                let date = moment();
+                labels.push(date.subtract(i, 'minutes').format('h:mmA'))
+                //labels.push(moment().minute(i).format('h:mmA'))
             }
+            labels.reverse();
         }
         popArray();
         const popData = () => {
             //FORMAT DATA FROM AWS
+            testData = [];
             for (let i = 0; i < props.chartData.length; i++){
-                if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(11, 13) === props.chartData[i].x.slice(11, 13)){
-                    if (testData[testData.length - 1]){
-                        testData[testData.length - 1].calls += props.chartData[i].y
-                    } 
-                } else {
-                    testData.push({"date": props.chartData[i].x.slice(11, 13), "calls": props.chartData[i].y})
-                }
+                testData.push({"date": props.chartData[i].x.slice(14, 16), "calls": props.chartData[i].y})
             }
             //FORMAT RESPONSE FOR h:A FROM MOMENT
-            for (let i = 0; i < testData.length; i++){
-                testData[i].date = parseInt(testData[i].date)
-                testData[i].date -= 5;
-                if (testData[i].date > 12){
-                    testData[i].date -= 12
-                    JSON.stringify(testData[i].date);
-                    testData[i].date += "PM"
-                } else{
-                    JSON.stringify(testData[i].date);
-                    testData[i].date += "AM"
-                }
-            }
             //CREATE DATAPOINTS ARRAY
             testDatapoints = [];
             for (let i = 0; i < labels.length; i++){
-                if (testData[0] && labels[i] === testData[0].date){
+                let min;
+                let max;
+                if (labels[i].length > 6 && labels[i+1]) {
+                    min = labels[i].slice(3,5)
+                    max = labels[i + 1].slice(3,5)
+                }
+                if (labels[i].length < 6 && labels[i+1]) {
+                    min = labels[i].slice(2, 4)
+                    if (labels[i + 1].length && labels[i + 1].length > 6){
+                        max = labels[i + 1].slice(3, 5) 
+                    }
+                    else max = labels[i + 1].slice(2, 4)
+                }
+                if (!labels[i + 1]){
+                    max = labels[i];
+                    min = labels[i - 1];
+                }
+                if (testData[0] && parseInt(max) > testData[0].date && parseInt(min) <= testData[0].date){
                     testDatapoints.push(testData[0].calls)
                     testData.shift();
                 } else {
                     testDatapoints.push(0)
                 }
             }
+
         }
         popData();
     }
