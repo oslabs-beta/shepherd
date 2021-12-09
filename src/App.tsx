@@ -8,10 +8,11 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Loading from './components/Loading';
 import * as fetching from './functions';
+import dotenv from 'dotenv';
 
 const App = (props: any) => {
   // THIS WILL BE THE CURRENT USERS ARN
-  const [arn, setArn] = useState(process.env.TEST_ARN);
+  const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
   const [userData, setUserData] = useState({});
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
