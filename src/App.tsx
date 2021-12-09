@@ -10,16 +10,8 @@ import Loading from './components/Loading';
 import * as fetching from './functions';
 
 const App = (props: any) => {
-//time period values
-// '1hr'
-// '24hr'
-// '7d'
-// '14d'
-// '30d'
-// arn:aws:iam::568675648424:role/TestDelegationRole     <--this is Andrews
-// arn:aws:iam::853618065421:role/TestDelegationRole     <--this is barons
   // THIS WILL BE THE CURRENT USERS ARN
-  const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
+  const [arn, setArn] = useState(process.env.TEST_ARN);
   const [userData, setUserData] = useState({});
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
@@ -31,24 +23,25 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
   const [allFuncLogs, setAllFuncLogs] = useState([]);
+  const [infoPerFunction, setInfoPerFunction] = useState([]);
 
   // SETTING MENU & VIEWS
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('login');
+  const [currentView, setCurrentView] = useState('dashboard');
 
 // fetching the secret keys
 useEffect(() => {
   fetching.fetchCreds(arn, setCredentials);
 }, []);
-// console.log('CREDENTIALS OUTSIDE USE EFFECT', credentials)
+
 // fetching the list of functions
 useEffect(() => {
   if (credentials) {
     fetching.fetchFuncList(credentials, setFunctionList);
   }
 }, [credentials]);
-// console.log('FUNCTION LIST', functionList)
+
 // fetch all the metrics
 useEffect(() => {
   if (credentials && functionList.length > 0) {
@@ -61,13 +54,12 @@ useEffect(() => {
       setMostActiveFunc, 
       setMostErrorFunc, 
       setTotalErrors, 
-      functionList
+      functionList,
       );
     fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
 }, [credentials, functionList, timePeriod]);
-console.log(allFuncLogs)
-// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
+console.log('FUNCTIONS INFO', infoPerFunction)
 
 
   return (
