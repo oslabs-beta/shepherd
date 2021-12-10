@@ -1,0 +1,48 @@
+@use "colors";
+
+.functions-view-wrapper {
+  width: 96%;
+  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // background-color: #e3f2fd;
+  background-color: colors.$transparentBG;
+  border-radius: 1rem 1rem 0 0;
+  margin: 0.7rem 1.2rem 0rem 0rem;
+}
+
+.functions-header {
+  width: 100%;
+  height: 5rem;
+  border-bottom: 1px solid colors.$streamoutline;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.functions-header-text {
+  font-size: 1.05rem;
+  color: colors.$navText;
+  padding-left: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.functions-view-body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.functions-left {
+  width: 32%;
+  height: 100%;
+  border-right: 1px solid colors.$midnight;
+}
+
+.functions-right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
