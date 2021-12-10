@@ -1,7 +1,9 @@
 import React, { useState, useEffect, Component} from 'react';
+import { HashRouter, Link, Route, Switch } from "react-router-dom";
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
+import Functions from './components/Functions';
 import { Credentials } from '@aws-sdk/client-sts';
 import Settings from './components/Settings';
 import Login from './components/Login'
@@ -62,49 +64,58 @@ useEffect(() => {
 }, [credentials, functionList, timePeriod]);
 console.log('FUNCTIONS INFO', infoPerFunction)
 
-
   return (
-    <div className="container">
-
-      {
-        currentView === 'login' ? 
-        <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
-        <React.Fragment>
-        
-        { currentView === 'dashboard' && !allFuncLogs.length ? 
-          <Loading /> : null 
-        }
-
-        <Header 
-          menuOpen={menuOpen} 
-          setMenuOpen={setMenuOpen} 
-          setCurrentView={setCurrentView}
-        />
-        <div className="body-wrapper">
-          <Menu 
-            menuOpen={menuOpen} 
-            setMenuOpen={setMenuOpen} 
-            currentView={currentView} 
-            setCurrentView={setCurrentView} 
-          />
-          { currentView === 'dashboard' ? 
-            <Dashboard 
+    <HashRouter>
+      <div className="container">
+        {
+          currentView === 'login' ? 
+          <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
+          <React.Fragment>
+            { currentView === 'dashboard' && !allFuncLogs.length ? 
+              <Loading /> : null 
+            }
+            <Header 
+              menuOpen={menuOpen} 
               setMenuOpen={setMenuOpen} 
-              totalInvocations={totalInvocations}
-              chartData={chartData} 
-              totalErrors={totalErrors} 
-              totalThrottles={totalThrottles}
-              mostActiveFunc={mostActiveFunc} 
-              allFuncLogs={allFuncLogs}
-              mostErrorFunc={mostErrorFunc}
-              timePeriod={timePeriod}
-              setTimePeriod={setTimePeriod} /> 
-            : null }
-          { currentView === 'settings' ? <Settings setMenuOpen={setMenuOpen} userData={userData} /> : null }
-        </div>
-        </React.Fragment>
-      }
-    </div>
+              setCurrentView={setCurrentView}
+            />
+            <div className="body-wrapper">
+              <Menu 
+                menuOpen={menuOpen} 
+                setMenuOpen={setMenuOpen} 
+                currentView={currentView} 
+                setCurrentView={setCurrentView} 
+              />
+              <Switch>
+                <Route exact path ="/" render={(props) => 
+                  <Dashboard 
+                  {...props}
+                  setMenuOpen={setMenuOpen} 
+                  totalInvocations={totalInvocations}
+                  chartData={chartData} 
+                  totalErrors={totalErrors} 
+                  totalThrottles={totalThrottles}
+                  mostActiveFunc={mostActiveFunc} 
+                  allFuncLogs={allFuncLogs}
+                  mostErrorFunc={mostErrorFunc}
+                  timePeriod={timePeriod}
+                  setTimePeriod={setTimePeriod} /> 
+                  } />
+                <Route exact path="/functions" component={Functions} />
+                <Route exact path="/settings" render={(props) => 
+                  <Settings 
+                  {...props} 
+                  setMenuOpen={setMenuOpen} 
+                  userData={userData} 
+                  />} 
+                />
+              </Switch>
+            </div>
+          </React.Fragment>
+        }
+      </div>
+    </HashRouter>
   );
 }
+
 export default App;

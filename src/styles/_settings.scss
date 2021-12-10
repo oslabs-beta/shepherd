@@ -1,0 +1,272 @@
+@use "colors";
+
+.settings-wrapper {
+  width: 96%;
+  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // background-color: #e3f2fd;
+  background-color: colors.$transparentBG;
+  border-radius: 1rem 1rem 0 0;
+  margin: 0.7rem 1.2rem 0rem 0rem;
+}
+
+.settings-header {
+  width: 100%;
+  height: 5rem;
+  border-bottom: 1px solid colors.$streamoutline;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.settings-header-text {
+  font-size: 1.05rem;
+  color: colors.$navText;
+  padding-left: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.settings-body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-left {
+  width: 32%;
+  height: 100%;
+  border-right: 1px solid colors.$midnight;
+}
+
+.setting-active {
+  background-color: colors.$cardBG;
+}
+
+.tab-view-name {
+  display: flex;
+  align-items: center;
+  margin-left: 12%;
+  margin-top: 1.6rem;
+  height: 4.1rem;
+  width: 77%;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.tab-view-name:hover {
+  background-color: colors.$cardBG;
+}
+
+.tab-text-wrapper {
+  // margin-top: 0.2rem;
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tab-text-1 {
+  color: colors.$navText;
+  font-size: 0.9rem;
+  margin-bottom: -0.3rem;
+}
+
+.tab-text-2 {
+  color: colors.$cardText;
+  font-size: 0.8rem;
+}
+
+.tab-view-icon {
+  display: flex;
+  align-items: center;
+}
+
+.address-icon {
+  // margin-top: 0.2rem;
+  margin-left: 1.5rem;
+  color: colors.$brightblue;
+  font-size: 1.4rem;
+}
+
+.key-icon {
+  margin-left: 1.5rem;
+  color: colors.$brightblue;
+  font-size: 1.2rem;
+}
+
+.link-icon {
+  margin-left: 1.5rem;
+  color: colors.$brightblue;
+  font-size: 1.2rem;
+}
+
+.settings-right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-account-wrapper {
+  margin-top: 1.5rem;
+  height: 29rem;
+  min-height: 28rem;
+  width: 77%;
+  border: 1px solid colors.$settingsoutline;
+  border-radius: 1rem;
+  margin-right: 0.3%;
+}
+
+.edit-header {
+  display: flex;
+  align-items: center;
+  color: colors.$navText;
+  font-size: 0.95rem;
+  padding-left: 4.1%;
+  height: 4rem;
+  border-bottom: 1px solid colors.$settingsoutline;
+}
+
+.input-field {
+  margin-top: 7%;
+  margin-left: 3.8%;
+  height: 2.7rem;
+  width: 90%;
+  background-color: colors.$midnight;
+  border-radius: 0.6rem;
+  border: 1px solid colors.$settingsoutline;
+  padding-left: 2%;
+  color: colors.$navText;
+  font-family: "Inter", sans-serif;
+}
+
+.input-field:hover {
+  outline: 1px solid colors.$navText;
+}
+
+.input-field:focus {
+  outline: 1px solid colors.$brightblue;
+}
+
+.edit-name-field {
+  position: relative;
+}
+
+.edit-name-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 1rem;
+}
+
+.edit-email-field {
+  position: relative;
+}
+
+.edit-email-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 8rem;
+}
+
+.edit-company-field {
+  position: relative;
+}
+
+.edit-company-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 8rem;
+}
+
+.update-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.update-button-wrapper {
+  margin-top: 4.5%;
+  margin-right: 4.05%;
+}
+
+.edit-update-button {
+  height: 2.2rem;
+  width: 6rem;
+  background-color: colors.$brightblue;
+  color: colors.$white;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.change-password-wrapper {
+  margin-top: 1.5rem;
+  height: 29rem;
+  min-height: 28rem;
+  width: 77%;
+  border: 1px solid colors.$settingsoutline;
+  border-radius: 1rem;
+  margin-right: 0.4%;
+}
+
+.change-password-header {
+  display: flex;
+  align-items: center;
+  color: colors.$navText;
+  font-size: 0.95rem;
+  padding-left: 4.1%;
+  height: 4rem;
+  border-bottom: 1px solid colors.$settingsoutline;
+}
+
+.current-password-field {
+  position: relative;
+}
+
+.current-password-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 10rem;
+}
+
+.new-password-field {
+  position: relative;
+}
+
+.new-password-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 8rem;
+}
+
+.confirm-password-field {
+  position: relative;
+}
+
+.confirm-password-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 10rem;
+}

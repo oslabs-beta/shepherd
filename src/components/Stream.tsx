@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SmallLog from './SmallLog';
 
 const Stream = (props: any) => {
   const [streamView, setStreamView] = useState(true);
@@ -121,14 +122,13 @@ const Stream = (props: any) => {
   const sortedErrorsInObject: any = sortStreamsByDate(errors);
   const streamsArray = dumpIntoArray(monthsByValue, sortedStreamsInObject);
   const errorsArray = dumpIntoArray(monthsByValue, sortedErrorsInObject);
-
+// console.log(streamsArray);
   // map into render array
+
   const allStreams: any = [];
   streamsArray.forEach((stream: any) => {
     allStreams.push(
       <div className="log-wrapper">
-          {/* <i className="far fa-check-circle log-icon"></i> */}
-
           <i className="far fa-file-alt log-icon"></i>
           <div className="log-text">
             <div className="func-name">{stream.funcName}</div>
@@ -137,13 +137,13 @@ const Stream = (props: any) => {
         </div>
     )
   })
+
   // map into render array
+  
   const allErrors: any = [];
   errorsArray.forEach((error: any) => {
     allErrors.push(
       <div className="log-wrapper">
-          {/* <i className="far fa-check-circle log-icon"></i> */}
-
           <i className="far fa-file-excel error-icon"></i>
           <div className="log-text">
             <div className="func-name">{error.funcName}</div>
@@ -155,18 +155,7 @@ const Stream = (props: any) => {
         
   return (
     <React.Fragment>
-      <div className="stream-container">
-        <div className="stream-header">
-          <div className="normal-stream">{streamView ? 'Streams' : 'Errors'}</div>
-          <div className={"toggle-container" + (streamView ? ' blue-container' : ' red-container')}>
-            <div className={"stream-toggle" + (streamView ?  '' : ' active-stream')} onClick={() => setStreamView(!streamView)}> </div>
-          </div>
-        </div>
-        <div className="stream-body">
-          { streamView ? allStreams : allErrors }
-        </div>
-        <div className="stream-footer"></div>
-      </div>
+      <SmallLog streamView={streamView} setStreamView={setStreamView} allStreams={allStreams} allErrors={allErrors} />
     </React.Fragment>
   );
 };

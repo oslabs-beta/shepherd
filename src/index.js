@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 // import { BrowserRouter } from 'react-router-dom';
 import App from './App'
-import './styles.scss'
+import './styles/styles.scss'
 //import triangles from './pictures/triangles.jpg'
 
 // if (module.hot) {
