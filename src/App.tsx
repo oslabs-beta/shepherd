@@ -10,7 +10,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Loading from './components/Loading';
 import * as fetching from './functions';
-import dotenv from 'dotenv';
+
 
 const App = (props: any) => {
   // THIS WILL BE THE CURRENT USERS ARN
@@ -31,6 +31,12 @@ const App = (props: any) => {
   // SETTING MENU & VIEWS
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('login');
+
+  interface userData {
+  username: string;
+  password: string;
+  arn: string;
+}
 
 
 useEffect(() => {
