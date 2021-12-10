@@ -14,7 +14,7 @@ import dotenv from 'dotenv';
 
 const App = (props: any) => {
   // THIS WILL BE THE CURRENT USERS ARN
-  const [arn, setArn] = useState('arn:aws:iam::853618065421:role/TestDelegationRole');
+  const [arn, setArn] = useState('');
   const [userData, setUserData] = useState({});
   const [timePeriod, setTimePeriod] = useState('30d');
   const [credentials, setCredentials] = useState(null);
@@ -29,14 +29,19 @@ const App = (props: any) => {
   const [infoPerFunction, setInfoPerFunction] = useState([]);
 
   // SETTING MENU & VIEWS
-
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('dashboard');
+  const [currentView, setCurrentView] = useState('login');
 
+
+useEffect(() => {
+  if(userData.arn){
+    setArn(userData.arn);
+  }
+}, [userData]);
 // fetching the secret keys
 useEffect(() => {
   fetching.fetchCreds(arn, setCredentials);
-}, []);
+}, [arn]);
 
 // fetching the list of functions
 useEffect(() => {
