@@ -4,8 +4,9 @@ import SmallLog from './SmallLog';
 const Stream = (props: any) => {
   const [streamView, setStreamView] = useState(true);
   // parse the stream object to get name and timestamp
-  const errors: any = [];
   const streams: any = [];
+  const errors: any = [];
+  // Map all the streams
   props.allFuncLogs.map((func: any) => {
     const result: any =[];
     const name = func.name;
@@ -22,6 +23,7 @@ const Stream = (props: any) => {
     }
     streams.push(result)
   });
+  // Map all the errors
   props.allFuncLogs.map((func: any) => {
     const result: any =[];
     const name = func.name;
@@ -121,6 +123,7 @@ const Stream = (props: any) => {
   const streamsArray = dumpIntoArray(monthsByValue, sortedStreamsInObject);
   const errorsArray = dumpIntoArray(monthsByValue, sortedErrorsInObject);
 // console.log(streamsArray);
+  // map into render array
 
   const allStreams: any = [];
   streamsArray.forEach((stream: any) => {
@@ -135,6 +138,8 @@ const Stream = (props: any) => {
     )
   })
 
+  // map into render array
+  
   const allErrors: any = [];
   errorsArray.forEach((error: any) => {
     allErrors.push(
