@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Header = (props: any) => {
 
@@ -12,19 +13,23 @@ const Header = (props: any) => {
       <div className="navigation-wrapper">
         <div className="top-navigation">
           <div className="logo-wrapper">
-            <div className="logo" onClick={() => handleClick('dashboard')}>
-              <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> &nbsp;
-                SHEPHERD
-            </div>
+            <Link to="/" style={{textDecoration: 'none'}}>
+              <div className="logo" onClick={() => handleClick('dashboard')}>
+                <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> &nbsp;
+                  SHEPHERD
+              </div>
+            </Link>
             <div className="menu-button-container" onClick={() => props.setMenuOpen(!props.menuOpen)}>
               <i className="fas fa-bars menu-icon"></i>
             </div>
           </div>
-          <div className="profile-wrapper">
-            <div className="user-profile" onClick={() => handleClick('settings')}>
-              <i className="fas fa-user-circle user-icon"></i>
+          <Link to="/settings" style={{textDecoration: 'none'}}>
+            <div className="profile-wrapper">
+              <div className="user-profile" onClick={() => handleClick('settings')}>
+                <i className="fas fa-user-circle user-icon"></i>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </React.Fragment>
