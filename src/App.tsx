@@ -26,6 +26,7 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
   const [allFuncLogs, setAllFuncLogs] = useState([]);
+  const [funcViewData, setFuncViewData] = useState([]);
   const [infoPerFunction, setInfoPerFunction] = useState([]);
 
   // SETTING MENU & VIEWS
@@ -65,15 +66,19 @@ useEffect(() => {
       setTotalInvocations,
       setChartData, 
       setTotalThrottles, 
-      setMostActiveFunc, 
+      setMostActiveFunc,
       setMostErrorFunc, 
-      setTotalErrors, 
+      setTotalErrors,
+      setFuncViewData,
       functionList,
       );
     fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
 }, [credentials, functionList, timePeriod]);
-console.log('FUNCTIONS INFO', infoPerFunction)
+
+// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
+console.log("function view data", funcViewData)
+
 
   return (
     <HashRouter>
