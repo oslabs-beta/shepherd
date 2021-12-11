@@ -1,9 +1,10 @@
 // create a user model for mongoose
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const dotenv = require('dotenv');
+dotenv.config();
 
-let mongoURI = process.env.MONGODB_URI || 'mongodb+srv://shepherd:lambchop@cluster0.w9igo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-
+let mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');

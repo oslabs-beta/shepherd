@@ -32,14 +32,39 @@ const Dashboard = (props: any) => {
             </div>
             <div className="overview-wrapper">
               <div className="metrics-wrapper">
-                <SmallCard cardText="Total calls:" metric={props.totalInvocations} icon={<i className="fas fa-phone-volume call-icon"></i>}/>
-                <SmallCard cardText="Total errors:" metric={props.totalErrors} icon={<i className="fas fa-bug bug-icon"></i>} />
-                <SmallCard cardText="Total cost:" icon={<i className="fas fa-dollar-sign dollar-icon"></i>}/>
-                <SmallCard cardText="Total throttles:" metric={props.totalThrottles} icon={<i className="fas fa-random throttle-icon"></i>}/>
+                <SmallCard 
+                  cardText="Total calls:" 
+                  metric={props.totalInvocations} 
+                  icon={<i className="fas fa-phone-volume call-icon"></i>}
+                />
+                <SmallCard 
+                  cardText="Total errors:" 
+                  metric={props.totalErrors} 
+                  icon={<i className="fas fa-bug bug-icon"></i>} 
+                />
+                <SmallCard 
+                  cardText="Total cost:" 
+                  icon={<i className="fas fa-dollar-sign dollar-icon"></i>}
+                />
+                <SmallCard 
+                  cardText="Total throttles:" 
+                  metric={props.totalThrottles} 
+                  icon={<i className="fas fa-random throttle-icon"></i>}
+                />
               </div>
               <div className="functions-wrapper">
-                <MediumCard cardText=" active" displayFunc={props.mostActiveFunc} color={"#7c4dff"} icon={<i className="fas fa-file-medical-alt function-icon"></i>}/>
-                <MediumCard cardText=" errors" displayFunc={props.mostErrorFunc} color={"#2ab6f6"} icon={<i className="fas fa-exclamation-triangle exclamation-icon"></i>}/>
+                <MediumCard 
+                  cardText=" active" 
+                  displayFunc={props.mostActiveFunc} 
+                  color={"#7c4dff"} 
+                  icon={<i className="fas fa-file-medical-alt function-icon"></i>}
+                />
+                <MediumCard 
+                  cardText=" errors" 
+                  displayFunc={props.mostErrorFunc} 
+                  color={"#2ab6f6"} 
+                  icon={<i className="fas fa-exclamation-triangle exclamation-icon"></i>}
+                />
               </div>
               <div className="stream-wrapper">
                 <Stream allFuncLogs={props.allFuncLogs} />

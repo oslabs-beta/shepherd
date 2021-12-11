@@ -1,0 +1,97 @@
+@use "colors";
+
+.landing {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  background-color: colors.$midnight;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.heading {
+  display: flex;
+  align-self: center;
+  color: colors.$white;
+  letter-spacing: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 3rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 360px;
+  background-color: colors.$white;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  padding: 20px;
+  border-radius: 0.5rem;
+}
+
+.register-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-message {
+  background-color: colors.$lightpurple;
+  padding: 15px;
+  color: colors.$darkpurple;
+}
+
+.form-field {
+  margin: 10px 0 10px 0;
+  padding: 18px;
+  font-size: 13px;
+  border: 0;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.error-messages {
+  font-size: 14px;
+  color: red;
+  margin-bottom: 10px;
+}
+
+input {
+  background: colors.$lightpurple;
+  outline: none;
+}
+
+.landing-button {
+  background: colors.$darkpurple;
+  color: colors.$lightpurple;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  margin: 10px 0 10px 0;
+  padding: 13px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 0;
+  border-radius: 0.5rem;
+  border: 2px solid colors.$darkpurple;
+  transition: all 0.5s;
+}
+
+.landing-button:hover {
+  background: colors.$lightpurple;
+  color: colors.$darkpurple;
+}
+
+.landing-button:hover {
+  color: colors.$darkpurple;
+  background: colors.$white;
+  border: 2px solid colors.$darkpurple;
+}
+
+.AWS-text {
+  font-size: 13px;
+}
