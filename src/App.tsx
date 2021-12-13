@@ -12,7 +12,7 @@ import Loading from './components/Loading';
 import * as fetching from './functions';
 
 
-const App = (props: any) => {
+const App = () => {
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('');
   const [userData, setUserData] = useState({});
@@ -87,7 +87,7 @@ console.log("function view data", funcViewData)
           currentView === 'login' ? 
           <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
           <React.Fragment>
-            { currentView === 'dashboard' && !allFuncLogs.length ? 
+            { currentView === 'loading' || currentView === 'dashboard' && !allFuncLogs.length ? 
               <Loading /> : null 
             }
             <Header 

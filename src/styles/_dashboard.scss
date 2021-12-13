@@ -238,6 +238,7 @@
 .stream-body {
   overflow: scroll;
   width: 100%;
+  height: 100%;
 }
 
 .log-wrapper {
@@ -348,4 +349,13 @@
 
 .active-stream {
   margin-left: 48%;
+}
+
+.no-streams-message {
+  margin-top: 30%;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: colors.$cardText;
+  font-size: 0.9rem;
 }

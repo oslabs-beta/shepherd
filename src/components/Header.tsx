@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const Header = (props: any) => {
+type Props = {
+  menuOpen: boolean,
+  setMenuOpen: Function,
+  setCurrentView: Function
+};
 
-  const handleClick = (...args: any) => {
-    props.setCurrentView(...args);
-    props.setMenuOpen(false);
+const Header = ({menuOpen, setMenuOpen, setCurrentView}: Props) => {
+
+  const handleClick = (...args: string[]) => {
+    setCurrentView(...args);
+    setMenuOpen(false);
   };
 
   return (
@@ -19,7 +25,7 @@ const Header = (props: any) => {
                   SHEPHERD
               </div>
             </Link>
-            <div className="menu-button-container" onClick={() => props.setMenuOpen(!props.menuOpen)}>
+            <div className="menu-button-container" onClick={() => setMenuOpen(!menuOpen)}>
               <i className="fas fa-bars menu-icon"></i>
             </div>
           </div>
