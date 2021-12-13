@@ -12,7 +12,7 @@ import Loading from './components/Loading';
 import * as fetching from './functions';
 
 
-const App = (props: any) => {
+const App = () => {
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('');
   const [userData, setUserData] = useState({});
@@ -26,6 +26,7 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
   const [allFuncLogs, setAllFuncLogs] = useState([]);
+  const [funcViewData, setFuncViewData] = useState([]);
   const [infoPerFunction, setInfoPerFunction] = useState([]);
 
   // SETTING MENU & VIEWS
@@ -66,9 +67,10 @@ useEffect(() => {
       setTotalInvocations,
       setChartData, 
       setTotalThrottles, 
-      setMostActiveFunc, 
+      setMostActiveFunc,
       setMostErrorFunc, 
-      setTotalErrors, 
+      setTotalErrors,
+      setFuncViewData,
       functionList,
       );
     fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
@@ -82,7 +84,7 @@ useEffect(() => {
           currentView === 'login' ? 
           <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
           <React.Fragment>
-            { currentView === 'dashboard' && !allFuncLogs.length ? 
+            { currentView === 'loading' || currentView === 'dashboard' && !allFuncLogs.length ? 
               <Loading /> : null 
             }
             <Header 

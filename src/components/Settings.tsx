@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import SettingTab from './SettingTab';
 
-const Settings = (props: any) => {
+type Props = {
+    setMenuOpen: Function;  
+    userData: {
+        firstName: string,
+        lastName: string,
+        email: string, 
+    }
+}
+
+const Settings = ({ setMenuOpen, userData }: Props ) => {
 
     const [settingView, setSettingView] = useState('edit-profile');
-    const [name, setName] = useState(props.userData.firstName + ' ' + props.userData.lastName || '');
-    const [email, setEmail] = useState(props.userData.email || '');
+    const [name, setName] = useState(userData.firstName + ' ' + userData.lastName || '');
+    const [email, setEmail] = useState(userData.email || '');
     const [company, setCompany] = useState('');
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -13,7 +22,7 @@ const Settings = (props: any) => {
     
     return (
         <React.Fragment>
-            <div className="settings-wrapper" onClick={() => props.setMenuOpen(false)}>
+            <div className="settings-wrapper" onClick={() => setMenuOpen(false)}>
                 <div className="settings-header">
                     <p className="settings-header-text"> Account Settings </p>
                 </div>
@@ -55,7 +64,7 @@ const Settings = (props: any) => {
                                         type="text"
                                         className="input-field" 
                                         value={name}
-                                        onChange={(e: any) => setName(e.target.value)}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                                     />
                                 </div>
                                 <div className="edit-email-field">
@@ -64,7 +73,7 @@ const Settings = (props: any) => {
                                         type="text"
                                         className="input-field" 
                                         value={email}
-                                        onChange={(e: any) => setEmail(e.target.value)}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                                     />
                                 </div>
                                 <div className="edit-company-field">
@@ -73,7 +82,7 @@ const Settings = (props: any) => {
                                         type="text"
                                         className="input-field" 
                                         value={company}
-                                        onChange={(e: any) => setCompany(e.target.value)}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setCompany(e.target.value)}
                                     />
                                 </div>
                                 <div className="update-button-wrapper">
@@ -92,7 +101,7 @@ const Settings = (props: any) => {
                                         type="text"
                                         className="input-field" 
                                         value={oldPassword}
-                                        onChange={(e: any) => setOldPassword(e.target.value)}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setOldPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="new-password-field">
@@ -101,7 +110,7 @@ const Settings = (props: any) => {
                                         type="text"
                                         className="input-field" 
                                         value={newPassword}
-                                        onChange={(e: any) => setNewPassword(e.target.value)}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="confirm-password-field">
@@ -110,7 +119,7 @@ const Settings = (props: any) => {
                                         type="text"
                                         className="input-field" 
                                         value={confirmPassword}
-                                        onChange={(e: any) => setConfirmPassword(e.target.value)}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="update-button-wrapper">

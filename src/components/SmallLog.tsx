@@ -12,6 +12,7 @@ const SmallLog = (props: any) => {
           </div>
           <div className="stream-body">
             { props.streamView ? props.allStreams : props.allErrors }
+            { !props.allStreams.length && !props.allErrors.length ? <div className="no-streams-message">No streams to display</div> : null }
           </div>
           <div className="stream-footer"></div>
         </div> 
