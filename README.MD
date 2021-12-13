@@ -160,8 +160,8 @@ The pre-requisite software for setting up this application are:
 
 ## Contributors
 
-- Andrew Nguyen  - [Github](https://github.com/AndrewNguyenn) | [Linkedin](https://github.com/AndrewNguyenn)
-- Michael Hoang -[Github](https://github.com/prasad-pul) | [Linkedin](https://www.linkedin.com/in/michael-hoang-91b68632/)
+- Andrew Nguyen  - [Github](https://github.com/AndrewNguyenn) | [Linkedin](https://www.linkedin.com/in/andrewconannguyen/)
+- Michael Hoang -[Github](https://github.com/michaelhoang781) | [Linkedin](https://www.linkedin.com/in/michael-hoang-91b68632/)
 - Connor Gillis - [Github](https://github.com/connor-gillis) | [Linkedin](https://www.linkedin.com/in/connor-gillis/)
 - Baron Bugarcic - [Github](https://github.com/bugarcic) | [Linkedin](https://www.linkedin.com/in/baronbugarcic/)
 
