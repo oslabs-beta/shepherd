@@ -56,11 +56,16 @@ ChartJS.register(
     Tooltip,
     SubTitle
   );
-  
-  
-const Chart = (props: any) => {
 
-    const options: any = {
+type Props = {
+    chartData: {x: string, y: string}[];
+    timePeriod: string; 
+};
+  
+  
+const Chart = ({ chartData, timePeriod }: Props) => {
+
+    const options: Object = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -96,13 +101,13 @@ const Chart = (props: any) => {
               },
         }
       };
-    let timePeriod = props.timePeriod;
-    let labels: any = []
-    let testData: any = [];
-    let testDatapoints: any = [];
+    
+    let labels: string[] = []
+    let testData: {date: any, calls: any }[] = [];
+    let testDatapoints: number[] = [];
     
     //MONTH
-    if (timePeriod === '30d' && props.chartData){
+    if (timePeriod === '30d' && chartData){
         testData = [];
         labels = [];
         const popArray = () => {
@@ -115,13 +120,13 @@ const Chart = (props: any) => {
         popArray();
         const popData = () => {
             //FORMAT DATA FROM AWS
-            for (let i = 0; i < props.chartData.length; i++){
-                if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(5, 10) === props.chartData[i].x.slice(5, 10)){
+            for (let i = 0; i < chartData.length; i++){
+                if (chartData[i - 1] && chartData[i - 1].x.slice(5, 10) === chartData[i].x.slice(5, 10)){
                     if (testData[testData.length - 1]){
-                        testData[testData.length - 1].calls += props.chartData[i].y
+                        testData[testData.length - 1].calls += chartData[i].y
                     } 
                 } else {
-                    testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
+                    testData.push({"date": chartData[i].x.slice(5, 10), "calls": chartData[i].y})
                 }
             }
             //CREATE DATAPOINTS ARRAY
@@ -138,7 +143,7 @@ const Chart = (props: any) => {
         popData();
     }
     //TWO WEEKS
-    if (timePeriod === '14d' && props.chartData){
+    if (timePeriod === '14d' && chartData){
         labels = [];
         testData = [];
         const popArray = () => {
@@ -151,13 +156,13 @@ const Chart = (props: any) => {
         popArray();
         const popData = () => {
             //FORMAT DATA FROM AWS
-            for (let i = 0; i < props.chartData.length; i++){
-                if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(5, 10) === props.chartData[i].x.slice(5, 10)){
+            for (let i = 0; i < chartData.length; i++){
+                if (chartData[i - 1] && chartData[i - 1].x.slice(5, 10) === chartData[i].x.slice(5, 10)){
                     if (testData[testData.length - 1]){
-                        testData[testData.length - 1].calls += props.chartData[i].y
+                        testData[testData.length - 1].calls += chartData[i].y
                     } 
                 } else {
-                    testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
+                    testData.push({"date": chartData[i].x.slice(5, 10), "calls": chartData[i].y})
                 }
             }
             //CREATE DATAPOINTS ARRAY
@@ -174,7 +179,7 @@ const Chart = (props: any) => {
         popData();
     }
      //ONE WEEK
-     if (timePeriod === '7d' && props.chartData){
+     if (timePeriod === '7d' && chartData){
         labels = [];
         testData = [];
         const popArray = () => {
@@ -188,13 +193,13 @@ const Chart = (props: any) => {
         popArray();
         const popData = () => {
             //FORMAT DATA FROM AWS
-            for (let i = 0; i < props.chartData.length; i++){
-                if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(5, 10) === props.chartData[i].x.slice(5, 10)){
+            for (let i = 0; i < chartData.length; i++){
+                if (chartData[i - 1] && chartData[i - 1].x.slice(5, 10) === chartData[i].x.slice(5, 10)){
                     if (testData[testData.length - 1]){
-                        testData[testData.length - 1].calls += props.chartData[i].y
+                        testData[testData.length - 1].calls += chartData[i].y
                     } 
                 } else {
-                    testData.push({"date": props.chartData[i].x.slice(5, 10), "calls": props.chartData[i].y})
+                    testData.push({"date": chartData[i].x.slice(5, 10), "calls": chartData[i].y})
                 }
             }
             //CREATE DATAPOINTS ARRAY
@@ -212,7 +217,7 @@ const Chart = (props: any) => {
     }
 
     //24 HOURS
-    if (timePeriod === '24hr' && props.chartData){
+    if (timePeriod === '24hr' && chartData){
         labels = [];
         testData = [];
         const popArray = () => {
@@ -235,13 +240,13 @@ const Chart = (props: any) => {
         popArray();
         const popData = () => {
             //FORMAT DATA FROM AWS
-            for (let i = 0; i < props.chartData.length; i++){
-                if (props.chartData[i - 1] && props.chartData[i - 1].x.slice(11, 13) === props.chartData[i].x.slice(11, 13)){
+            for (let i = 0; i < chartData.length; i++){
+                if (chartData[i - 1] && chartData[i - 1].x.slice(11, 13) === chartData[i].x.slice(11, 13)){
                     if (testData[testData.length - 1]){
-                        testData[testData.length - 1].calls += props.chartData[i].y
+                        testData[testData.length - 1].calls += chartData[i].y
                     } 
                 } else {
-                    testData.push({"date": props.chartData[i].x.slice(11, 13), "calls": props.chartData[i].y})
+                    testData.push({"date": chartData[i].x.slice(11, 13), "calls": chartData[i].y})
                 }
             }
             //FORMAT RESPONSE FOR h:A FROM MOMENT
@@ -271,7 +276,7 @@ const Chart = (props: any) => {
         popData();
     }
     //1 HOUR
-    if (timePeriod === '1hr' && props.chartData){
+    if (timePeriod === '1hr' && chartData){
         labels = [];
         testData = [];
         const popArray = () => {
@@ -286,8 +291,8 @@ const Chart = (props: any) => {
         const popData = () => {
             //FORMAT DATA FROM AWS
             testData = [];
-            for (let i = 0; i < props.chartData.length; i++){
-                testData.push({"date": props.chartData[i].x.slice(14, 16), "calls": props.chartData[i].y})
+            for (let i = 0; i < chartData.length; i++){
+                testData.push({"date": chartData[i].x.slice(14, 16), "calls": chartData[i].y})
             }
             //FORMAT RESPONSE FOR h:A FROM MOMENT
             //CREATE DATAPOINTS ARRAY

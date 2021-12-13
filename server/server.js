@@ -5,9 +5,6 @@ const mongoose = require("mongoose");
 
 const PORT = 3000;
 
-//connect to mongoDB
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -15,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 const userRouter = require("./routers/userRouter.js");
 const awsRouter = require("./routers/aws.js");
 
-//change later, just for test
+//serve HTML files
 if (true) {
     app.get("/", (req, res) => {
         return res.status(200).sendFile(path.join(__dirname, "../src/index.html"));
@@ -23,15 +20,6 @@ if (true) {
     app.use("/build", express.static(path.join(__dirname, "../build")));
 }
 
-else {
-    app.get("/", (req, res) => {
-        return res.status(200).sendFile(path.join(__dirname, "../src/index.html"));
-    });
-    
-}
-app.get("/test", (req, res) => {
-    return res.status(201).send('testing')
-})
 // endpoints here
 app.use('/user', userRouter);
 app.use("/aws", awsRouter);

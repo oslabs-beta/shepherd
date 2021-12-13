@@ -39,6 +39,7 @@ export const fetchMetricAllFunctions = async (
   setActive: Function, 
   setErrors: Function,
   setTotalErrors: Function,
+  setFuncViewData: Function,
   listOfFuncs: Array<string>
   ) => {
 
@@ -171,11 +172,62 @@ export const fetchMetricAllFunctions = async (
       });
   };
 
+  //ADDING SHIT HERE
+  const fetchFuncViewData = async (time: String, credentialsState: Object, setFuncViewData:Function, listOfFuncs: Array<string>) => {
+    //fetch request for invocations
+    const responseInvoke = await fetch('/aws/getMetricsByFunc/Invocations', {  
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        timePeriod: time,
+        region: 'us-east-2',
+        credentials: credentialsState,
+        funcNames: listOfFuncs,
+      }),
+    });
+    const resInvocations = await responseInvoke.json();
+    //fetch request for errors
+    const responseError = await fetch('/aws/getMetricsByFunc/Errors', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        timePeriod: time,
+        region: 'us-east-2',
+        credentials: credentialsState,
+        funcNames: listOfFuncs,
+      }),
+    });
+    const resErrors = await responseError.json();
+    //end request for errors
+    setFuncViewData((): Object => {
+        let funcViewArr: Array<Object> = [];
+        for (let i = 0; i < resInvocations.series.length; i++){
+          let elInvoke: any = resInvocations.series[i];
+          let elError: any = resErrors.series[i];
+          //slice name
+          let nameInvoke: any = elInvoke.name.slice(19,elInvoke.name.length)
+          elInvoke.name = nameInvoke
+          //change object key name on error obj
+          let errorKey: any = "errors"
+          elInvoke[errorKey] = elError.total;
+          funcViewArr.push(elInvoke)
+        }
+  // TOTALS CALLS THIS TIME PERIOD
+        return funcViewArr;
+      });
+  };
+
+  //EVERYTHING ABOVE ADDED
   fetchTotalInvocations(time, credentialsState, setInvocations, setChartData);
   fetchTotalErrors(time, credentialsState, setTotalErrors);
   fetchTotalThrottles(time, credentialsState, setThrottles);
   fetchMostActiveFunc(time, credentialsState, setActive, listOfFuncs);
   fetchMostErrorFunc(time, credentialsState, setErrors, listOfFuncs);
+  fetchFuncViewData(time, credentialsState, setFuncViewData, listOfFuncs);
 }
 
 

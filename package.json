@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron-forge start ",
     "build": "webpack --watch",
-    "app": "concurrently \"npm run build\" \"npm start\"",
+    "app": "NODE_ENV=development concurrently \"npm run build\" \"npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development webpack server --open & nodemon server/server.js",
     "preelectron-package": "npm run build",

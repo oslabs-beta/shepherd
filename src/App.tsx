@@ -10,9 +10,9 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Loading from './components/Loading';
 import * as fetching from './functions';
-import dotenv from 'dotenv';
 
-const App = (props: any) => {
+
+const App = () => {
   // THIS WILL BE THE CURRENT USERS ARN
   const [arn, setArn] = useState('');
   const [userData, setUserData] = useState({});
@@ -26,11 +26,18 @@ const App = (props: any) => {
   const [mostActiveFunc, setMostActiveFunc] = useState(null);
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
   const [allFuncLogs, setAllFuncLogs] = useState([]);
+  const [funcViewData, setFuncViewData] = useState([]);
   const [infoPerFunction, setInfoPerFunction] = useState([]);
 
   // SETTING MENU & VIEWS
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('login');
+
+  interface userData {
+  username: string;
+  password: string;
+  arn: string;
+}
 
 
 useEffect(() => {
@@ -59,15 +66,19 @@ useEffect(() => {
       setTotalInvocations,
       setChartData, 
       setTotalThrottles, 
-      setMostActiveFunc, 
+      setMostActiveFunc,
       setMostErrorFunc, 
-      setTotalErrors, 
+      setTotalErrors,
+      setFuncViewData,
       functionList,
       );
     fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
 }, [credentials, functionList, timePeriod]);
-console.log('FUNCTIONS INFO', infoPerFunction)
+
+// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
+console.log("function view data", funcViewData)
+
 
   return (
     <HashRouter>
@@ -76,7 +87,7 @@ console.log('FUNCTIONS INFO', infoPerFunction)
           currentView === 'login' ? 
           <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
           <React.Fragment>
-            { currentView === 'dashboard' && !allFuncLogs.length ? 
+            { currentView === 'loading' || currentView === 'dashboard' && !allFuncLogs.length ? 
               <Loading /> : null 
             }
             <Header 
