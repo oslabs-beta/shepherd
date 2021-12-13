@@ -51,7 +51,7 @@ Serverless Applications are becoming increasingly popular as they relieve organi
 
 AWS is a leading provider in the serverless applications space with AWS Lambda functions being its central component of the architecture. However, with AWS’ numerous services and extensive docs, it becomes challenging to navigate and can be intimidating to monitor and track the health of serverless applications.
 
-Shepherd is a free, open-source monitoring tool that users can connect to their AWS account and easily track key metrics and logs. Here is a [medium](https://medium.com/@jackie.douglass/an-affordable-alternative-to-monitor-your-aws-serverless-application-6d7d8b2eccc) article describing the philosophy behind Shepherd. The application can be downloaded [here](https://projecthelios.io). 
+Shepherd is a free, open-source monitoring tool that users can connect to their AWS account and easily track key metrics and logs. Here is a [medium](https://www.google.com) article describing the philosophy behind Shepherd. The application can be downloaded [here](https://google.com). 
 
 <!-- GETTING STARTED -->
 
@@ -64,11 +64,11 @@ The following instructions are split into two sections for:
 
 ## AWS End Users
 
-This section describes the instructions for AWS end users who would like to [download](https://projecthelios.io) the application and connect their AWS account. For developers who would like to contribute to the open-source project, follow these [instructions](#developers).
+This section describes the instructions for AWS end users who would like to [download](https://google.com) the application and connect their AWS account. For developers who would like to contribute to the open-source project, follow these [instructions](#developers).
 
 ### Installation and Setup
 
-1. Download the Shepherd application [here](https://projecthelios.io)
+1. Download the Shepherd application [here](https://google.com)
 2. Existing users enter email and password to login
 3. For new users click Signup to create a new user account
 4. Assign a Cloud Formation Stack 
@@ -106,7 +106,7 @@ Users can update the profile and their ARN key, as well as their registered emai
 
 ## Developers
 
-This section describes the instructions for developers who would like to download and contribute to the open-source Helios project. For AWS end users who would like to download the application and connect their AWS account, follow these [instructions](#aws-end-users) instead.
+This section describes the instructions for developers who would like to download and contribute to the open-source Shepherd project. For AWS end users who would like to download the application and connect their AWS account, follow these [instructions](#aws-end-users) instead.
 
 ### Built With
 
