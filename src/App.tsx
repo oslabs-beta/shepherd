@@ -38,12 +38,13 @@ const App = (props: any) => {
   arn: string;
 }
 
-
+// setting arn data from database
 useEffect(() => {
   if(userData.arn){
     setArn(userData.arn);
   }
 }, [userData]);
+
 // fetching the secret keys
 useEffect(() => {
   fetching.fetchCreds(arn, setCredentials);
@@ -73,7 +74,6 @@ useEffect(() => {
     fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
 }, [credentials, functionList, timePeriod]);
-console.log('FUNCTIONS INFO', infoPerFunction)
 
   return (
     <HashRouter>
