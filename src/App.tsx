@@ -33,18 +33,13 @@ const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('login');
 
-  interface userData {
-  username: string;
-  password: string;
-  arn: string;
-}
-
-
+// setting arn data from database
 useEffect(() => {
   if(userData.arn){
     setArn(userData.arn);
   }
 }, [userData]);
+
 // fetching the secret keys
 useEffect(() => {
   fetching.fetchCreds(arn, setCredentials);
@@ -75,10 +70,6 @@ useEffect(() => {
     fetching.getLogsAllFunctions(timePeriod, credentials, setAllFuncLogs, functionList);
   }
 }, [credentials, functionList, timePeriod]);
-
-// console.log('ALL METRICS', totalInvocations, totalThrottles, mostActiveFunc, mostErrorFunc, totalErrors)
-console.log("function view data", funcViewData)
-
 
   return (
     <HashRouter>
