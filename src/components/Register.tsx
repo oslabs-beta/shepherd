@@ -105,7 +105,7 @@ const Register = (props: any) => {
                 {/* change link to: our stack */}
                   <a
                   target='_blank'
-                  href='http://google.com'
+                  href='https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Ffromtb%3Dtrue%26hashArgs%3D%2523%26isauthcode%3Dtrue%26nc2%3Dh_ct%26src%3Dheader-signin%26state%3DhashArgsFromTB_us-east-1_3b801900dfabe943&client_id=arn%3Aaws%3Asignin%3A%3A%3Aconsole%2Fcanvas&forceMobileApp=0&code_challenge=kVDrr4f7CICPSo9coT4i8SIaOhRvBOf1IoepozA5s9I&code_challenge_method=SHA-256'
                   className="aws-link"
                   > Add Shepherd CloudFormation stack to AWS </a>
                 </li>

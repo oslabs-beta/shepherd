@@ -33,12 +33,6 @@ const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('login');
 
-  interface userData {
-  username: string;
-  password: string;
-  arn: string;
-}
-
 // setting arn data from database
 useEffect(() => {
   if(userData.arn){
