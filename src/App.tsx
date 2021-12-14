@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component} from 'react';
-import { HashRouter, Link, Route, Switch } from "react-router-dom";
+import { HashRouter, Link, Route, Switch, Redirect } from "react-router-dom";
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
@@ -27,7 +27,8 @@ const App = () => {
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
   const [allFuncLogs, setAllFuncLogs] = useState([]);
   const [funcViewData, setFuncViewData] = useState([]);
-  const [infoPerFunction, setInfoPerFunction] = useState([]);
+
+  console.log('ALL FUNC LOGS', allFuncLogs)
 
   // SETTING MENU & VIEWS
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,6 +36,8 @@ const App = () => {
 
   interface userData {
   username: string;
+  firstName: string;
+  lastName: string;
   password: string;
   arn: string;
 }
@@ -103,7 +106,7 @@ console.log("function view data", funcViewData)
                 setCurrentView={setCurrentView} 
               />
               <Switch>
-                <Route exact path ="/" render={(props) => 
+                <Route exact path="/home" render={(props) => 
                   <Dashboard 
                   {...props}
                   setMenuOpen={setMenuOpen} 
@@ -117,7 +120,13 @@ console.log("function view data", funcViewData)
                   timePeriod={timePeriod}
                   setTimePeriod={setTimePeriod} /> 
                   } />
-                <Route exact path="/functions" component={Functions} />
+                <Route exact path="/functions" render={(props) =>
+                  <Functions
+                    setMenuOpen={setMenuOpen}
+                    funcViewData={funcViewData}
+                    allFuncLogs={allFuncLogs}
+                    />}
+                />
                 <Route exact path="/settings" render={(props) => 
                   <Settings 
                   {...props} 

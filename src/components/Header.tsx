@@ -19,7 +19,7 @@ const Header = ({menuOpen, setMenuOpen, setCurrentView}: Props) => {
       <div className="navigation-wrapper">
         <div className="top-navigation">
           <div className="logo-wrapper">
-            <Link to="/" style={{textDecoration: 'none'}}>
+            <Link to="/home" style={{textDecoration: 'none'}}>
               <div className="logo" onClick={() => handleClick('dashboard')}>
                 <i className="fab fa-wolf-pack-battalion shepherd-icon"></i> &nbsp;
                   SHEPHERD

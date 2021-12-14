@@ -125,6 +125,8 @@ const Stream = (props: any) => {
 // console.log(streamsArray);
   // map into render array
 
+  const onlyFuncView: {}[] = [];
+
   const allStreams: any = [];
   streamsArray.forEach((stream: any) => {
     allStreams.push(
@@ -136,10 +138,32 @@ const Stream = (props: any) => {
           </div>
         </div>
     )
+    if (stream.funcName === props.funcView) {
+      onlyFuncView.push(
+        <div className="log-wrapper">
+          <i className="far fa-file-alt log-icon"></i>
+          <div className="log-text">
+            <div className="func-name">{stream.funcName}</div>
+            <div className="time-stamp">{`${stream.time[0]} ${stream.time[1]} ${stream.time[3]}${stream.time[4]}`}</div>
+          </div>
+        </div>
+      )
+    }
   })
 
+  console.log('THIS IS ALLSTREAMS', allStreams)
+
+  // console.log('THIS IS ONLYFUNCVIEW', onlyFuncView)
+
+
+  // const onlyFuncView = allStreams.filter((func: any) => {
+  //   return func.funcName === props.funcView;
+  // });
+  // console.log('THIS IS FUNC VIEW', props.funcView)
+
   // map into render array
-  
+  const onlyErrorView: {}[] = [];
+
   const allErrors: any = [];
   errorsArray.forEach((error: any) => {
     allErrors.push(
@@ -151,11 +175,35 @@ const Stream = (props: any) => {
           </div>
         </div>
     )
+    if (error.funcName === props.funcView) {
+      onlyErrorView.push(
+        <div className="log-wrapper">
+          <i className="far fa-file-excel error-icon"></i>
+          <div className="log-text">
+            <div className="func-name">{error.funcName}</div>
+            <div className="time-stamp">{`${error.time[0]} ${error.time[1]} ${error.time[3]}${error.time[4]}`}</div>
+          </div>
+        </div>
+      )
+    }
   })
+
+  console.log('THIS IS ONLY ERRORS VIEW', onlyErrorView)
         
   return (
     <React.Fragment>
-      <SmallLog streamView={streamView} setStreamView={setStreamView} allStreams={allStreams} allErrors={allErrors} />
+      <SmallLog 
+        streamView={streamView}
+        onlyFuncView={onlyFuncView}
+        onlyErrorView={onlyErrorView} 
+        bothLogs={props.bothLogs}
+        streamsOnly={props.streamsOnly} 
+        errorsOnly={props.errorsOnly} 
+        setStreamView={setStreamView}  
+        allStreams={allStreams} 
+        allErrors={allErrors} 
+        noToggle={props.noToggle} 
+      />
     </React.Fragment>
   );
 };
