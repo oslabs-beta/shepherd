@@ -6,7 +6,7 @@ const Menu = (props: any) => {
     <React.Fragment>
       <div className={ props.menuOpen ? "menu-wrapper" : "menu-wrapper open"}>
         <div className={ props.menuOpen ? "menu-navigation open" : "menu-navigation" } >
-          <Link to="/" style={{textDecoration: 'none'}}>
+          <Link to="/home" style={{textDecoration: 'none'}}>
             <div 
               className={"dashboard-link nav-link" + (props.currentView === 'dashboard' ? ' selected-view' : '')}
               onClick={() => {

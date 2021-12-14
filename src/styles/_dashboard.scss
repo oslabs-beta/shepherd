@@ -59,10 +59,11 @@
 }
 
 .overview-wrapper {
-  width: 100%;
+  width: 96%;
   height: 49.95vh;
   display: flex;
   margin-left: 0.7rem;
+  margin-right: 4.4%;
 }
 
 .metrics-wrapper {
@@ -84,6 +85,7 @@
   justify-content: flex-start;
   align-items: center;
   margin-top: 0.55rem;
+  margin-right: 1.9%;
 }
 
 .stream-wrapper {
@@ -98,8 +100,8 @@
 .small-card-wrapper {
   height: 3.6rem;
   width: 50%;
+  min-width: 8.5rem;
   margin-bottom: 2.4rem;
-  margin-left: 4.3%;
   border-radius: 0.7rem;
   background-color: colors.$cardBG;
   color: colors.$cardText;
@@ -107,7 +109,6 @@
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
-  margin-right: 4.5%;
   transition: all 0.4s;
   cursor: pointer;
 }
@@ -151,7 +152,7 @@
   width: 76%;
   margin-top: 1.7rem;
   margin-bottom: 1.6rem;
-  margin-right: 17.1%;
+  // margin-right: 5.8%;
   cursor: pointer;
   transition: all 0.4s;
 }
@@ -220,7 +221,7 @@
   height: 21.7rem;
   width: 79%;
   border-radius: 1rem;
-  margin-right: 22.5%;
+  // margin-right: 22.5%;
 }
 
 .stream-header {
@@ -358,4 +359,8 @@
   height: 100%;
   color: colors.$cardText;
   font-size: 0.9rem;
+}
+
+.no-toggle {
+  display: none;
 }
