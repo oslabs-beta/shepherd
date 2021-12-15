@@ -55,7 +55,7 @@ const Login = ({ setCurrentView, setUserData }: Props ) => {
       .catch((error) => {
         console.error(error);
       });
-    }
+  }
 
     // send to register view if they need an account
     const handleRegister = () => {

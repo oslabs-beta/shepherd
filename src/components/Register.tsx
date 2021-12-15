@@ -1,7 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Login from './Login';
-//TO DO - 
-// Add back button
 
 const Register = (props: any) => {
   const [firstName, setFirstName] = useState('');

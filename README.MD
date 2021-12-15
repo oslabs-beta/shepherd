@@ -25,7 +25,7 @@
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-      <li><a href="#motivation-for-project">Motivation for Project</a></li> 
+      <li><a href="#motivation-for-project">About Shepherd</a></li> 
       <li><a href="#getting-started">Getting Started</a></li>      
       <li><a href="#aws-end-users">AWS End Users</a></li>
       <ul>
@@ -45,13 +45,13 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## Motivation for Project
+## About Shepherd
 
 Serverless Applications are becoming increasingly popular as they relieve organizations and programmers from worrying about provisioning and maintaining the servers to just focusing on developing and deploying the code. It is also cost-effiecient in many scenarios as servers are running only when an event (for e.g. an API request) is triggered.
 
 AWS is a leading provider in the serverless applications space with AWS Lambda functions being its central component of the architecture. However, with AWS’ numerous services and extensive docs, it becomes challenging to navigate and can be intimidating to monitor and track the health of serverless applications.
 
-Shepherd is a free, open-source monitoring tool that users can connect to their AWS account and easily track key metrics and logs. Here is a [medium](https://www.google.com) article describing the philosophy behind Shepherd. The application can be downloaded [here](https://google.com). 
+Shepherd is a free, open-source monitoring tool that users can connect to their AWS account and easily track key metrics and logs. Here is a [medium](https://connor-gillis.medium.com/8ebe1964acea) article describing the philosophy behind Shepherd. The application can be downloaded [here](https://google.com). 
 
 <!-- GETTING STARTED -->
 
@@ -68,12 +68,12 @@ This section describes the instructions for AWS end users who would like to [dow
 
 ### Installation and Setup
 
-1. Download the Shepherd application [here](https://google.com)
-2. Existing users enter email and password to login
-3. For new users click Signup to create a new user account
-4. Assign a Cloud Formation Stack 
-5. Copy and paste the unique AWS ARN outputted from the prior step
-6. Login with the registered credentials
+1. Download the Shepherd application [here](https://google.com).
+2. Existing login using your email and password.
+3. For new users, click "Signup" to create a new user account.
+4. Assign a Cloud Formation Stack. 
+5. Copy and paste the unique AWS ARN outputted from the prior step.
+6. Login with the registered credentials.
 7. Done!
 
 <p  align="center">
@@ -115,7 +115,7 @@ This section describes the instructions for developers who would like to downloa
 
 ### Built With
 
-The Shepherd application was built using the following key frameworks / libraries for the front-end and back-end:
+The Shepherd application was built using the following frameworks / libraries:
 
 - [React](https://reactjs.org/)
 - [ReactRouter](https://reactrouter.com/)
@@ -128,33 +128,33 @@ The Shepherd application was built using the following key frameworks / librarie
 
 ### Project Setup
 
-The pre-requisite software for setting up this application are:
+Required software for setting up this application:
 
 - [NodeJS](https://nodejs.org/en/)
 - [NPM ](https://www.npmjs.com/)
 
-1. Clone the repo
+1. Clone the repo.
    ```sh
    git clone https://github.com/oslabs-beta/shepherd.git
    cd shepherd
    ```
-2. Install the package dependencies
+2. Install the package dependencies.
    ```sh
    npm install
    ```
-3. Update the `.env` file in the project root directory with the necessary credentials
+3. Update the `.env` file in the project root directory with the necessary credentials.
    ```sh
-   AWS_ACCESS_KEY_ID
-   AWS_SECRET_ACCESS_KEY
-   MONGODB_URI
+   AWS_ACCESS_KEY_ID= 
+   AWS_SECRET_ACCESS_KEY=
+   MONGODB_URI=
    ```
-4. The application can be run in development mode by running the following command and going to http://localhost:8080/ on your browser
+4. The application can be run in development mode by running the following command and going to http://localhost:8080/ on your browser.
 
    ```sh
    npm run dev
    ```
 
-5. Additionally, you can build and run the application (in Electron) with the following commands. This should start up the electron application
+5. Additionally, you can build and run the application (in Electron) with the following commands. This should start up the electron application.
    ```sh
    npm run build
 
@@ -170,7 +170,7 @@ The pre-requisite software for setting up this application are:
 - Connor Gillis - [Github](https://github.com/connor-gillis) | [Linkedin](https://www.linkedin.com/in/connor-gillis/)
 - Baron Bugarcic - [Github](https://github.com/bugarcic) | [Linkedin](https://www.linkedin.com/in/baronbugarcic/)
 
-Project Links: [Website](https://projecthelios.io) | [Github](https://github.com/oslabs-beta/shepherd) | [Linkedin](https://www.linkedin.com/company/shepherd-io)
+Project Links: [Website](https://projecthelios.io) | [Github](https://github.com/oslabs-beta/shepherd) | [Linkedin](https://www.linkedin.com/company/shepherd-io) | [Press](https://connor-gillis.medium.com/8ebe1964acea)
 
 <!-- LICENSE -->
 
