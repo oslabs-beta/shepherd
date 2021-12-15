@@ -99,6 +99,11 @@ Displays the aggregated metrics for their Lambda functions including: Throttles,
 </p>
 
 
+<p  align="center">
+<img src="src/assets/images/functions.gif" width="800px" align="center"/>
+</p>
+
+
 
 ### User Profile
 

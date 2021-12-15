@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component} from 'react';
-import { HashRouter, Link, Route, Switch } from "react-router-dom";
+import { HashRouter, Link, Route, Switch, Redirect } from "react-router-dom";
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Dashboard from './components/Dashboard';
@@ -27,13 +27,23 @@ const App = () => {
   const [mostErrorFunc, setMostErrorFunc] = useState(null);
   const [allFuncLogs, setAllFuncLogs] = useState([]);
   const [funcViewData, setFuncViewData] = useState([]);
-  const [infoPerFunction, setInfoPerFunction] = useState([]);
+
+  console.log('ALL FUNC LOGS', allFuncLogs)
 
   // SETTING MENU & VIEWS
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('login');
 
+  interface userData {
+  username: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  arn: string;
+}
+        
 // setting arn data from database
+
 useEffect(() => {
   if(userData.arn){
     setArn(userData.arn);
@@ -94,7 +104,7 @@ useEffect(() => {
                 setCurrentView={setCurrentView} 
               />
               <Switch>
-                <Route exact path ="/" render={(props) => 
+                <Route exact path="/home" render={(props) => 
                   <Dashboard 
                   {...props}
                   setMenuOpen={setMenuOpen} 
@@ -108,7 +118,13 @@ useEffect(() => {
                   timePeriod={timePeriod}
                   setTimePeriod={setTimePeriod} /> 
                   } />
-                <Route exact path="/functions" component={Functions} />
+                <Route exact path="/functions" render={(props) =>
+                  <Functions
+                    setMenuOpen={setMenuOpen}
+                    funcViewData={funcViewData}
+                    allFuncLogs={allFuncLogs}
+                    />}
+                />
                 <Route exact path="/settings" render={(props) => 
                   <Settings 
                   {...props} 

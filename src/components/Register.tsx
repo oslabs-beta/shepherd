@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import Login from './Login';
 
 const Register = (props: any) => {
@@ -9,8 +9,8 @@ const Register = (props: any) => {
   const [submitted, setSubmitted] = useState(false);
   const [arn, setArn] = useState('');
   const [login, setLogin] = useState(false);
-  
-    const handleRegister = (e: any) => {
+
+    const handleRegister = (e: FormEvent) => {
       setSubmitted(true);
       e.preventDefault(); //avoid page refresh
       const reqParams = { 
@@ -47,7 +47,7 @@ const Register = (props: any) => {
 
     return(
       <React.Fragment>
-      { login ? <Login /> :
+      {/* { login ? <Login /> : */}
         <div className= "landing">
           <div className="form-container">
             <form className="register-form" onSubmit = {handleRegister}>
@@ -58,7 +58,7 @@ const Register = (props: any) => {
                 type="text"
                 placeholder="First Name"
                 value = {firstName}
-                onChange={(e: any) => {
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   setFirstName(e.target.value);
                 }}
               />
@@ -69,7 +69,7 @@ const Register = (props: any) => {
                 type="text"
                 placeholder="Last Name"
                 value = {lastName}
-                onChange={(e: any) => {
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   setLastName(e.target.value);
                 }}
               />
@@ -80,7 +80,7 @@ const Register = (props: any) => {
               type="text"
               placeholder="Email"
               value = {email}
-              onChange={(e: any) => {
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setEmail(e.target.value);
             }}
             />
@@ -91,7 +91,7 @@ const Register = (props: any) => {
               type="password"
               placeholder="Password"
               value = {password}
-              onChange={(e: any) => {
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setPassword(e.target.value);
             }}
             />
@@ -136,7 +136,7 @@ const Register = (props: any) => {
           </form>
         </div>
       </div>
-      } 
+      {/* }  */}
       </React.Fragment>
     )
   }

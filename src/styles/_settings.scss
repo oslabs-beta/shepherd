@@ -2,11 +2,6 @@
 
 .settings-wrapper {
   width: 96%;
-  // height: 100%;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // background-color: #e3f2fd;
   background-color: colors.$transparentBG;
   border-radius: 1rem 1rem 0 0;
   margin: 0.7rem 1.2rem 0rem 0rem;
@@ -60,7 +55,6 @@
 }
 
 .tab-text-wrapper {
-  // margin-top: 0.2rem;
   padding-left: 10%;
   display: flex;
   flex-direction: column;
@@ -84,21 +78,20 @@
 }
 
 .address-icon {
-  // margin-top: 0.2rem;
   margin-left: 1.5rem;
-  color: colors.$brightblue;
+  color: colors.$twitterblue;
   font-size: 1.4rem;
 }
 
 .key-icon {
   margin-left: 1.5rem;
-  color: colors.$brightblue;
+  color: colors.$twitterblue;
   font-size: 1.2rem;
 }
 
 .link-icon {
   margin-left: 1.5rem;
-  color: colors.$brightblue;
+  color: colors.$twitterblue;
   font-size: 1.2rem;
 }
 

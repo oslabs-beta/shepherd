@@ -9,7 +9,7 @@ type Props = {
     subTabText: string
 }
 
-const SettingTab = ({settingView, viewName, setSettingView, icon, mainTabText, subTabText}: Props) => {
+const SettingTab = ({ settingView, viewName, setSettingView, icon, mainTabText, subTabText }: Props) => {
     return (
       <React.Fragment>
           <div 

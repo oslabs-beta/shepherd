@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import Register from "./Register";
+import { useHistory } from 'react-router-dom'; 
 
-const Login = (props: any) => {
+type Props = {
+  setCurrentView: Function,
+  setUserData: Function,
+};
+
+
+
+const Login = ({ setCurrentView, setUserData }: Props ) => {
+
+  let history = useHistory(); 
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [register, setRegister] = useState(false);
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: FormEvent) => {
     setSubmitted(true);
     e.preventDefault();
     const reqParams = {
@@ -25,7 +36,7 @@ const Login = (props: any) => {
       .then((res) => {
         if (res.confirmed === true){
           console.log('User has logged in')
-          props.setUserData(
+          setUserData(
             {
               email: res.userInfo.email,
               firstName: res.userInfo.firstName,
@@ -33,7 +44,8 @@ const Login = (props: any) => {
               arn: res.userInfo.arn
             }
           )
-          props.setCurrentView('dashboard'); 
+          setCurrentView('dashboard'); 
+          history.push('/home');
         }
         else {
           console.log('Something went wrong with user sign in')
@@ -53,7 +65,7 @@ const Login = (props: any) => {
 
     return(
       <React.Fragment>
-      { register ? <Register setCurrentView={props.setCurrentView} setRegister={setRegister}/> :
+      { register ? <Register setCurrentView={setCurrentView} setRegister={setRegister}/> :
       
         <div className = "landing">
           <div className="heading">
@@ -69,7 +81,7 @@ const Login = (props: any) => {
               type="text"
               placeholder="Email"
               value = {email}
-              onChange={(e: any) => {
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setEmail(e.target.value);
               }}
             />
@@ -80,7 +92,7 @@ const Login = (props: any) => {
               type="password"
               placeholder="Password"
               value = {password}
-              onChange={(e: any) => {
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setPassword(e.target.value);
               }}
             />
