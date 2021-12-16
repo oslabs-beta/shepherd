@@ -90,7 +90,7 @@ console.log("function view data", funcViewData)
           currentView === 'login' ? 
           <Login setCurrentView={setCurrentView} setUserData={setUserData}/> :
           <React.Fragment>
-            { currentView === 'loading' || currentView === 'dashboard' && !allFuncLogs.length ? 
+            { currentView === 'dashboard' && !allFuncLogs.length ? 
               <Loading /> : null 
             }
             <Header 

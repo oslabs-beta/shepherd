@@ -6,15 +6,19 @@ type Props = {
     setSettingView: Function,
     icon: React.ReactNode,
     mainTabText: string,
-    subTabText: string
+    subTabText: string,
+    setShowPassword: Function,
 }
 
-const SettingTab = ({ settingView, viewName, setSettingView, icon, mainTabText, subTabText }: Props) => {
+const SettingTab = ({ settingView, viewName, setSettingView, icon, mainTabText, subTabText, setShowPassword }: Props) => {
     return (
       <React.Fragment>
           <div 
               className={"tab-view-name" + (settingView === viewName ? ' setting-active' : '')}
-              onClick={() => setSettingView(viewName)}
+              onClick={() => {
+                  setSettingView(viewName);
+                  setShowPassword(false);
+                }}
           >
               <div className="tab-view-icon">
                    {icon}

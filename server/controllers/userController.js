@@ -157,7 +157,7 @@ userController.updatePassword = async (req, res, next) => {
       user.save();
       confirmation.status = true;
       // if password succesfully changed, send conf
-      const emailStatus = sendEmail('passwordChange', req.body.email);
+      
       res.locals.confirmation = confirmation;
       return next();
     }

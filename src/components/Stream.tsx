@@ -149,16 +149,11 @@ const Stream = (props: any) => {
         </div>
       )
     }
-  })
+  });
 
-  console.log('THIS IS ALLSTREAMS', allStreams)
 
   // console.log('THIS IS ONLYFUNCVIEW', onlyFuncView)
 
-
-  // const onlyFuncView = allStreams.filter((func: any) => {
-  //   return func.funcName === props.funcView;
-  // });
   // console.log('THIS IS FUNC VIEW', props.funcView)
 
   // map into render array
@@ -186,7 +181,7 @@ const Stream = (props: any) => {
         </div>
       )
     }
-  })
+  });
 
   console.log('THIS IS ONLY ERRORS VIEW', onlyErrorView)
         
