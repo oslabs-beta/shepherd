@@ -166,14 +166,14 @@
   margin-top: 2.5%;
   margin-left: 4.5%;
   font-size: 0.8rem;
-  width: 8rem;
+  width: 12rem;
 }
 
-.edit-company-field {
+.edit-new-email-field {
   position: relative;
 }
 
-.edit-company-label {
+.edit-new-email-label {
   position: absolute;
   color: colors.$navText;
   margin-top: 2.5%;
@@ -203,9 +203,11 @@
   align-items: center;
   font-size: 0.85rem;
   cursor: pointer;
+  border: none;
 }
 
 .change-password-wrapper {
+  position: relative;
   margin-top: 1.5rem;
   height: 29rem;
   min-height: 28rem;
@@ -213,6 +215,14 @@
   border: 1px solid colors.$settingsoutline;
   border-radius: 1rem;
   margin-right: 0.4%;
+}
+
+.change-password-message {
+  right: 40%;
+  bottom: 10%;
+  position: absolute;
+  font-size: 0.9rem;
+  color: colors.$twitterblue;
 }
 
 .change-password-header {
@@ -262,4 +272,50 @@
   margin-left: 4.5%;
   font-size: 0.8rem;
   width: 10rem;
+}
+
+.linked-accounts-wrapper {
+  margin-top: 1.5rem;
+  height: 23rem;
+  min-height: 23rem;
+  width: 77%;
+  border: 1px solid colors.$settingsoutline;
+  border-radius: 1rem;
+  margin-right: 0.4%;
+}
+
+.linked-accounts-header {
+  display: flex;
+  align-items: center;
+  color: colors.$navText;
+  font-size: 0.95rem;
+  padding-left: 4.1%;
+  height: 4rem;
+  border-bottom: 1px solid colors.$settingsoutline;
+}
+
+.linked-email-field {
+  position: relative;
+}
+
+.linked-email-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 10rem;
+}
+
+.new-arn-field {
+  position: relative;
+}
+
+.new-arn-label {
+  position: absolute;
+  color: colors.$navText;
+  margin-top: 2.5%;
+  margin-left: 4.5%;
+  font-size: 0.8rem;
+  width: 8rem;
 }

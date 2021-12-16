@@ -21,7 +21,8 @@ const SmallLog = (props: any) => {
           { props.bothLogs ? 
           <div className="stream-body">
             { props.streamView ? props.allStreams : props.allErrors}
-            { !props.allStreams.length && !props.allErrors.length ? <div className="no-streams-message">No streams to display</div> : null }
+            { props.streamView && !props.allStreams.length ? <div className="no-streams-message">No streams to display</div> : null }
+            { !props.streamView && !props.allErrors.length ? <div className="no-streams-message">No errors to display</div> : null }
           </div>
             :
           <div className="stream-body">
@@ -29,9 +30,6 @@ const SmallLog = (props: any) => {
             { props.errorsOnly && props.onlyErrorView.length > 0 ? props.onlyErrorView : null }
             { props.streamsOnly && !props.onlyFuncView.length ? <div className="no-streams-message">No streams to display</div> : null }
             { props.errorsOnly && !props.onlyErrorView.length ? <div className="no-streams-message">No errors to display</div> : null }
-            {/* { props.onlyFuncView.length && props.onlyErrorView.length ? <div className="no-streams-message">No streams to display</div> : null } */}
-            {/* { props.streamsOnly ? props.allStreams : props.allErrors } */}
-            {/* { !props.allStreams.length && !props.allErrors.length ? <div className="no-streams-message">No streams to display</div> : null } */}
           </div>
           }
           <div className="stream-footer"></div>

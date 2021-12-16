@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import SettingTab from './SettingTab';
 
 type Props = {
@@ -15,10 +15,65 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
     const [settingView, setSettingView] = useState('edit-profile');
     const [name, setName] = useState(userData.firstName + ' ' + userData.lastName || '');
     const [email, setEmail] = useState(userData.email || '');
-    const [company, setCompany] = useState('');
+    const [profileEmail, setProfileEmail] = useState('');
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmEmail, setConfirmEmail] = useState('');
+    const [enterArnEmail, setArnEmail] = useState('');
+    const [newArn, setNewArn] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handlePasswordChange = (e: FormEvent) => {
+        const reqParams = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(
+            { 
+              oldPassword,
+              newPassword,
+              email: confirmEmail
+            }
+          ),
+        };
+        fetch ('/user/updatePassword', reqParams)
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status) {
+             setShowPassword(true);
+             setOldPassword('');
+             setNewPassword('');
+             setConfirmEmail('');
+            } 
+            console.log(res);
+            console.log(reqParams)
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        };
+
+        const handleChangeArn = (e: FormEvent) => {
+            console.log('password submitted')
+            const reqParams = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(
+                { 
+                  newArn,
+                  email: enterArnEmail
+                }
+              ),
+            };
+            fetch ('/user/updateArn', reqParams)
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(res);
+                console.log(reqParams)
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+            };
     
     return (
         <React.Fragment>
@@ -34,6 +89,7 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
                             mainTabText="User Profile"
                             subTabText="Profile Settings"
                             viewName="edit-profile"
+                            setShowPassword={setShowPassword}
                             icon={<i className="far fa-address-card address-icon"></i>}
                         />
                         <SettingTab 
@@ -42,6 +98,7 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
                             mainTabText="Change Password"
                             subTabText="Update Security"
                             viewName="change-password"
+                            setShowPassword={setShowPassword}
                             icon={<i className="fas fa-key key-icon"></i>}
                         />
                         <SettingTab 
@@ -50,6 +107,7 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
                             mainTabText="Linked Accounts"
                             subTabText="View Connections"
                             viewName="linked-accounts"
+                            setShowPassword={setShowPassword}
                             icon={<i className="fas fa-link link-icon"></i>}
                         />
                     </div>
@@ -68,7 +126,7 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
                                     />
                                 </div>
                                 <div className="edit-email-field">
-                                    <div className="edit-email-label">Email address:</div> 
+                                    <div className="edit-email-label">Current Email address:</div> 
                                     <input 
                                         type="text"
                                         className="input-field" 
@@ -76,13 +134,13 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                                     />
                                 </div>
-                                <div className="edit-company-field">
-                                    <div className="edit-company-label">Company:</div> 
+                                <div className="edit-new-email-field">
+                                    <div className="edit-new-email-label">New Email Address:</div> 
                                     <input 
                                         type="text"
                                         className="input-field" 
-                                        value={company}
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setCompany(e.target.value)}
+                                        value={profileEmail}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setProfileEmail(e.target.value)}
                                     />
                                 </div>
                                 <div className="update-button-wrapper">
@@ -98,7 +156,7 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
                                 <div className="current-password-field">
                                     <div className="current-password-label">Enter current password:</div> 
                                     <input 
-                                        type="text"
+                                        type="password"
                                         className="input-field" 
                                         value={oldPassword}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => setOldPassword(e.target.value)}
@@ -107,22 +165,51 @@ const Settings = ({ setMenuOpen, userData }: Props ) => {
                                 <div className="new-password-field">
                                     <div className="new-password-label">Enter new password:</div> 
                                     <input 
-                                        type="text"
+                                        type="password"
                                         className="input-field" 
                                         value={newPassword}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => setNewPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="confirm-password-field">
-                                    <div className="confirm-password-label">Re-enter new password</div> 
+                                    <div className="confirm-password-label">Enter email to confirm:</div> 
                                     <input 
                                         type="text"
                                         className="input-field" 
-                                        value={confirmPassword}
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
+                                        value={confirmEmail}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmEmail(e.target.value)}
                                     />
                                 </div>
-                                <div className="update-button-wrapper">
+                                { showPassword ? <span className="change-password-message">Password successfully changed</span> : null }
+                                <div className="update-button-wrapper" onClick={handlePasswordChange}>
+                                    <div className="edit-update-button">Update</div>
+                                </div>
+                            </div>
+                            : null
+                        }
+
+                        { settingView === 'linked-accounts' ? 
+                            <div className="linked-accounts-wrapper">
+                                <div className="linked-accounts-header">Change ARN</div>
+                                <div className="new-arn-field">
+                                    <div className="new-arn-label">Enter new ARN:</div> 
+                                    <input 
+                                        type="text"
+                                        className="input-field" 
+                                        value={newArn}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewArn(e.target.value)}
+                                    />
+                                </div>
+                                <div className="linked-email-field">
+                                    <div className="linked-email-label">Enter email to confirm:</div> 
+                                    <input 
+                                        type="text"
+                                        className="input-field" 
+                                        value={enterArnEmail}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => setArnEmail(e.target.value)}
+                                    />
+                                </div>
+                                <div className="update-button-wrapper" onClick={handleChangeArn}>
                                     <div className="edit-update-button">Update</div>
                                 </div>
                             </div>
