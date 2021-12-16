@@ -51,7 +51,7 @@ Serverless Applications are becoming increasingly popular as they relieve organi
 
 AWS is a leading provider in the serverless applications space with AWS Lambda functions being its central component of the architecture. However, with AWS’ numerous services and extensive docs, it becomes challenging to navigate and can be intimidating to monitor and track the health of serverless applications.
 
-Shepherd is a free, open-source monitoring tool that users can connect to their AWS account and easily track key metrics and logs. Here is a [medium](https://connor-gillis.medium.com/8ebe1964acea) article describing the philosophy behind Shepherd. The application can be downloaded [here](https://http://getshepherd.io/). 
+Shepherd is a free, open-source monitoring tool that users can connect to their AWS account and easily track key metrics and logs. Here is a [medium](https://connor-gillis.medium.com/8ebe1964acea) article describing the philosophy behind Shepherd. The application can be downloaded [here](http://getshepherd.io/). 
 
 <!-- GETTING STARTED -->
 
