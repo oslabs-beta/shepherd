@@ -170,7 +170,7 @@ Required software for setting up this application:
 - Connor Gillis - [Github](https://github.com/connor-gillis) | [Linkedin](https://www.linkedin.com/in/connor-gillis/)
 - Baron Bugarcic - [Github](https://github.com/bugarcic) | [Linkedin](https://www.linkedin.com/in/baronbugarcic/)
 
-Project Links: [Website](https://http://getshepherd.io/) | [Github](https://github.com/oslabs-beta/shepherd) | [Linkedin](https://www.linkedin.com/company/shepherd-io) | [Press](https://connor-gillis.medium.com/8ebe1964acea)
+Project Links: [Github](https://github.com/oslabs-beta/shepherd) | [Linkedin](https://www.linkedin.com/company/shepherd-io) | [Press](https://connor-gillis.medium.com/8ebe1964acea)
 
 <!-- LICENSE -->
 
